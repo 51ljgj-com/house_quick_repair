@@ -1,8 +1,8 @@
 {
-  "name": "aiops_root_analysis",
+  "name": "house_quick_repair",
   "version": "1.0.0",
-  "description": "aiops root analysis",
-  "author": "蔡平 <caiping@linkedsee.com>",
+  "description": "house quick repair",
+  "author": "蔡平 <1456734979@qq.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",

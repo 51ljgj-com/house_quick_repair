@@ -55,9 +55,22 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
+      // Required
+      inject: true,
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+
+      // Optional
+      chunks: ['style', 'pc']
+    }),
+    new HtmlWebpackPlugin({
+      // Required
+      inject: true,
+      filename: 'wrap.html',
+      template: 'wrap.html',
+
+      // Optional
+      chunks: ['style', 'wrap']
     }),
     // copy custom static assets
     new CopyWebpackPlugin([

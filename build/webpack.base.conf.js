@@ -23,6 +23,7 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     pc: './src/pc.js',
+    wrap: './src/pc.js',
     style: './src/style.js'
   },
   output: {

@@ -9,9 +9,6 @@ export default {
     a: '这是第一页'
   }),
   methods: {
-    alert () {
-      alert(1)
-    }
   }
 }
 </script>

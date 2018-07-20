@@ -70,7 +70,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       template: 'wrap.html',
 
       // Optional
-      chunks: ['style', 'wrap']
+      chunks: ['wrapStyle', 'wrap']
     }),
     // copy custom static assets
     new CopyWebpackPlugin([

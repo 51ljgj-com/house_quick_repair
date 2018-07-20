@@ -23,8 +23,9 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     pc: './src/pc.js',
-    wrap: './src/pc.js',
-    style: './src/style.js'
+    wrap: './src/wrap.js',
+    style: './src/style.js',
+    wrapStyle: './src/user_wrap_style.js'
   },
   output: {
     path: config.build.assetsRoot,

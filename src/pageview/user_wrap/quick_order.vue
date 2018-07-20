@@ -1,10 +1,6 @@
 <template lang="pug">
-  .index-wrap
-    .carousel TODO 这是滚动区域
-    .grid
-    .recommend
-    .flow
-    .partner
+  .quick-order-wrap
+    | 这是快速下单页面
 
 </template>
 <script>

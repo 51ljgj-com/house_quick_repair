@@ -1,8 +1,11 @@
 <template lang="pug">
   #app
-    #hd
+    #hd(v-if="!$route.meta.hideNav")
       img.logo(src="/static/img/logo_500.png")
       img.menu-icon(src="/static/img/wrap/icon_nav_form.png" @click="showMenu = !showMenu")
+    #hd(v-if="$route.meta.hideNav" :class="{'second-hd': $route.meta.hideNav}")
+      a.back(href="javascript:history.go(-1)")
+      | {{$route.meta.title}}
     .weui-cells(:class="{'show-menu': showMenu}")
       a.weui-cell.weui-cell_access(v-for="i in links" :k="i.txt")
         .weui-cell__bd
@@ -13,7 +16,7 @@
       .weui-tabbar
         router-link.weui-tabbar__item(to="/index"  tag="a")
           p.weui-tabbar__label 网站首页
-        router-link.weui-tabbar__item(to="/order"  tag="a")
+        router-link.weui-tabbar__item(to="/quick_order"  tag="a")
           p.weui-tabbar__label 直接预约
         router-link.weui-tabbar__item(to="/user"  tag="a")
           p.weui-tabbar__label 个人中心
@@ -48,7 +51,13 @@ export default {
         'href': '/about'
       }
     ]
-  })
+  }),
+
+  watch: {
+    "$route": function () {
+      this.showMenu = false
+    }
+  }
 }
 </script>
 
@@ -66,6 +75,10 @@ export default {
   width: 100%;
   height: 60px;
   padding: 10px;
+  position: relative;
+  color: #fff;
+  line-height: 40px;
+  font-size: 18px;
 
   .logo {
     height: 50px;
@@ -75,6 +88,26 @@ export default {
   .menu-icon {
     width: 40px;
     float: right;
+  }
+
+  .back {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translate(0, -50%);
+    &:before {
+      content: ' ';
+      display: block;
+      width: 20px;
+      height: 20px;
+      border: solid #fff;
+      border-width: 1px 1px 0 0;
+      transform: rotate(-135deg);
+    }
+  }
+
+  &.second-hd {
+    background-image: none;
   }
 }
 #bd {

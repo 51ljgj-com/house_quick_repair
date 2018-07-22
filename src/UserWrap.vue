@@ -10,16 +10,17 @@
       a.weui-cell.weui-cell_access(v-for="i in links" :k="i.txt")
         .weui-cell__bd
           a(:href="i.href") {{i.txt}}
-        .weui-cell__ft 
+        .weui-cell__ft
     router-view#bd
-    .weui-tab
-      .weui-tabbar
-        router-link.weui-tabbar__item(to="/index"  tag="a")
-          p.weui-tabbar__label 网站首页
-        router-link.weui-tabbar__item(to="/quick_order"  tag="a")
-          p.weui-tabbar__label 直接预约
-        router-link.weui-tabbar__item(to="/user"  tag="a")
-          p.weui-tabbar__label 个人中心
+    .ft-nav
+      .weui-tab
+        .weui-tabbar
+          router-link.weui-tabbar__item(to="/index"  tag="a")
+            p.weui-tabbar__label 网站首页
+          router-link.weui-tabbar__item(to="/quick_order"  tag="a")
+            p.weui-tabbar__label 直接预约
+          router-link.weui-tabbar__item(to="/user"  tag="a")
+            p.weui-tabbar__label 个人中心
 </template>
 
 <script>
@@ -114,6 +115,8 @@ export default {
   width: 100%;
   height: calc(100vh - 100px);
   overflow: auto;
+  padding-bottom: 20px;
+  background: #f2f2f2;
 }
 
 .weui-tabbar__item {
@@ -137,5 +140,12 @@ export default {
   &.show-menu {
     transform: translate(100%, 0);
   }
+}
+.ft-nav {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
 }
 </style>

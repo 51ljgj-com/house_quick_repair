@@ -61,7 +61,7 @@
         p 品牌支持
 </template>
 <script>
-let serviceName = '厨卫改造，窗帘安装，打孔安装，防水补漏，管道疏通，家电维修，家具维修，局部改造，门窗维修安装，泥瓦贴砖，墙面粉刷，墙纸安装维修，水电改造'.split('，')
+//let serviceName = '厨卫改造，窗帘安装，打孔安装，防水补漏，管道疏通，家电维修，家具维修，局部改造，门窗维修安装，泥瓦贴砖，墙面粉刷，墙纸安装维修，水电改造'.split('，')
 
 export default {
   data: () => ({
@@ -71,16 +71,16 @@ export default {
     services: []
   }),
   mounted() {
-    this.fetchServices();
+    this.fetchServices()
   },
   methods: {
     fetchServices() {
       this.$http.get('/api/user/serviceItems').then(res => {
-        let body = res.body;
+        let body = res.body
         if (body && body.code) {
-          return;
+          return
         }
-        this.services = body.data;
+        this.services = body.data
       })
     }
   }

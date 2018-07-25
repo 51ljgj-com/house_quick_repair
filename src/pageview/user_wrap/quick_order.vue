@@ -1,5 +1,5 @@
 <template lang="pug">
-  .quick-order-wrap
+  .quick-order-wrap.bd-wrap
     .weui-cells__title  快速下单
     .weui-cells.weui-cells_form
       .weui-cell
@@ -39,10 +39,4 @@ export default {
 </script>
 
 <style lang="scss">
-  .quick-order-wrap {
-    text-align: left;
-    .weui-cells {
-      font-size: 14px;
-    }
-  }
 </style>

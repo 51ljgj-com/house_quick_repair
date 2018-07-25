@@ -68,7 +68,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #333;
 }
 #hd {
   background: url("/static/img/wrap/title.png") center no-repeat #ee3923;
@@ -136,6 +136,7 @@ export default {
   width: 100%;
   transition: .2s all ease;
   margin-top: 0;
+  z-index: 999;
 
   &.show-menu {
     transform: translate(100%, 0);

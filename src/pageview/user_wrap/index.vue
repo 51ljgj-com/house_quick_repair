@@ -1,6 +1,9 @@
 <template lang="pug">
   .index-wrap
-    .carousel TODO 这是滚动区域
+    .carousel
+      .banner 第一页
+      .banner 第二页
+      .banner 第三页
     .weui-grids
       a.weui-grid(href="javascript:;" v-for="(i, k) in services" :key="k" :href="'/user/service_detail/' + i.projectID")
         .weui-grid__icon
@@ -45,6 +48,10 @@ export default {
   },
   mounted() {
     this.fetchServices()
+    $('.carousel').slick({
+        dots: false,
+        autoplay: true
+      })
   }
 }
 </script>
@@ -113,6 +120,19 @@ export default {
         margin-bottom: 10px;
       }
     }
+
+    .carousel {
+      width: 100%;
+      height: 200px;
+      text-align: center;
+      color: #444;
+      overflow: hidden;
+      white-space: nowrap;
+      .banner {
+        display: inline-block;
+      }
+    }
+     
   }
   .weui-grid {
     padding: 15px 10px;

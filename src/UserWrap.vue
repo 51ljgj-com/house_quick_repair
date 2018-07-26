@@ -143,9 +143,7 @@ export default {
   }
 }
 .ft-nav {
-  position: absolute;
-  left: 0;
-  bottom: 0;
+  position: relative;
   width: 100%;
   height: 40px;
 }

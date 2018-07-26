@@ -175,6 +175,9 @@
 }
 
 .slick-arrow {
+    border: none;
+    background: transparent;
+    outline: none;
     color: transparent;
     top: 50%;
     transform: translate(0, -50%);

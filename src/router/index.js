@@ -9,6 +9,9 @@ export default new Router({
   routes: [
     {
       path: '/',
+      redirect: '/index'
+    }, {
+      path: '/index',
       name: 'IndexVue',
       component: IndexVue
     }

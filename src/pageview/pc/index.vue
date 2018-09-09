@@ -1,6 +1,8 @@
 <template lang="pug">
   .index-wrap
-    .content.carousel TODO 这是滚动区域
+    .content.carousel
+      .banner(style="background-image:url(/static/img/banner1.jpg)")
+      .banner(style="background-image:url(/static/img/banner2.png)")
     .content.process
       .hd.center1200
         h2 服务流程
@@ -59,6 +61,7 @@
       .hd
         h2 合作伙伴
         p 品牌支持
+        img(src="/static/img/partner.png")
 </template>
 <script>
 //let serviceName = '厨卫改造，窗帘安装，打孔安装，防水补漏，管道疏通，家电维修，家具维修，局部改造，门窗维修安装，泥瓦贴砖，墙面粉刷，墙纸安装维修，水电改造'.split('，')
@@ -72,6 +75,10 @@ export default {
   }),
   mounted() {
     this.fetchServices()
+    $('.carousel').slick({
+        dots: false,
+        autoplay: true
+      })
   },
   methods: {
     fetchServices() {
@@ -111,6 +118,17 @@ export default {
           margin-bottom: 50px;
         }
       }
+    }
+    .carousel {
+      width: 100%;
+      height: 400px;
+        .banner {
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+          height: 100%;
+          width: 100%;
+        }
     }
     .process {
       ul {

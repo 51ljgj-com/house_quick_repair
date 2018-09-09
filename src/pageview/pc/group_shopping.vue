@@ -3,7 +3,7 @@
   .carousel
   el-container.group-shopping  
     el-aside.top-services(width="300px")
-      h1 热门服务
+      h2 热门服务
       ul
         li
           img(src="/static/img/service/厨卫改造.png")
@@ -137,6 +137,7 @@ export default {
 }
 
 .main-wrapper {
+  padding: 0;
   .title {
     overflow: hidden;
     h2 {
@@ -146,7 +147,6 @@ export default {
       width: 560px;
       float: right;
     }
-
   }
   .pager {
     margin-top: 20px;

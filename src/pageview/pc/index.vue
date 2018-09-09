@@ -52,16 +52,53 @@
         h2 优质服务
         p 马上预约，免费上门制定施工方案
       ul
-        li 智能派单
-        li 自有工程师
-        li 价格透明
-        li 专业施工
-        li 服务保障
+        li
+          .service.service1
+            .img
+            h3 免费上门
+            p 极速响应，免费上门，最块当天安排工程师上门，现场指定维修方案
+        li
+          .service.service2
+            .img
+            h3 价格透明
+            p 价格公开透明，满意再付款。无任何隐形消费
+        li
+          .service.service3
+            .img
+            h3 自有师傅团队
+            p 平台自己工人师傅，安全放心，技术精湛，层层考核，高标准的专业施工团队
+        li
+          .service.service4
+            .img
+            h3 专业标准施工
+            p 极速响应，免费上门，最块当天安排工程师上门，现场指定维修方案
+        li
+          .service.service5
+            .img
+            h3 先施工后付款
+            p 极速响应，免费上门，最块当天安排工程师上门，现场指定维修方案
+        li
+          .service.service6
+            .img
+            h3 超长质保
+            p 极速响应，免费上门，最块当天安排工程师上门，现场指定维修方案
     .content.partner
       .hd
         h2 合作伙伴
         p 品牌支持
         img(src="/static/img/partner.png")
+    .content.questions
+      .hd
+        h2 常见问题
+      .q-and-a
+        h3 预约下单之后什么时候可以施工？
+        p 在预约成功后，邻家工匠师傅将上门查看现场，并根据现场需要作出合适的施工方案，如果是简单修理，最快当天就能上门施工，特殊工程需要适当时间做施工前准备
+        h3 在施工过程中，可以终止订单吗？
+        p 如果在施工过程中，您因为个人愿意需要中止订单，请及时打电话通知客服人员，我们将根据具体的项目施工情况，工程进度规范处理并中止订单
+        h3 施工完成后，遇到质量问题怎么办？
+        p 施工完成后，如果遇到施工质量问题，请立即打电话通知客服人员，邻家工匠将立即安排专人查看现场，并给出合理的解决方案,直到处理完成，您满意为止
+        h3 付款问题
+        p 如果用户只有现金，没有微信，支付宝，银行卡，请提前电话与客服人员沟通，我们将告知师傅特殊处理
 </template>
 <script>
 //let serviceName = '厨卫改造，窗帘安装，打孔安装，防水补漏，管道疏通，家电维修，家具维修，局部改造，门窗维修安装，泥瓦贴砖，墙面粉刷，墙纸安装维修，水电改造'.split('，')
@@ -120,14 +157,20 @@ export default {
       }
     }
     .carousel {
-      width: 100%;
-      height: 400px;
+      width: 1200px;
+      height: 450px;
+      margin: auto;
+      padding: 0;
         .banner {
-          background-size: contain;
+          background-size: 100%;
           background-position: center;
           background-repeat: no-repeat;
           height: 100%;
           width: 100%;
+        }
+
+        .slick-track {
+          height: 100%;
         }
     }
     .process {
@@ -148,48 +191,6 @@ export default {
       .tip {
         margin-top: 20px;
         color: #999;
-      }
-    }
-    
-    .slogan {
-      max-width: 1400px;
-      margin: auto;
-      ul {
-        overflow: hidden;
-      }
-      li {
-        float: left;
-        width: 20%;
-        font-size: 24px;
-        text-align: center;
-        &:before {
-          content: ' ';
-          display: block;
-          width: 100px;
-          height: 100px;
-          margin: auto;
-          border: 2px solid #fff;
-          background-size: 80%;
-          background-repeat: no-repeat;
-          background-position: center;
-          border-radius: 100px;
-          margin-bottom: 20px;
-        }
-      }
-      li:nth-child(1):before {
-        background-image: url(/static/img/slogan1.png);
-      }
-      li:nth-child(2):before {
-        background-image: url(/static/img/slogan2.png);
-      }
-      li:nth-child(3):before {
-        background-image: url(/static/img/slogan3.png);
-      }
-      li:nth-child(4):before {
-        background-image: url(/static/img/slogan4.png);
-      }
-      li:nth-child(5):before {
-        background-image: url(/static/img/slogan5.png);
       }
     }
 
@@ -221,4 +222,71 @@ export default {
       }
     }
   }
+
+.slogan {
+  margin: auto;
+  ul {
+    overflow: hidden;
+    width: 1305px;
+    margin: auto;
+  }
+
+  li {
+    width: 385px;
+    height: 360px;
+    background-color: #fff;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.7);
+    float: left;
+    margin: 25px;
+  }
+  .service {
+    .img {
+      height: 200px;
+      background-color: #ee3923;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    h3 {
+      font-size: 26px;
+      line-height: 70px;
+      margin-top: 10px;
+      color: #333;
+    }
+    p {
+      padding: 0 15px;
+      font-size: 18px;
+      color: #515151;
+      text-align: left;
+    }
+  }
+  .service1 .img {background-image: url(/static/img/service_1.jpg);}
+  .service2 .img {background-image: url(/static/img/service_2.png);}
+  .service3 .img {background-image: url(/static/img/service_3.jpg);}
+  .service4 .img {background-image: url(/static/img/service_4.jpg);}
+  .service5 .img {background-image: url(/static/img/service_5.jpg);}
+  .service6 .img {
+    background-image: url(/static/img/service_6.png);
+    background-size: 155px 178px;
+  }
+}
+
+.questions {
+  .q-and-a {
+    text-align: left;
+    width: 1200px;
+    margin: auto;
+    h3 {
+      font-size: 26px;
+      color: #fff;
+      margin-top: 20px;
+    }
+    p {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #fff;
+      padding-left: 2em;
+    }
+  }
+}
 </style>

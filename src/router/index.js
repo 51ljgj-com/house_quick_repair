@@ -21,7 +21,7 @@ export default new Router({
       name: 'GroupBuyingVue',
       component: GroupBuyingVue
     }, {
-      path: '/service/detail/detail_id',
+      path: '/service/detail/:detail_id',
       name: 'ServiceDetailVue',
       component: ServiceDetailVue
     }

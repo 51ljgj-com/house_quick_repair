@@ -69,6 +69,8 @@ export default {
   padding: 50px 0 10px 0;
   background: #191821;
   text-align: center;
+  width: 1200px;
+  margin: auto;
 
   .qr-code {
     display: inline-block;

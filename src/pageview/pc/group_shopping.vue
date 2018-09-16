@@ -1,22 +1,9 @@
 <template lang="pug">
 .group-shopping-wrapper
-  .carousel
+  carousel(:list="carouselList")
   el-container.group-shopping  
-    el-aside.top-services(width="300px")
-      h2 热门服务
-      ul
-        li
-          img(src="/static/img/service/厨卫改造.png")
-          h3 水电改造/安装
-        li
-          img(src="/static/img/service/厨卫改造.png")
-          h3 水电改造/安装
-        li
-          img(src="/static/img/service/厨卫改造.png")
-          h3 水电改造/安装
-        li
-          img(src="/static/img/service/厨卫改造.png")
-          h3 水电改造/安装
+    el-aside(width="300px")
+      hot-service
     el-main.main-wrapper
       .title
         h2 参团小区
@@ -126,31 +113,28 @@
           span 参与团购活动的四个项目中，因为涉及材料采购成本，除房屋贴砖人工费外，其他类别项目需要在施工前支付部分预付款，用于材料购买
           span 如果支付问题,请立即联系:028-85147492
           span 在预约后24小时内，如因其他原因取消订单，请立即致电:028-85147492申请退款，我们在接到退款申请2个工作日把定金退给您的指定账户
-  .service-case.service-content-container
-    p.top-hd 施工案例
-    ul
-      li
-        img(src="/static/img/case_1.jpg")
-        .desc
-          span 小区: 保利天语
-          span 服务项目: 墙面翻新
-          span 服务时间: 2018-6-15
-      li
-        img(src="/static/img/case_2.jpg")
-        .desc
-          span 小区: 保利天语
-          span 服务项目: 墙面翻新
-          span 服务时间: 2018-6-15
-  .service-partner.service-content-container
-    p.top-hd 合作伙伴
-    img(src="/static/img/partners.png")
+  example-case.service-case
+  partner-list.service-partner
 </template>
 
 </template>
 
 <script>
+import hotService from '../../component/hot_service.vue';
+import exampleCase from '../../component/example_case.vue';
+import partnerList from '../../component/partner_list.vue';
+import Carousel from '../../component/carousel.vue';
 export default {
-  name: 'App'
+  name: 'App',
+  data: () => ({
+    carouselList: ['/static/img/banner1.jpg', '/static/img/banner2.png']
+  }),
+  components: {
+    'hot-service': hotService,
+    'example-case': exampleCase,
+    'partner-list': partnerList,
+    carousel: Carousel
+  }
 }
 </script>
 
@@ -158,13 +142,6 @@ export default {
 .group-shopping {
   width: 1200px;
   margin: auto;
-}
-.top-services {
-  li {
-    img {
-      width: 160px;
-    }
-  }
 }
 .grouping-list {
   li {
@@ -220,17 +197,6 @@ export default {
   }
   .pager {
     margin-top: 20px;
-  }
-}
-
-.top-services {
-  h2 {
-    margin-bottom: 27px;
-  }
-  li {
-    padding: 20px 0;
-    border: 1px solid #f2f2f2;
-    margin-top: -1px;
   }
 }
 
@@ -313,55 +279,8 @@ export default {
   background: #f3f3f3;
   border-bottom: 1px solid #ccc;
 }
-.service-content-container {
-  border: 1px solid #ccc;
-  width: 1200px;
-  margin: 20px auto;
-}
 
 .service-case {
   margin-top: 20px;
-  ul {
-    overflow: hidden;
-  }
-  li {
-    width: 230px;
-    height: 270px;
-    overflow: hidden;
-    position: relative;
-    float: left;
-    margin-right: 10px;
-    img {
-      min-width: 100%;
-      min-height: 100%;
-      position: relative;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .desc {
-      height: 70px;
-      background: rgba(0, 0, 0, .4);
-      padding: 10px;
-      color: #fff;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      span {
-        display: block;
-        text-align: left;
-        font-size: 14px;
-        line-height: 1.4;
-      }
-    }
-  }
-}
-.service-partner {
-  img {
-    width: 1100px;
-    margin: auto;
-    margin: 50px 0;
-  }
 }
 </style>

@@ -1,8 +1,6 @@
 <template lang="pug">
   .index-wrap
-    .content.carousel
-      .banner(style="background-image:url(/static/img/banner1.jpg)")
-      .banner(style="background-image:url(/static/img/banner2.png)")
+    carousel.content(:list="carouselList")
     .content.process
       .hd.center1200
         h2 服务流程
@@ -19,7 +17,7 @@
         h2 服务项目
         p 签约保障，把握每一个细节
       .list
-        a(v-for="(i, k) in services" :key="k" :href="'/service/detail/' + i.projectID")
+        a(v-for="(i, k) in services" :key="k" :href="'#/service/detail/' + i.projectID")
           img(:src="'/static/img/service/' + i.projectName + '.png'")
           p {{i.projectName}}
     .content.order
@@ -102,20 +100,21 @@
 </template>
 <script>
 //let serviceName = '厨卫改造，窗帘安装，打孔安装，防水补漏，管道疏通，家电维修，家具维修，局部改造，门窗维修安装，泥瓦贴砖，墙面粉刷，墙纸安装维修，水电改造'.split('，')
-
+import Carousel from '../../component/carousel.vue';
 export default {
   data: () => ({
     form: {
       content: ''
     },
-    services: []
+    services: [],
+    carouselList: ['/static/img/banner1.jpg', '/static/img/banner2.png']
   }),
   mounted() {
     this.fetchServices()
     $('.carousel').slick({
-        dots: false,
-        autoplay: true
-      })
+      dots: false,
+      autoplay: true
+    })
   },
   methods: {
     fetchServices() {
@@ -127,6 +126,9 @@ export default {
         this.services = body.data
       })
     }
+  },
+  components: {
+    carousel: Carousel
   }
 }
 </script>
@@ -156,23 +158,7 @@ export default {
         }
       }
     }
-    .carousel {
-      width: 1200px;
-      height: 450px;
-      margin: auto;
-      padding: 0;
-        .banner {
-          background-size: 100%;
-          background-position: center;
-          background-repeat: no-repeat;
-          height: 100%;
-          width: 100%;
-        }
 
-        .slick-track {
-          height: 100%;
-        }
-    }
     .process {
       ul {
         background: url(/static/img/process.png) no-repeat center;

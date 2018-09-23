@@ -113,8 +113,8 @@
           span 参与团购活动的四个项目中，因为涉及材料采购成本，除房屋贴砖人工费外，其他类别项目需要在施工前支付部分预付款，用于材料购买
           span 如果支付问题,请立即联系:028-85147492
           span 在预约后24小时内，如因其他原因取消订单，请立即致电:028-85147492申请退款，我们在接到退款申请2个工作日把定金退给您的指定账户
-  example-case.service-case
-  partner-list.service-partner
+  example-case.service-case.content12
+  partner-list.service-partner.content12
 </template>
 
 </template>
@@ -278,8 +278,13 @@ export default {
   line-height: 50px;
   background: #f3f3f3;
   border-bottom: 1px solid #ccc;
+  margin: auto;
 }
 
+.content12 {
+  width: 1200px;
+  margin: auto;
+}
 .service-case {
   margin-top: 20px;
 }

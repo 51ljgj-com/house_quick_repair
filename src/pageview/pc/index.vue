@@ -140,6 +140,9 @@ export default {
       color: #333;
       padding: 80px 0;
     }
+    .carousel {
+      padding: 0;
+    }
     .content:nth-child(odd) {
       background: #222;
       color: #fff;

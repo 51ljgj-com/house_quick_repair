@@ -34,8 +34,8 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+  font-size: 12px;
 }
 #hd {
   height: 100px;
@@ -69,7 +69,7 @@ export default {
   padding: 50px 0 10px 0;
   background: #191821;
   text-align: center;
-  width: 1200px;
+  width: 100%;
   margin: auto;
 
   .qr-code {

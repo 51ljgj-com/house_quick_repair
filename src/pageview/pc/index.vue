@@ -135,6 +135,7 @@ export default {
 
 <style lang="scss">
   .index-wrap {
+    text-align:center;
     .content {
       padding: 20px 0;
       color: #333;

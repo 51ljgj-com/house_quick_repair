@@ -3,11 +3,8 @@
     #hd
       img.logo(src="/static/img/logo_500.png")
       nav
-        router-link(to="/system" tag="a") 首页
-        router-link(to="/system" tag="a") 服务项目
-        router-link(to="/system" tag="a") 最新资讯
-        router-link(to="/system" tag="a") 优惠活动
-        router-link(to="/system" tag="a") 师傅招聘
+        router-link(to="/index" tag="a") 首页
+        router-link(to="/group_buy" tag="a") 拼团服务
     router-view#bd
     #ft
       .about

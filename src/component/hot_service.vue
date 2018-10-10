@@ -23,6 +23,7 @@ export default {
 
 <style lang="scss">
 .hot-services {
+  text-align:center;
   h2 {
     margin-bottom: 27px;
   }

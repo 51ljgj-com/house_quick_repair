@@ -16,7 +16,7 @@ export default new Router({
       path: '/',
       redirect: '/index'
     }, {
-      path: '/index',
+      path: '/index/:anchor?',
       name: 'IndexVue',
       component: IndexVue
     }, {

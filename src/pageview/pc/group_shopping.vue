@@ -142,6 +142,7 @@ export default {
 .group-shopping {
   width: 1200px;
   margin: auto;
+  margin-top: 30px;
 }
 .grouping-list {
   li {
@@ -204,6 +205,7 @@ export default {
   background: #f3f3f3;
   padding: 10px 20px;
   margin-top: 20px;
+  text-align: center;
   h2 {
     font-size: 22px;
     color: #FF3300;
@@ -230,6 +232,7 @@ export default {
         display: inline-block;
         width: 160px;
         margin: 0 45px;
+        vertical-align: top;
 
         label {
           width: 100%;
@@ -272,13 +275,6 @@ export default {
     margin: 10px auto;
     height: 200px; 
   }
-}
-.top-hd {
-  font-size: 22px;
-  line-height: 50px;
-  background: #f3f3f3;
-  border-bottom: 1px solid #ccc;
-  margin: auto;
 }
 
 .content12 {

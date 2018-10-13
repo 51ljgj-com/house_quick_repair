@@ -20,7 +20,7 @@
         a(v-for="(i, k) in services" :key="k" :href="'#/service/detail/' + i.projectID")
           img(:src="'/static/img/service/' + i.projectName + '.png'")
           p {{i.projectName}}
-    .content.order
+    .content.order#quickOrder
       .hd.center1200
         h2 马上预约
         p 马上预约，免费上门制定施工方案
@@ -111,10 +111,11 @@ export default {
   }),
   mounted() {
     this.fetchServices()
-    $('.carousel').slick({
-      dots: false,
-      autoplay: true
-    })
+    if (this.$route.params.anchor) {
+      setTimeout(() => {
+        document.querySelector(`#${this.$route.params.anchor}`).scrollIntoView();
+      }, 200);
+    }
   },
   methods: {
     fetchServices() {
@@ -125,6 +126,15 @@ export default {
         }
         this.services = body.data
       })
+    }
+  },
+  watch: {
+    '$route.params': function() {
+      if (this.$route.params.anchor) {
+        setTimeout(() => {
+          document.querySelector(`#${this.$route.params.anchor}`).scrollIntoView();
+        }, 200);
+      }
     }
   },
   components: {

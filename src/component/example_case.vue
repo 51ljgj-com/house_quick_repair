@@ -22,10 +22,18 @@ export default {
 </script>
 
 <style lang="scss">
-.service-case {
+.service-content-container {
   border: 1px solid #ccc;
   width: 1200px;
   margin: 20px auto;
+
+  .top-hd {
+    font-size: 22px;
+    line-height: 50px;
+    background: #f3f3f3;
+    border-bottom: 1px solid #ccc;
+    margin: auto;
+  }
 
   ul {
     overflow: hidden;

@@ -1,5 +1,5 @@
 <template lang="pug">
-.carousel
+.carousel(:style="wrapStyle")
   .banner(v-for="item in list" :key="item" :style="{'background-image': 'url(' + item + ')'}")
 </template>
 <script>
@@ -8,6 +8,22 @@ export default {
     list: {
       default: [],
       type: Array
+    },
+    dataW: {
+      default: 1200,
+      type: Number
+    },
+    dataH: {
+      default: 450,
+      type: Number
+    }
+  },
+  computed: {
+    wrapStyle() {
+      return {
+        width: this.dataW + 'px',
+        height: this.dataH + 'px'
+      }
     }
   },
   mounted() {
@@ -21,8 +37,6 @@ export default {
 
 <style lang="scss">
 .carousel {
-  width: 1200px;
-  height: 450px;
   margin: auto;
   padding: 0;
     .banner {

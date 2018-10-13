@@ -3,7 +3,8 @@
     #hd
       img.logo(src="/static/img/logo_500.png")
       nav
-        router-link(to="/index" tag="a") 首页
+        router-link(to="/index/" tag="a") 首页
+        router-link(to="/index/quickOrder" tag="a") 预约下单
         router-link(to="/group_buy" tag="a") 拼团服务
     router-view#bd
     #ft

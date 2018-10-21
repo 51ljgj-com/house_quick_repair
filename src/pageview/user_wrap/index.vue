@@ -7,7 +7,7 @@
     .weui-grids
       a.weui-grid(href="javascript:;" v-for="(i, k) in services" :key="k" :href="'/user/service_detail/' + i.projectID")
         .weui-grid__icon
-          img(:src="'/static/img/service/' + i.projectName + '.png'")
+          img(:src="i.projectThumbUrl")
         p.weui-grid__label {{i.projectName}}
     .recommend.content
       h2 特色推荐
@@ -37,12 +37,15 @@ export default {
   }),
   methods: {
     fetchServices() {
-      this.$http.get('/api/user/serviceItems').then(res => {
+      this.$http.get('/api/projects/projectItems').then(res => {
         let body = res.body
         if (body && body.code) {
           return
         }
-        this.services = body.data
+        this.services = body.data.map(i => {
+          i.projectThumbUrl = this.SERVER_HOST + i.projectThumbUrl.replace('..', '')
+          return i
+        })
       })
     }
   },

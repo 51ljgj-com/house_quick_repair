@@ -2,12 +2,13 @@ export default {
 
   //插件入口
   install(Vue, options) {
+    Vue.http.options.emulateJSON = true
     Vue.http.interceptors.push(function(request, next) {
       // if (request.method.toUpperCase() === 'GET') {
       //   request.params._t = Math.random()
       // }
 
-      request.url = request.url + '.json'
+      //request.url = request.url + '.json'
 
       request.headers.set('Content-Type', request.method === 'PATCH' ? 'application/json;charset=UTF-8' : 'application/x-www-form-urlencoded;charset=UTF-8')
 

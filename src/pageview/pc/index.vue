@@ -17,8 +17,8 @@
         h2 服务项目
         p 签约保障，把握每一个细节
       .list
-        a(v-for="(i, k) in services" :key="k" :href="'#/service/detail/' + i.projectID")
-          img(:src="'/static/img/service/' + i.projectName + '.png'")
+        a(v-for="(i, k) in services" :key="k" :href="'#/service/detail/' + i.projectid")
+          img(:src="i.projectThumbUrl")
           p {{i.projectName}}
     .content.order#quickOrder
       .hd.center1200
@@ -119,12 +119,15 @@ export default {
   },
   methods: {
     fetchServices() {
-      this.$http.get('/api/user/serviceItems').then(res => {
+      this.$http.get('/api/projects/projectItems').then(res => {
         let body = res.body
         if (body && body.code) {
           return
         }
-        this.services = body.data
+        this.services = body.data.map(i => {
+          i.projectThumbUrl = this.SERVER_HOST + i.projectThumbUrl.replace('..', '')
+          return i
+        })
       })
     }
   },

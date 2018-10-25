@@ -64,7 +64,10 @@ export default {
         phoneNo: form.tel,
         verificationCode: Number(form.code)
       }).then(res => {
-        console.log(res);
+        res = res.body;
+        if (res.code) return;
+        window.localStorage.setItem('userInfo', JSON.stringify(res.data));
+        location.href = '/wrap.html';
       })
     }
   }

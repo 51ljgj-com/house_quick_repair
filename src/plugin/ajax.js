@@ -12,17 +12,11 @@ export default {
 
       request.headers.set('Content-Type', request.method === 'PATCH' ? 'application/json;charset=UTF-8' : 'application/x-www-form-urlencoded;charset=UTF-8')
 
-      let token = window.localStorage.getItem('auth_token')
-      if (token) {
-        request.headers.set('Authorization', 'Token ' + token)
-      }
-
       next(function(res) {
         let data = res.body
         if (res.status === 0) return
         if (res.status === 401) {
-          window.localStorage.removeItem('auth_token')
-          location.reload()
+          window.localStorage.removeItem('userInfo')
           return
         }
         if (res.status < 200 || res.status >= 300) {

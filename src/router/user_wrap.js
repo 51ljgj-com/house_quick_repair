@@ -49,51 +49,22 @@ let router =  new Router({
   ]
 })
 
-// router.beforeEach((to, from, next) => {
-//   //获取本地缓存的token
-//   //根据token 获取用户信息
-//   //如果调用失败/无token跳转到登录。
-//   //如果获取到用户信息页面跳转
-//   if (document.body.classList.contains('fullscreen')) {
-//     window.exitFullScreen()
-//     document.body.classList.remove('fullscreen')
-//     Bus.$emit('dashboardFullscreen', false)
-//   }
-//   if (to.path === '/login' || State.state.signed) {
-//     return next()
-//   }
+router.beforeEach((to, from, next) => {
+  //获取本地缓存的token
+  //根据token 获取用户信息
+  //如果调用失败/无token跳转到登录。
+  //如果获取到用户信息页面跳转
+  if (to.path === '/login' || Vue.userInfo) {
+    return next()
+  }
 
-//   let token = window.localStorage.getItem('auth_token')
-//   if (!token) {
-//     State.state.signed = false
-//     return next('/login')
-//   }
-
-//   // 获取用户信息
-//   let getUserInfo = Vue.http.get('/api/v1/user_info/').then(res => {
-//     Vue.UserInfo = res.body
-//     State.state.userInfo = res.body
-//   })
-//   // 获取用户权限
-//   let getUserPermission = Vue.http.get('/api/v1/permission/core/').then(res => {
-//     let data = res.body
-//     let dataMap = {}
-//     data.forEach(item => {
-//       dataMap[item.key] = {
-//         describe: item.describe,
-//         active: item.active
-//       }
-//     })
-//     Vue.UserPermission = dataMap
-//     State.state.userPermission = dataMap
-//   })
-//   Promise.all([getUserInfo, getUserPermission]).then(() => {
-//     State.state.signed = true
-//     next()
-//   }).catch(err => {
-//     console.log(err)
-//     State.state.signed = false
-//     next('/login')
-//   })
-// })
+  let userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+  if (!userInfo) {
+    Vue.userInfo = null;
+    return next('/login')
+  } else {
+    Vue.userInfo = userInfo;
+    return next();
+  }
+})
 export default router

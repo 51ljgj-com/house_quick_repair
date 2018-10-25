@@ -5,8 +5,7 @@
         .weui-cell__hd
           img(src="/static/img/icon_200.png")
         .weui-cell__bd
-          p.name 蔡少
-          p.tel 电话：18511865944
+          p.name {{username}}
     .weui-cells
       a.weui-cell.weui-cell_access(href="#/user/orders")
         .weui-cell__hd
@@ -36,6 +35,7 @@
 <script>
 export default {
   data: () => ({
+    username: Vue.userInfo.username
   }),
   methods: {
   }

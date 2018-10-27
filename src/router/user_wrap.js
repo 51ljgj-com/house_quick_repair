@@ -24,7 +24,8 @@ let router = new Router({
     }, {
       path: '/detail/:projectid',
       name: 'DetailVue',
-      component: DetailVue
+      component: DetailVue,
+      meta: {hideNav: true, 'title': ''}
     }, {
       path: '/quick_order',
       name: 'QuickOrdrVue',

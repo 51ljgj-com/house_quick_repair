@@ -7,6 +7,7 @@ import AjaxPlugin from './plugin/ajax'
 import VueForm from 'vue-form'
 
 Vue.prototype.SERVER_HOST = 'http://gdjzj.hzsdgames.com:8093'
+Vue.prototype.$BUS = new Vue()
 
 Vue.use(VueResource)
 Vue.use(AjaxPlugin)

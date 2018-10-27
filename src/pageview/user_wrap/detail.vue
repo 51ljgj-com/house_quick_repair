@@ -48,6 +48,9 @@ export default {
   mounted() {
     this.fetchBanners()
     this.fetchCont()
+    this.$nextTick(() => {
+      this.$BUS.$emit('subtitle-change', this.$route.query.project)
+    })
   },
   watch: {
     banners() {
@@ -93,6 +96,7 @@ export default {
       }
       ul.contents {
         padding: 0 15px;
+        text-align: left;
         li {
           &:before {
             content: '●';

@@ -5,11 +5,11 @@
       img.menu-icon(src="/static/img/wrap/icon_nav_form.png" @click="showMenu = !showMenu")
     #hd(v-if="$route.meta.hideNav" :class="{'second-hd': $route.meta.hideNav}")
       a.back(href="javascript:history.go(-1)")
-      | {{$route.meta.title}}
+      | {{subTitle || $route.meta.title}}
     .weui-cells(:class="{'show-menu': showMenu}")
-      a.weui-cell.weui-cell_access(v-for="i in links" :k="i.txt")
+      a.weui-cell.weui-cell_access(v-for="i in links" :k="i.txt" :href="i.href")
         .weui-cell__bd
-          a(:href="i.href") {{i.txt}}
+          span {{i.txt}}
         .weui-cell__ft
     router-view#bd
     .ft-nav
@@ -28,10 +28,11 @@ export default {
   name: 'App',
   data: () => ({
     showMenu: false,
+    subTitle: '',
     links: [
       {
         'txt': '网站首页',
-        'href': '/index'
+        'href': '#/index'
       }, {
         'txt': '公司简介',
         'href': '/about'
@@ -57,7 +58,14 @@ export default {
   watch: {
     "$route": function () {
       this.showMenu = false
+      this.subTitle = ''
     }
+  },
+
+  mounted() {
+    this.$BUS.$on('subtitle-change', (title) => {
+      this.subTitle = title
+    })
   }
 }
 </script>

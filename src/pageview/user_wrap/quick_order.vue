@@ -1,17 +1,19 @@
 <template lang="pug">
   .quick-order-wrap.bd-wrap
     .weui-cells__title  快速下单
-    .weui-cells.weui-cells_form
-      .weui-cell
+    vue-form.weui-cells.weui-cells_form(:state="formstate")
+      validate.weui-cell(:class="{'weui-cell_warn': formstate.contactsUserName && formstate.contactsUserName.$invalid}")
         .weui-cell__hd
           label.weui-label 姓名
         .weui-cell__bd
-          input(class="weui-input" type="name" v-model="form.contactsUserName" placeholder="请输入真实姓名")
-      .weui-cell
+          input(class="weui-input" type="name" v-model="form.contactsUserName" placeholder="请输入真实姓名" name="contactsUserName" required)
+      validate.weui-cell(:class="{'weui-cell_warn': formstate.phoneNo && formstate.phoneNo.$invalid}")
         .weui-cell__hd
           label.weui-label 电话
         .weui-cell__bd
-          input(class="weui-input" type="tel" v-model="form.phoneNo" placeholder="请输入正确的电话")
+          input(class="weui-input" type="tel" v-model="form.phoneNo" placeholder="请输入11位手机号" name="phoneNo" pattern="\\d{11}")
+        weui-cell__ft
+          i.weui-icon-warn
       .weui-cell
         .weui-cell__hd
           label.weui-label 地址
@@ -44,12 +46,14 @@ export default {
       houseName: '',
       orderDescription: ''
     },
+    formstate: {},
+    
     operateRet: {
       isShow: {
         type: Boolean,
         default: false
       },
-      msg: '预约成功',
+      msg: '恭喜您预约成功，工作人员会在24小时内联系您，请保持手机畅通~',
       btns: [{
         txt: '返回主页',
         cb() {
@@ -65,12 +69,7 @@ export default {
   }),
   methods: {
     submit() {
-      if(['contactsUserName', 'phoneNo', 'orderAddress'].some(i => !this.form[i].trim())) {
-        return;
-      }
-      if (!/^\d{11}$/.test(this.form.phoneNo)) {
-        return;
-      }
+      if(this.formstate.$invalid) return;
       let params = Object.assign({token: Vue.userInfo.token}, this.form)
       this.$http.post('/api/order/createOrder', params).then(res => {
         res = res.body;

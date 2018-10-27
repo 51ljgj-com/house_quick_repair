@@ -10,7 +10,7 @@ import UserOrdersVue from '@/pageview/user_wrap/user_center/user_orders'
 
 Vue.use(Router)
 
-let router =  new Router({
+let router = new Router({
   linkActiveClass: 'weui-bar__item_on',
   routes: [
     {
@@ -58,13 +58,13 @@ router.beforeEach((to, from, next) => {
     return next()
   }
 
-  let userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+  let userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
   if (!userInfo) {
-    Vue.userInfo = null;
+    Vue.userInfo = null
     return next('/login')
   } else {
-    Vue.userInfo = userInfo;
-    return next();
+    Vue.userInfo = userInfo
+    return next()
   }
 })
 export default router

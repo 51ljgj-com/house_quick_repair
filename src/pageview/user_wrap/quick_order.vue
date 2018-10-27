@@ -70,7 +70,7 @@ export default {
   methods: {
     submit() {
       if(this.formstate.$invalid) return;
-      let params = Object.assign({token: Vue.userInfo.token}, this.form)
+      let params = Object.assign({}, this.form, {token: Vue.userInfo.token, orderContent: this.$route.query.orderContent})
       this.$http.post('/api/order/createOrder', params).then(res => {
         res = res.body;
         if (res.code) return;

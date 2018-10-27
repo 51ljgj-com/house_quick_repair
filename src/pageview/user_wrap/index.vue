@@ -5,7 +5,7 @@
       .banner 第二页
       .banner 第三页
     .weui-grids
-      a.weui-grid(href="javascript:;" v-for="(i, k) in services" :key="k" :href="'/user/service_detail/' + i.projectID")
+      a.weui-grid(href="javascript:;" v-for="(i, k) in services" :key="k" :href="i.url")
         .weui-grid__icon
           img(:src="i.projectThumbUrl")
         p.weui-grid__label {{i.projectName}}
@@ -44,6 +44,7 @@ export default {
         }
         this.services = body.data.map(i => {
           i.projectThumbUrl = this.SERVER_HOST + i.projectThumbUrl.replace('..', '')
+          i.url = `#/detail/${i.projectid}?project=${i.projectName}`
           return i
         })
       })

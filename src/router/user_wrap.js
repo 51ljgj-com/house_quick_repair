@@ -6,6 +6,7 @@ import QuickOrdrVue from '@/pageview/user_wrap/quick_order'
 import RegisterVue from '@/pageview/user_wrap/register'
 import LoginVue from '@/pageview/user_wrap/login'
 import UserVue from '@/pageview/user_wrap/user'
+import DetailVue from '@/pageview/user_wrap/detail'
 import UserOrdersVue from '@/pageview/user_wrap/user_center/user_orders'
 
 Vue.use(Router)
@@ -20,6 +21,10 @@ let router = new Router({
       path: '/index',
       name: 'IndexVue',
       component: IndexVue
+    }, {
+      path: '/detail/:projectid',
+      name: 'DetailVue',
+      component: DetailVue
     }, {
       path: '/quick_order',
       name: 'QuickOrdrVue',

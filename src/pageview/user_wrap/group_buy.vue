@@ -14,7 +14,7 @@
       .tips
         h1 参团小区
         p 没有您的小区？
-          a(href="") 立即创建
+          a(href="#/add_house") 立即创建
     .content
       loading(:show="!allList" :inline="true")
       .weui-panel.weui-panel_access(v-show="showList&&showList.length")
@@ -34,7 +34,8 @@
             span.weui-cell__ft
       .no-data(v-show="showList&&!showList.length")
         .icon
-        h3 没有找到此小区相关的信息
+        h3 没有找到小区,
+          a(href="#/add_house") 立即创建
         p 创建小区，加入团购，享受更多优惠
 </template>
 <script>
@@ -56,7 +57,11 @@ export default {
         //   return
         // }
         body.map(i => {
-          i.houseThumbUrl = i.houseThumbUrl.trim().replace('..', this.SERVER_HOST);
+          if (i.houseThumbUrl) {
+            i.houseThumbUrl = i.houseThumbUrl.trim().replace('..', this.SERVER_HOST);
+          } else {
+            i.houseThumbUrl = '/static/img/icon_100.png';
+          }
           return i;
         })
         this.allList = body;
@@ -166,12 +171,18 @@ export default {
           font-weight: normal;
           font-size: 18px;
           margin: 10px 0;
+          a {
+            text-decoration: underline;
+          }
         }
         p {
           color: #ee3923;
           font-size: 14px;
         }
       }
+    }
+    .weui-media-box__thumb {
+      background-color: #efeff4;
     }
   }
 </style>

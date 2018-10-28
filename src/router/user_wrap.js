@@ -8,6 +8,7 @@ import LoginVue from '@/pageview/user_wrap/login'
 import UserVue from '@/pageview/user_wrap/user'
 import DetailVue from '@/pageview/user_wrap/detail'
 import GroupBuyVue from '@/pageview/user_wrap/group_buy.vue'
+import AddHouseVue from '@/pageview/user_wrap/add_house.vue'
 import UserOrdersVue from '@/pageview/user_wrap/user_center/user_orders'
 
 Vue.use(Router)
@@ -37,6 +38,11 @@ let router = new Router({
       name: 'GroupBuyVue',
       component: GroupBuyVue,
       meta: {hideNav: true, 'title': '我要团购'}
+    }, {
+      path: '/add_house',
+      name: 'AddHouseVue',
+      component: AddHouseVue,
+      meta: {hideNav: true, 'title': '我要团购-添加小区'}
     }, {
       path: '/register',
       name: 'register',

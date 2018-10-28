@@ -5,7 +5,7 @@
       i.weui-icon-success.weui-icon_msg
     .weui-msg__text-area
       h2.weui-msg__title 操作成功
-      p.weui-msg__desc {{msg}}
+      p.weui-msg__desc(v-html="msg")
     .weui-msg__opr-area
       p.weui-btn-area
         a(v-for="(btn, index) in btns" :class="'weui-btn weui-btn_' + (index === 0 ? 'primary': 'default')" @click.stop="btn.cb()") {{btn.txt}}

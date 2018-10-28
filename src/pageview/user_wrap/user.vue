@@ -42,6 +42,7 @@ export default {
   methods: {
     logout() {
       window.localStorage.clear('userInfo');
+      location.href = '#/login';
     }
   }
 }

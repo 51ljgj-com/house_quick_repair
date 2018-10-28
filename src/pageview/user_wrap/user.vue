@@ -31,6 +31,8 @@
         .weui-cell__bd
           a 关于我们
         .weui-cell__ft
+    .weui-btn-area
+      a.weui-btn.weui-btn_warn(@click.stop="logout()") 退出账号
 </template>
 <script>
 export default {
@@ -38,6 +40,9 @@ export default {
     username: Vue.userInfo.username
   }),
   methods: {
+    logout() {
+      window.localStorage.clear('userInfo');
+    }
   }
 }
 </script>

@@ -24,12 +24,13 @@ let router = new Router({
     }, {
       path: '/index',
       name: 'IndexVue',
-      component: IndexVue
+      component: IndexVue,
+      meta: {nologin: true}
     }, {
       path: '/detail/:projectid',
       name: 'DetailVue',
       component: DetailVue,
-      meta: {hideNav: true, 'title': ''}
+      meta: {hideNav: true, 'title': '', nologin: true}
     }, {
       path: '/quick_order',
       name: 'QuickOrdrVue',
@@ -39,7 +40,7 @@ let router = new Router({
       path: '/group_buy',
       name: 'GroupBuyVue',
       component: GroupBuyVue,
-      meta: {hideNav: true, 'title': '我要团购'}
+      meta: {hideNav: true, 'title': '我要团购', nologin: true}
     }, {
       path: '/order_pay',
       name: 'OrderPayVue',
@@ -84,7 +85,7 @@ router.beforeEach((to, from, next) => {
   //根据token 获取用户信息
   //如果调用失败/无token跳转到登录。
   //如果获取到用户信息页面跳转
-  if (to.path === '/login' || Vue.userInfo) {
+  if (to.path === '/login' || Vue.userInfo || to.meta.nologin) {
     return next()
   }
 

@@ -66,7 +66,7 @@ export default {
         res = res.body;
         if (res.code) return;
         window.localStorage.setItem('userInfo', JSON.stringify(res.data));
-        location.href = '/wrap.html';
+        this.$router.go(-1)
       })
     }
   }

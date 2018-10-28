@@ -7,6 +7,7 @@ import RegisterVue from '@/pageview/user_wrap/register'
 import LoginVue from '@/pageview/user_wrap/login'
 import UserVue from '@/pageview/user_wrap/user'
 import DetailVue from '@/pageview/user_wrap/detail'
+import GroupBuyVue from '@/pageview/user_wrap/group_buy.vue'
 import UserOrdersVue from '@/pageview/user_wrap/user_center/user_orders'
 
 Vue.use(Router)
@@ -31,6 +32,11 @@ let router = new Router({
       name: 'QuickOrdrVue',
       component: QuickOrdrVue,
       meta: {hideNav: true, 'title': '直接预约'}
+    }, {
+      path: '/group_buy',
+      name: 'GroupBuyVue',
+      component: GroupBuyVue,
+      meta: {hideNav: true, 'title': '我要团购'}
     }, {
       path: '/register',
       name: 'register',

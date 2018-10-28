@@ -58,9 +58,7 @@ export default {
   methods: {
   },
   mounted() {
-    this.$http.get('/api/user/myOrders', {
-      token: Vue.userInfo.token
-    }).then(res => {
+    this.$http.get('/api/user/myOrders?token=' + Vue.userInfo.token).then(res => {
       console.log(res);
     })
   }

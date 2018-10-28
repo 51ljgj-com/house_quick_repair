@@ -17,6 +17,8 @@
         .weui-tabbar
           router-link.weui-tabbar__item(to="/index"  tag="a")
             p.weui-tabbar__label 网站首页
+          router-link.weui-tabbar__item(to="/group_buy"  tag="a")
+            p.weui-tabbar__label 团购入口
           router-link.weui-tabbar__item(to="/quick_order"  tag="a")
             p.weui-tabbar__label 直接预约
           router-link.weui-tabbar__item(to="/user"  tag="a")

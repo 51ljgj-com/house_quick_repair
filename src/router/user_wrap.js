@@ -9,6 +9,7 @@ import UserVue from '@/pageview/user_wrap/user'
 import DetailVue from '@/pageview/user_wrap/detail'
 import GroupBuyVue from '@/pageview/user_wrap/group_buy.vue'
 import AddHouseVue from '@/pageview/user_wrap/add_house.vue'
+import OrderPayVue from '@/pageview/user_wrap/order_pay.vue'
 import GroupBuyDetailVue from '@/pageview/user_wrap/group_buy_detail.vue'
 import UserOrdersVue from '@/pageview/user_wrap/user_center/user_orders'
 
@@ -39,6 +40,11 @@ let router = new Router({
       name: 'GroupBuyVue',
       component: GroupBuyVue,
       meta: {hideNav: true, 'title': '我要团购'}
+    }, {
+      path: '/order_pay',
+      name: 'OrderPayVue',
+      component: OrderPayVue,
+      meta: {hideNav: true, 'title': '支付订单'}
     }, {
       path: '/group_buy_detail/:groupid',
       name: 'GroupBuyDetailVue',

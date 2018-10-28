@@ -123,7 +123,7 @@ export default {
       this.$http.post('/api/order/createOrder', params).then(res => {
         res = res.body;
         if (res.code) return;
-        this.$router.push({path: '/order/pay'})
+        this.$router.push({path: '/order_pay'})
       })
     }
   },

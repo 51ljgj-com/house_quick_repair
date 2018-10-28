@@ -20,7 +20,7 @@
       .weui-panel.weui-panel_access(v-show="showList&&showList.length")
         .weui-panel__hd 当前共{{showList ? showList.length: 0}}条团购结果
         .weui-panel__bd(v-for="item in showList")
-          a.weui-media-box.weui-media-box_appmsg
+          a.weui-media-box.weui-media-box_appmsg(:href="'#/group_buy_detail/' + item.groupid")
             .weui-media-box__hd
               img.weui-media-box__thumb(:src="item.houseThumbUrl")
             .weui-media-box__bd

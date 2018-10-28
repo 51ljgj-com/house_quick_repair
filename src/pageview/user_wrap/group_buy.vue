@@ -5,8 +5,8 @@
         form.weui-search-bar__form
           .weui-search-bar__box
             i.weui-icon-search
-            input.weui-search-bar__input(type="search" placeholder="搜索" required="" @blur="toggleSearch(false)")
-            a.weui-icon-clear(href="javascript:")
+            input.weui-search-bar__input(type="search" v-model="keyword" placeholder="搜索小区" required="" @keyup="goSearch($event)")
+            a.weui-icon-clear(href="javascript:" @click.stop="keyword=''")
           label.weui-search-bar__label(@click="toggleSearch(true)")
             i.weui-icon-search
             span 搜索
@@ -16,10 +16,10 @@
         p 没有您的小区？
           a(href="") 立即创建
     .content
-      loading(:show="!goodsList")
-      .weui-panel.weui-panel_access
-        .weui-panel__hd 当前共{{goodsList ? goodsList.length: 0}}条团购结果
-        .weui-panel__bd(v-for="item in goodsList")
+      loading(:show="!allList" :inline="true")
+      .weui-panel.weui-panel_access(v-show="showList&&showList.length")
+        .weui-panel__hd 当前共{{showList ? showList.length: 0}}条团购结果
+        .weui-panel__bd(v-for="item in showList")
           a.weui-media-box.weui-media-box_appmsg
             .weui-media-box__hd
               img.weui-media-box__thumb(:src="item.houseThumbUrl")
@@ -32,13 +32,21 @@
           a.weui-cell.weui-cell_access.weui-cell_link
             .weui-cell__bd 查看更多
             span.weui-cell__ft
+      .no-data(v-show="showList&&!showList.length")
+        .icon
+        h3 没有找到此小区相关的信息
+        p 创建小区，加入团购，享受更多优惠
 </template>
 <script>
 import Loading from '../../component/wrap/loading.vue';
+let xhr = null;
+let inputTimer = null;
 export default {
   data: () => ({
-    goodsList: null,
+    allList: null,
     searchEnableInput: false,
+    keyword: '',
+    searchList: null
   }),
   methods: {
     fetchAllGoods() {
@@ -51,13 +59,46 @@ export default {
           i.houseThumbUrl = i.houseThumbUrl.trim().replace('..', this.SERVER_HOST);
           return i;
         })
-        this.goodsList = body;
+        this.allList = body;
       })
     },
     toggleSearch(type) {
       this.searchEnableInput = type;
+    },
+    goSearch(e) {
+      if (inputTimer) {
+        clearTimeout(inputTimer);
+        inputTimer = null;
+      }
+      //if (e.keyCode !== 13) return;
+      if (!this.keyword.trim()) return;
+      inputTimer = setTimeout(() => {
+        this.$http.post('/api/group/getGroupBySearch', {
+          houseName: this.keyword.trim(),
+          before(request) {
+            if (xhr) {
+              xhr.abort();
+            }
+            xhr = request;
+          }
+        }).then(res => {
+          let body = res.body
+          if (body && body.error) {
+            return
+          }
+          body.data.map(i => {
+            i.houseThumbUrl = i.houseThumbUrl.trim().replace('..', this.SERVER_HOST);
+            return i;
+          })
+          this.searchList = body.data;
+        })
+      }, 300)
     }
-    
+  },
+  computed: {
+    showList() {
+      return this.searchEnableInput && this.searchList ? this.searchList: this.allList;
+    }
   },
   mounted() {
     this.fetchAllGoods()
@@ -108,6 +149,28 @@ export default {
       .join-num {
         color: #ee3923;
         float: right
+      }
+      .no-data {
+        text-align: center;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        .icon {
+          height: 80px;
+          background: url(/static/img/no_result.png) no-repeat center;
+          background-size: contain;
+        }
+        h3 {
+          font-weight: normal;
+          font-size: 18px;
+          margin: 10px 0;
+        }
+        p {
+          color: #ee3923;
+          font-size: 14px;
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 <template lang="pug">
-div(v-show="isShow")
+div(v-show="isShow" :class="{inline: inline}")
   .weui-mask_transparent
   .weui-toast
     i.weui-loading.weui-icon_toast
@@ -9,6 +9,10 @@ div(v-show="isShow")
 export default {
   props: {
     show: {
+      default: false,
+      type: Boolean
+    },
+    inline: {
       default: false,
       type: Boolean
     }
@@ -26,5 +30,11 @@ export default {
 <style lang="scss" scoped>
   .weui-mask_transparent {
     background: #ffffff;
+  }
+  .inline .weui-mask_transparent {
+    position: absolute;
+  }
+  .inline .weui-toast {
+    position: absolute;
   }
 </style>

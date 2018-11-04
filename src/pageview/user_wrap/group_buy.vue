@@ -58,7 +58,7 @@ export default {
         // }
         body.map(i => {
           if (i.houseThumbUrl) {
-            i.houseThumbUrl = i.houseThumbUrl.trim().replace('..', this.SERVER_HOST);
+            i.houseThumbUrl = this.SERVER_HOST + i.houseThumbUrl.trim();
           } else {
             i.houseThumbUrl = '/static/img/icon_100.png';
           }
@@ -92,7 +92,7 @@ export default {
             return
           }
           body.data.map(i => {
-            i.houseThumbUrl = i.houseThumbUrl.trim().replace('..', this.SERVER_HOST);
+            i.houseThumbUrl = this.SERVER_HOST + i.houseThumbUrl.trim();
             return i;
           })
           this.searchList = body.data;

@@ -14,11 +14,20 @@
           input(class="weui-input" type="tel" v-model="form.phoneNo" placeholder="请输入11位手机号" name="phoneNo" pattern="\\d{11}")
         weui-cell__ft
           i.weui-icon-warn
-      .weui-cell
+      validate.weui-cell(:class="{'weui-cell_warn': !form.orderAddress1}")
         .weui-cell__hd
-          label.weui-label 地址
+          label.weui-label 选择区县
         .weui-cell__bd
-          input(class="weui-input" type="name" v-model="form.orderAddress" placeholder="请输入详细地址")
+          input#addr(class="weui-input" @click="showAddr()" type="text" placeholder="请选择区县" name="addr")
+        weui-cell__ft
+          i.weui-icon-warn
+      validate.weui-cell(:class="{'weui-cell_warn': formstate.infoAddr && formstate.infoAddr.$invalid}")
+        .weui-cell__hd
+          label.weui-label 详细地址
+        .weui-cell__bd
+          input(class="weui-input" type="text" v-model="form.orderAddress2" placeholder="请输入您的详细地址" name="infoAddr" required)
+        weui-cell__ft
+          i.weui-icon-warn
       .weui-cell
         .weui-cell__hd
           label.weui-label 小区
@@ -43,6 +52,8 @@ export default {
       phoneNo: '',
       orderContent: '',
       orderAddress: '',
+      orderAddress1: '',
+      orderAddress2: '',
       houseName: '',
       orderDescription: ''
     },
@@ -70,16 +81,29 @@ export default {
   methods: {
     submit() {
       if(this.formstate.$invalid) return;
+      this.form.orderAddress = this.form.orderAddress1 + this.form.orderAddress2;
       let params = Object.assign({}, this.form, {token: Vue.userInfo.token, orderContent: this.$route.query.orderContent})
       this.$http.post('/api/order/createOrder', params).then(res => {
         res = res.body;
         if (res.code) return;
         this.operateRet.isShow = true;
       })
+    },
+
+    showAddr() {
+      $("#addr").cityPicker({
+        title: "选择区县",
+        onChange: (picker, values, displayValues) => {
+          this.form.orderAddress1 = displayValues.join(' ')
+        }
+      });
     }
   },
   components: {
     'operate-ret': OperateRet
+  },
+  mounted() {
+    this.showAddr();
   }
 }
 </script>

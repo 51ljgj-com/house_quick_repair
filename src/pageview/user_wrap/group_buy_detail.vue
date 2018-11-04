@@ -12,7 +12,7 @@
       .weui-panel__bd
         .weui-media-box.weui-media-box_text
           h4.weui-media-box__title 1、选择拼团项目
-          ul.weui-media-box__desc.group-item
+          ul.weui-media-box__desc.group-item#groupItemSelect
             li(v-for="item in groupInfo.groupServiceList" :class="{active:item.gServiceItemid === form.gServiceItemid}" @click="checkItem(item.gServiceItemid)") {{item.gServiceItemName}}
         .weui-media-box.weui-media-box_text
           h4.weui-media-box__title 2、了解团购流程
@@ -39,11 +39,18 @@
                 input(class="weui-input" type="tel" v-model="form.phoneNo" placeholder="请输入11位手机号" name="phone" pattern="\\d{11}" required)
               weui-cell__ft
                 i.weui-icon-warn
-            validate.weui-cell(:class="{'weui-cell_warn': formstate.addr && formstate.addr.$invalid}")
+            validate.weui-cell(:class="{'weui-cell_warn': !form.orderAddress1}")
+              .weui-cell__hd
+                label.weui-label 选择区县
+              .weui-cell__bd
+                input#addr(class="weui-input" @click="showAddr()" type="text" placeholder="请选择区县" name="addr")
+              weui-cell__ft
+                i.weui-icon-warn
+            validate.weui-cell(:class="{'weui-cell_warn': formstate.infoAddr && formstate.infoAddr.$invalid}")
               .weui-cell__hd
                 label.weui-label 详细地址
               .weui-cell__bd
-                input(class="weui-input" type="text" v-model="form.orderAddress" placeholder="请输入您的详细地址" name="addr" required)
+                input(class="weui-input" type="text" v-model="form.orderAddress2" placeholder="请输入您的详细地址" name="infoAddr" required)
               weui-cell__ft
                 i.weui-icon-warn
             //- validate.weui-cell(:class="{'weui-cell_warn': formstate.date && formstate.date.$invalid}")
@@ -78,9 +85,11 @@ export default {
       gServiceItemid: '',
       orderAddress: '',
       houseName: '',
-      groupContent: ''
+      groupContent: '',
+      orderAddress2: '',
+      orderAddress1: ''
     },
-    groupInfo: null,
+    groupInfo: {},
     groupRules: null
   }),
   methods: {
@@ -94,7 +103,7 @@ export default {
         }
         this.groupInfo = body.data[0];
         if(this.groupInfo.houseThumbUrl) {
-          this.groupInfo.houseThumbUrl = this.groupInfo.houseThumbUrl.trim().replace('..', this.SERVER_HOST)
+          this.groupInfo.houseThumbUrl = this.SERVER_HOST + this.groupInfo.houseThumbUrl.trim()
         } else {
           this.groupInfo.houseThumbUrl = '/static/img/icon_100.png'
         }
@@ -113,8 +122,13 @@ export default {
       this.form.gServiceItemid = id;
     },
     submit() {
-      if(!this.form.gServiceItemid) return;
+      if(!this.form.gServiceItemid) {
+        $('#bd').scrollTop(0);
+        $.toast("请选择拼团项目", "forbidden");
+        return false;
+      };
       if(this.formstate.$invalid) return;
+      this.form.orderAddress = this.form.orderAddress1 + this.form.orderAddress2;
       let params = Object.assign({}, this.form, {
         token: Vue.userInfo.token, 
         orderContent: this.$route.query.orderContent,
@@ -125,6 +139,14 @@ export default {
         if (res.code) return;
         this.$router.push({path: '/order_pay'})
       })
+    },
+    showAddr() {
+      $("#addr").cityPicker({
+        title: "选择区县",
+        onChange: (picker, values, displayValues) => {
+          this.form.orderAddress1 = displayValues.join(' ')
+        }
+      });
     }
   },
   computed: {
@@ -132,9 +154,9 @@ export default {
   mounted() {
     this.fetchItems();
     this.fetchGroupRules();
+    this.showAddr();
   },
   watch: {
-    
   },
   components: {
     'loading': Loading

@@ -15,9 +15,6 @@
           input(class="weui-input" v-model="form.code" type="name" placeholder="请输入验证码" required name="code" pattern="\\d{6}")
     .weui-btn-area
       a.weui-btn.weui-btn_primary(@click.stop="login()") 登录
-    p.center
-      | 还没有账号请
-      a(href="#/register") 点击注册
    
 </template>
 <script>

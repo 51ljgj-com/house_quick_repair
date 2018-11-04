@@ -17,6 +17,9 @@
         li(v-for="(v, k) in flows")
           img(:src="'/static/img/wrap/flow' + (k + 1) +'.png'" :style="{'background': v[0]}")
           p {{v[1]}}
+    .content
+      h2 合作伙伴
+      img(src="/static/img/partner.png" style="width: 90%")
     .partner
 
 </template>

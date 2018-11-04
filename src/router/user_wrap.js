@@ -10,6 +10,8 @@ import DetailVue from '@/pageview/user_wrap/detail'
 import GroupBuyVue from '@/pageview/user_wrap/group_buy.vue'
 import AddHouseVue from '@/pageview/user_wrap/add_house.vue'
 import OrderPayVue from '@/pageview/user_wrap/order_pay.vue'
+import ContactVue from '@/pageview/user_wrap/contact.vue'
+import AboutVue from '@/pageview/user_wrap/about.vue'
 import GroupBuyDetailVue from '@/pageview/user_wrap/group_buy_detail.vue'
 import UserOrdersVue from '@/pageview/user_wrap/user_center/user_orders'
 
@@ -31,6 +33,16 @@ let router = new Router({
       name: 'DetailVue',
       component: DetailVue,
       meta: {hideNav: true, 'title': '', nologin: true}
+    }, {
+      path: '/about',
+      name: 'AboutVue',
+      component: AboutVue,
+      meta: {hideNav: true, 'title': '关于我们'}
+    }, {
+      path: '/contact',
+      name: 'ContactVue',
+      component: ContactVue,
+      meta: {hideNav: true, 'title': '联系我们'}
     }, {
       path: '/quick_order',
       name: 'QuickOrdrVue',

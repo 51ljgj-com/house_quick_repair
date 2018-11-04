@@ -1,8 +1,9 @@
 <template lang="pug">
+transition(name="fade" mode="out-in")
   #app
     #hd(v-if="!$route.meta.hideNav")
       img.logo(src="/static/img/logo_500.png")
-      img.menu-icon(src="/static/img/wrap/icon_nav_form.png" @click="showMenu = !showMenu")
+      img.menu-icon(src="/static/img/wrap/icon_nav_form.png" @click="showMenu = !showMenu" :style="'opacity:' + (showMenu ? 0.4: 1)")
     #hd(v-if="$route.meta.hideNav" :class="{'second-hd': $route.meta.hideNav}")
       a.back(href="javascript:history.go(-1)")
       | {{subTitle || $route.meta.title}}
@@ -11,6 +12,7 @@
         .weui-cell__bd
           span {{i.txt}}
         .weui-cell__ft
+      a.weui-cell.weui-cell_access
     router-view#bd
     .ft-nav
       .weui-tab
@@ -40,18 +42,9 @@ export default {
         'href': '/about'
       }, {
         'txt': '联系我们',
-        'href': '/about'
-      }, {
-        'txt': '师傅风采',
-        'href': '/about'
-      }, {
-        'txt': '施工案例',
-        'href': '/about'
+        'href': '/contact'
       }, {
         'txt': '加入我们',
-        'href': '/about'
-      }, {
-        'txt': '收费查询',
         'href': '/about'
       }
     ]
@@ -147,6 +140,8 @@ export default {
   transition: .2s all ease;
   margin-top: 0;
   z-index: 999;
+  bottom: 0;
+  background: rgba(255, 255, 255, .8);
 
   &.show-menu {
     transform: translate(100%, 0);

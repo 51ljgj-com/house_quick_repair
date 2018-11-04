@@ -36,16 +36,16 @@ export default {
     links: [
       {
         'txt': '网站首页',
-        'href': '#/index'
+        'href': '/wrap.html'
       }, {
         'txt': '公司简介',
-        'href': '/about'
+        'href': '#/about'
       }, {
         'txt': '联系我们',
-        'href': '/contact'
+        'href': '#/contact'
       }, {
         'txt': '加入我们',
-        'href': '/about'
+        'href': '#/about'
       }
     ]
   }),

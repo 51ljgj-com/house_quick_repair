@@ -5,7 +5,7 @@
         form.weui-search-bar__form
           .weui-search-bar__box
             i.weui-icon-search
-            input.weui-search-bar__input(type="search" v-model="keyword" placeholder="搜索小区" required="" @keyup="goSearch($event)")
+            input.weui-search-bar__input(type="search" v-model="keyword" placeholder="搜索小区" required="" @keyup="goSearch($event)" @blur="goSearch($event)")
             a.weui-icon-clear(href="javascript:" @click.stop="keyword=''")
           label.weui-search-bar__label(@click="toggleSearch(true)")
             i.weui-icon-search

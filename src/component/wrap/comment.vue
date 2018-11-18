@@ -8,14 +8,14 @@ div(v-show="isShow")
       .cell
         label.text 服务评价：
         .stars
-          label(v-for="i in stars")
-            input(type="checkbox" :value="i" :data-service-index="i" @change="selectStar(i, 'service')")
+          label(v-for="i in stars" @click.stop="selectStar(i, 'service')")
+            input(type="checkbox" :value="i" :data-service-index="i")
             span ★
       .cell
         label.text 施工评价：
         .stars
-          label(v-for="i in stars")
-            input(type="checkbox" :value="i" :data-work-index="i" @change="selectStar(i, 'work')")
+          label(v-for="i in stars" @click.stop="selectStar(i, 'work')")
+            input(type="checkbox" :value="i" :data-work-index="i")
             span ★
       .cell
         textarea.weui-textarea(placeholder="请对本次服务留下建议..." rows="4" v-model="reviewDes")
@@ -91,10 +91,13 @@ export default {
     }
     span {
       color: #999;
-      font-size: 14px;
+      font-size: 16px;
     }
     input:checked + span {
       color: #ee3923;
+    }
+    label {
+      padding: 4px;
     }
   }
   textarea {

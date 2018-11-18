@@ -8,7 +8,7 @@
       .weui-form-preview__bd
         .weui-form-preview__item
           label.weui-form-preview__label 订单编号
-          span.weui-form-preview__value WXX2018050813523254
+          span.weui-form-preview__value {{item.orderid}}
         .weui-form-preview__item
           label.weui-form-preview__label 下单时间
           span.weui-form-preview__value {{item.orderTime}}
@@ -26,27 +26,38 @@
           .order-avatar
             img(:src="item.orderThumbUrl || '/static/img/default.png'")
       .weui-form-preview__ft(v-if="item.orderStatus == 1 || item.orderStatus == 5")
-          button.weui-form-preview__btn.weui-form-preview__btn_default 客服
+          button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
       .weui-form-preview__ft(v-else-if="item.orderStatus == 2 || item.orderStatus == 3")
-          button.weui-form-preview__btn.weui-form-preview__btn_default 客服
+          button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
           button.weui-form-preview__btn.weui-form-preview__btn_primary(type="submit") 支付
       .weui-form-preview__ft(v-else)
-          button.weui-form-preview__btn.weui-form-preview__btn_default 客服
-          button.weui-form-preview__btn.weui-form-preview__btn_default 评价
+          button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
+          button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="showComment(item)") 评价
+    comment(:show="commentIsShow" :orderid="commentOrderId")
    
 </template>
 <script>
-import {statusText} from '@/router/config.js';
+import {statusText, callUs} from '@/router/util.js';
+import Comment from '@/component/wrap/comment.vue';
 export default {
   data: () => ({
     list: [],
-    statusText
+    statusText,
+    commentIsShow: false,
+    commentOrderId: ''
   }),
   methods: {
     goDetail(e, item) {
       if (!$(e.target).hasClass('weui-form-preview__btn')) {
         this.$router.push({path: `/user/order/${item.orderid}`});
       }
+    },
+
+    callUs,
+
+    showComment(item) {
+      this.commentIsShow = new Boolean(true);
+      this.commentOrderId = item.orderid;
     }
   },
   mounted() {
@@ -56,6 +67,9 @@ export default {
       }
       this.list = res.body;
     })
+  },
+  components: {
+    comment: Comment
   }
 }
 </script>

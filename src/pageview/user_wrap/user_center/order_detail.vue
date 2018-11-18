@@ -20,6 +20,22 @@
           span.weui-form-preview__value {{info.orderBaseInfo.orderAddress}}
       .weui-panel__ft
 
+    .weui-panel.weui-panel_access(v-if="info.groupOrderInfo")
+      .weui-panel__hd 参团信息
+      .weui-panel__bd
+        .weui-media-box
+          label.weui-form-preview__label 参团项目
+          span.weui-form-preview__value {{info.groupOrderInfo.groupService}}
+        .weui-media-box
+          label.weui-form-preview__label 团购小区
+          span.weui-form-preview__value {{info.groupOrderInfo.houseName}}
+        .weui-media-box(v-if="info.groupOrderInfo.preAmount")
+          label.weui-form-preview__label 预付款
+          span.weui-form-preview__value {{Math.abs(parseInt(info.groupOrderInfo.preAmount))}}（已支付）
+        .weui-media-box(v-else)
+          label.weui-form-preview__label 预付款
+          span.weui-form-preview__value(style="color: red;") 待支付
+
     .weui-panel.weui-panel_access(v-if="info.orderBaseInfo.orderStatus != 1")
       .weui-panel__hd 订单金额
       .weui-panel__bd
@@ -44,22 +60,31 @@
 
     .detail-btns
       .weui-panel.weui-panel_access(v-if="info.orderBaseInfo.orderStatus == 1 || info.orderBaseInfo.orderStatus == 5")
-          button.weui-form-preview__btn.weui-form-preview__btn_default 客服
+          button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
       .weui-panel.weui-panel_access(v-else-if="info.orderBaseInfo.orderStatus == 2 || info.orderBaseInfo.orderStatus == 3")
-          button.weui-form-preview__btn.weui-form-preview__btn_default 客服
+          button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
           button.weui-form-preview__btn.weui-form-preview__btn_primary(type="submit") 支付
       .weui-panel.weui-panel_access(v-else)
-          button.weui-form-preview__btn.weui-form-preview__btn_default 客服
-          button.weui-form-preview__btn.weui-form-preview__btn_default 评价
+          button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
+          button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="showComment()") 评价
+    comment(:show="commentIsShow" :orderid="commentOrderId")
 </template>
 <script>
-import {statusText} from '@/router/config.js';
+import {statusText, callUs} from '@/router/util.js';
+import Comment from '@/component/wrap/comment.vue';
 export default {
   data: () => ({
     info: null,
-    statusText
+    statusText,
+    commentIsShow: false,
+    commentOrderId: ''
   }),
   methods: {
+    callUs,
+    showComment(item) {
+      this.commentIsShow = new Boolean(true);
+      this.commentOrderId = this.info.orderid;
+    }
   },
   mounted() {
     this.$http.get(`/api/order/getOrderInfo?token=${Vue.userInfo.token}&orderid=${this.$route.params.id}`).then(res => {
@@ -74,6 +99,9 @@ export default {
         
       }
     })
+  },
+  components: {
+    comment: Comment
   }
 }
 </script>

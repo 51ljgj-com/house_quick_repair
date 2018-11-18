@@ -14,6 +14,7 @@ import ContactVue from '@/pageview/user_wrap/contact.vue'
 import AboutVue from '@/pageview/user_wrap/about.vue'
 import GroupBuyDetailVue from '@/pageview/user_wrap/group_buy_detail.vue'
 import UserOrdersVue from '@/pageview/user_wrap/user_center/user_orders'
+import UserOrderDetailVue from '@/pageview/user_wrap/user_center/order_detail'
 
 Vue.use(Router)
 
@@ -88,6 +89,11 @@ let router = new Router({
       name: 'userCenterOrders',
       component: UserOrdersVue,
       meta: {hideNav: true, 'title': '我的订单'}
+    }, {
+      path: '/user/order/:id',
+      name: 'UserOrderDetailVue',
+      component: UserOrderDetailVue,
+      meta: {hideNav: true, 'title': '订单详情'}
     }
   ]
 })

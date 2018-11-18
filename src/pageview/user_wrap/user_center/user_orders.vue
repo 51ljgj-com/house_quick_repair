@@ -1,7 +1,7 @@
 <template lang="pug">
   .user-orders-wrap.bd-wrap
     h2 我的订单
-    .weui-form-preview(v-for="item in list")
+    .weui-form-preview(v-for="item in list" @click.stop="goDetail($event, item)")
       .weui-form-preview__hd
         label.weui-form-preview__label 付款金额
         em.weui-form-preview__value {{item.orderStatus > 1 ? `¥${item.orderAmount}`: '审核中...'}}
@@ -43,10 +43,14 @@ export default {
     statusText
   }),
   methods: {
+    goDetail(e, item) {
+      if (!$(e.target).hasClass('weui-form-preview__btn')) {
+        this.$router.push({path: `/user/order/${item.orderid}`});
+      }
+    }
   },
   mounted() {
     this.$http.get('/api/order/getMyOrders?token=' + Vue.userInfo.token).then(res => {
-      console.log(this.statusText)
       if (!res.body) {
         return ;
       }

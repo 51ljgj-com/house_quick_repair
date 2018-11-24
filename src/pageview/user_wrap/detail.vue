@@ -117,7 +117,7 @@ export default {
   .detail-wrapper {
     .carousel {
       width: 100%;
-      height: 200px;
+      height: 124px;
       text-align: center;
       color: #444;
       overflow: hidden;
@@ -125,8 +125,8 @@ export default {
       .banner {
         display: inline-block;
         img {
+          height: 124px;
           width: 100%;
-          height: 200px;
         }
       }
     }

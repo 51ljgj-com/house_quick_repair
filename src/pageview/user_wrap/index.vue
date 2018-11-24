@@ -3,7 +3,7 @@
     .carousel(v-show="banners.length")
       .banner(v-for="banner in banners")
         a(:href="banner.rollItemLinkUrl")
-          img(:src="banner.rollItemPicUrl")
+          img(src="banner.rollItemPicUrl")
     .weui-grids
       a.weui-grid(href="javascript:;" v-for="(i, k) in services" :key="k" :href="i.url")
         .weui-grid__icon
@@ -63,16 +63,23 @@ export default {
           i.rollItemPicUrl = this.SERVER_HOST + i.rollItemPicUrl;
         })
         this.banners = body.data.rollItemUrls;
+        console.log(this.banners)
       })
     }
   },
   mounted() {
     this.fetchServices()
     this.fetchBanners()
-    $('.carousel').slick({
-        dots: false,
-        autoplay: true
+  },
+  watch: {
+    banners() {
+      this.$nextTick(() => {
+        $('.carousel').slick({
+          dots: false,
+          autoplay: true
+        })
       })
+    }
   }
 }
 </script>
@@ -144,7 +151,7 @@ export default {
 
     .carousel {
       width: 100%;
-      height: 200px;
+      height: 124px;
       text-align: center;
       color: #444;
       overflow: hidden;

@@ -20,22 +20,15 @@
     article.service-case
       h2 施工案例
       ul.contents
-        li
+        li(v-for="i in cases")
           .img
-            img(src="/static/img/case_2.jpg")
+            img(:src="i.caseThumbUrl")
           .desc
-              p
-                strong 小区: 保利天语
-              p 服务项目: 墙面翻新
-              p 服务时间: 2018-6-15
-        li
-          .img
-            img(src="/static/img/case_2.jpg")
-          .desc
-              p
-                strong 小区: 保利天语
-              p 服务项目: 墙面翻新
-              p 服务时间: 2018-6-15
+            p
+              strong 小区: {{i.hosueName}}
+            p 服务项目: {{i.projectName}}
+            p 服务时间: {{i.serviceTime}}
+      a.look-all(href="#/all_cases") 查看全部
     article.price-tips
       h2 报价服务
       ul.contents
@@ -57,7 +50,8 @@ export default {
   data: () => ({
     banners: null,
     content: null,
-    promise
+    promise,
+    cases: []
   }),
   methods: {
     fetchBanners() {
@@ -83,11 +77,22 @@ export default {
     },
     goQuckOrder() {
       this.$router.push({ path: '/quick_order', query: {orderContent: this.$route.query.project}})
+    },
+    fetchCases() {
+      this.$http.get('/api/projects/getProItemCase').then(res => {
+        let body = res.body
+        if (body && body.error) {
+          return;
+        }
+        body.data.forEach(i => i.caseThumbUrl = this.SERVER_HOST + i.caseThumbUrl)
+        this.cases = body.data.slice(0, 3);
+      })
     }
   },
   mounted() {
     this.fetchBanners()
     this.fetchCont()
+    this.fetchCases()
     this.$nextTick(() => {
       this.$BUS.$emit('subtitle-change', this.$route.query.project)
     })
@@ -237,6 +242,14 @@ export default {
         .desc {
           flex-grow: 1;
         }
+      }
+      .look-all {
+        display: block;
+        padding-top: 10px;
+        border-top: 1px solid #ddd;
+        margin-top: 10px;
+        font-size: 14px;
+        color: #09BB07;
       }
     }
   }

@@ -1,9 +1,9 @@
 <template lang="pug">
   .index-wrap
-    .carousel
-      .banner 第一页
-      .banner 第二页
-      .banner 第三页
+    .carousel(v-show="banners.length")
+      .banner(v-for="banner in banners")
+        a(:href="banner.rollItemLinkUrl")
+          img(:src="banner.rollItemPicUrl")
     .weui-grids
       a.weui-grid(href="javascript:;" v-for="(i, k) in services" :key="k" :href="i.url")
         .weui-grid__icon
@@ -36,7 +36,8 @@ export default {
       ['#ff2f39', '开展施工'],
       ['#9b9af8', '现场清理'],
       ['#ff66c7', '售后保障']
-    ]
+    ],
+    banners: []
   }),
   methods: {
     fetchServices() {
@@ -51,10 +52,23 @@ export default {
           return i
         })
       })
+    },
+    fetchBanners() {
+      this.$http.get('/api/projects/getProItemRollItems').then(res => {
+        let body = res.body;
+        if (!body || body.error) {
+          return;
+        }
+        body.data.rollItemUrls.forEach(i => {
+          i.rollItemPicUrl = this.SERVER_HOST + i.rollItemPicUrl;
+        })
+        this.banners = body.data.rollItemUrls;
+      })
     }
   },
   mounted() {
     this.fetchServices()
+    this.fetchBanners()
     $('.carousel').slick({
         dots: false,
         autoplay: true
@@ -137,6 +151,11 @@ export default {
       white-space: nowrap;
       .banner {
         display: inline-block;
+        a,img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
     }
      

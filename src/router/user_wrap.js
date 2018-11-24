@@ -13,6 +13,7 @@ import OrderPayVue from '@/pageview/user_wrap/order_pay.vue'
 import ContactVue from '@/pageview/user_wrap/contact.vue'
 import AboutVue from '@/pageview/user_wrap/about.vue'
 import UserCaseVue from '@/pageview/user_wrap/case_list.vue'
+import ContractVue from '@/pageview/user_wrap/user_center/contract.vue'
 import GroupBuyDetailVue from '@/pageview/user_wrap/group_buy_detail.vue'
 import UserOrdersVue from '@/pageview/user_wrap/user_center/user_orders'
 import UserOrderDetailVue from '@/pageview/user_wrap/user_center/order_detail'
@@ -100,6 +101,11 @@ let router = new Router({
       name: 'UserCaseVue',
       component: UserCaseVue,
       meta: {hideNav: true, 'title': '施工案例'}
+    }, {
+      path: '/contract/:id',
+      name: 'ContractVue',
+      component: ContractVue,
+      meta: {hideNav: true, 'title': '订单合同'}
     }
   ]
 })

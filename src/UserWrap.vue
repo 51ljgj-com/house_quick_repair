@@ -2,7 +2,7 @@
 transition(name="fade" mode="out-in")
   #app
     #hd(v-if="!$route.meta.hideNav")
-      img.logo(src="/static/img/logo_500.png")
+      img.logo(src="/static/img/icon_100.png")
       img.menu-icon(src="/static/img/wrap/icon_nav_form.png" @click="showMenu = !showMenu" :style="'opacity:' + (showMenu ? 0.4: 1)")
     #hd(v-if="$route.meta.hideNav" :class="{'second-hd': $route.meta.hideNav}")
       a.back(href="javascript:history.go(-1)")

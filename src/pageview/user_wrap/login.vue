@@ -78,4 +78,11 @@ export default {
       text-decoration: underline;
     }
   }
+  .weui-label {
+    width: 65px;
+  }
+  .weui-vcode-btn {
+    line-height: 1;
+    height: auto;
+  }
 </style>

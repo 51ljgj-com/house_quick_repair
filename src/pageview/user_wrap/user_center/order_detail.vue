@@ -61,11 +61,14 @@
     .detail-btns
       .weui-panel.weui-panel_access(v-if="info.orderBaseInfo.orderStatus == 1 || info.orderBaseInfo.orderStatus == 5")
           button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
+          a.weui-form-preview__btn.weui-form-preview__btn_default(:href="'#/contract/'+info.orderid") 合同
       .weui-panel.weui-panel_access(v-else-if="info.orderBaseInfo.orderStatus == 2 || info.orderBaseInfo.orderStatus == 3")
           button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
+          a.weui-form-preview__btn.weui-form-preview__btn_default(:href="'#/contract/'+info.orderid") 合同
           button.weui-form-preview__btn.weui-form-preview__btn_primary(type="submit") 支付
       .weui-panel.weui-panel_access(v-else)
           button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
+          a.weui-form-preview__btn.weui-form-preview__btn_default(:href="'#/contract/'+info.orderid") 合同
           button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="showComment()") 评价
     comment(:show="commentIsShow" :orderid="commentOrderId")
 </template>
@@ -145,7 +148,7 @@ export default {
   .detail-btns {
     .weui-panel {
       display: flex;
-      button {
+      a, button {
         flex: 1;
         line-height: 3em;
       }

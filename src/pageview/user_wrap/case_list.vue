@@ -1,6 +1,5 @@
 <template lang="pug">
   article.service-case(style="text-align:left")
-    h2.title 【邻家工匠】联系方式
     ul.contents
       li(v-for="i in cases")
         .img
@@ -41,9 +40,6 @@ export default {
   h2 {
     font-size: 16px;
     line-height: 3;
-  }
-  ul {
-    background: #fff;
   }
   li {
     display: flex;

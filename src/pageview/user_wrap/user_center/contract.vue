@@ -8,9 +8,11 @@ export default {
     imgs: []
   }),
   mounted() {
-    this.$http.post('/api/order/getOrderContract', {
-      orderID: this.$route.params.id,
-      token: Vue.userInfo.token
+    this.$http.get('/api/order/getOrderContract', {
+      params: {
+        orderID: this.$route.params.id,
+        token: Vue.userInfo.token
+      }
     }).then(res => {
       let body = res.body;
       if (!res.body || res.body.error) {

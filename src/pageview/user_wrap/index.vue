@@ -3,7 +3,7 @@
     .carousel(v-show="banners.length")
       .banner(v-for="banner in banners")
         a(:href="banner.rollItemLinkUrl")
-          img(src="banner.rollItemPicUrl")
+          img(:src="banner.rollItemPicUrl")
     .weui-grids
       a.weui-grid(href="javascript:;" v-for="(i, k) in services" :key="k" :href="i.url")
         .weui-grid__icon

@@ -2,8 +2,7 @@
   .index-wrap
     .carousel(v-show="banners.length")
       .banner(v-for="banner in banners")
-        a(:href="banner.rollItemLinkUrl")
-          img(:src="banner.rollItemPicUrl")
+        a.banner-image(:href="banner.rollItemLinkUrl" :style="`background-image:url(${banner.rollItemPicUrl})`")
     .weui-grids
       a.weui-grid(href="javascript:;" v-for="(i, k) in services" :key="k" :href="i.url")
         .weui-grid__icon
@@ -158,10 +157,15 @@ export default {
       white-space: nowrap;
       .banner {
         display: inline-block;
-        a,img {
+        a {
           display: block;
           width: 100%;
           height: 100%;
+        }
+        .banner-image {
+          background-repeat: no-repeat;
+          background-size: 100% auto;
+          background-position: center;
         }
       }
     }

@@ -1,6 +1,8 @@
 <template lang="pug">
   article.weui-article(style="text-align:left")
-    img(v-for="i in imgs" :src="i.cmgUrl")
+    div(v-for="i in imgs")
+      img( :src="i.cmgUrl")
+      br
 </template>
 <script>
 export default {
@@ -10,7 +12,7 @@ export default {
   mounted() {
     this.$http.get('/api/order/getOrderContract', {
       params: {
-        orderID: this.$route.params.id,
+        orderid: this.$route.params.id,
         token: Vue.userInfo.token
       }
     }).then(res => {
@@ -18,10 +20,10 @@ export default {
       if (!res.body || res.body.error) {
         return;
       }
-      body.data.contractUrls.forEach(i => {
+      body.contractUrls.forEach(i => {
         i.cmgUrl = this.SERVER_HOST + i.cmgUrl;
       })
-      this.imgs = body.data.contractUrls;
+      this.imgs = body.contractUrls;
     })
   }
 }

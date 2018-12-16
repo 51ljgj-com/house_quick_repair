@@ -12,13 +12,13 @@ class WXP {
    */
   auth() {
     let url = `${this.Vue.prototype.SERVER_HOST}/api/wxuser/authorize?state=${encodeURIComponent(location.href)}`
-    alert(url)
     location.href = url
   }
 
   getWxConfig() {
-    this.Vue.prototype.$post('/api/payment/createWxConfig', {
-      url: encodeURIComponent(location.href.split('#')[0])
+    this.Vue.http.post('/api/payment/createWxConfig', {
+      url: encodeURIComponent(location.href.split('#')[0]),
+      token: this.Vue.userInfo.token
     }).then(res => {
       let body = res.body
       if (body.code) {
@@ -37,13 +37,16 @@ class WXP {
     })
   }
 
-  async createWxOrder() {
+  async pay(id) {
+    this.orderId = id
     await this.getWxConfig()
-    this.Vue.prototype.$post('/api/payment/createUnifiedOrder', {
+    let params = {
       orderId: this.orderId,
       wxOpenId: this.wxid,
-      tradeType: 'MWEB'
-    }).then(res => {
+      tradeType: 'JSAPI',
+      token: this.Vue.userInfo.token
+    }
+    this.Vue.http.post('/api/payment/createUnifiedOrder', params).then(res => {
       let body = res.body
       if (body.code) {
         alert(body.message)
@@ -51,6 +54,8 @@ class WXP {
       }
       return Promise.resolve(body.data)
     }).then(async data => {
+
+      // alert(`创建订单成功${JSON.stringify(params)}${JSON.stringify(data)}`)
       if (WeixinJSBridge) {
         WeixinJSBridge.invoke(
           'getBrandWCPayRequest', data,
@@ -59,9 +64,9 @@ class WXP {
               // 使用以上方式判断前端返回,微信团队郑重提示：
               // wxRes.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
               // todo: check success
-              alert('支付成功1')
+              alert('支付成功')
               // Now we can refresh the order status via getMyOrders/getOrderDetail api.
-              setTimeout(this.refresh, 2000);
+              setTimeout(this.refresh, 2000)
             }
           })
       } else {
@@ -70,8 +75,8 @@ class WXP {
         await this.chooseWXPay(data)
         setTimeout(this.refresh, 2000)
       }
-    }, () => {
-      alert('支付失败1')
+    }, (err) => {
+      // alert(`支付失败1${JSON.stringify(params)}${JSON.stringify(err)}`)
     })
   }
 
@@ -90,7 +95,7 @@ class WXP {
         // ***Note: if we're using chooseWXPay api, 'timeStamp' in paymentParams might need to be changed to 'timestamp'.
         ...paymentParams,
         success: function (res) {
-          alert('支付成功2')
+          alert('支付成功')
           return resolve(res)
         },
         error: function (err) {
@@ -102,16 +107,19 @@ class WXP {
   }
 
   refresh() {
-    alert('支付成功3')
+    this.Vue.router.push({ path: '/user/orders', query: { wxOpenId: location.search.match(/wxOpenId=([^&]+)&?/) } })
   }
 }
 export default {
   install (Vue, options) {
-    let wxid = location.search.match(/wxOpenId=([^&]+)&?/);
+    let wxid = location.search.match(/wxOpenId=([^&]+)&?/)
     if (wxid && wxid.length) {
       wxid = wxid[1]
     }
-    alert(wxid + location.href)
+    const agent = navigator.userAgent.toLowerCase()
+    if (!/MicroMessenger/i.test(agent)) {
+      wxid = 'webwxopenid'
+    }
     let wxp = new WXP(wxid, Vue)
     Vue.prototype.$wxp = wxp
     Vue.wxp = wxp

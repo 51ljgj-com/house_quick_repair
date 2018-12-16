@@ -29,7 +29,7 @@
           button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
       .weui-form-preview__ft(v-else-if="item.orderStatus == 2 || item.orderStatus == 3")
           button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
-          button.weui-form-preview__btn.weui-form-preview__btn_primary(type="submit") 支付
+          button.weui-form-preview__btn.weui-form-preview__btn_primary(type="submit" v-if="item.paymentStatus == 2 || item.paymentStatus == 5" @click.stop="pay(item.orderid)") 支付
       .weui-form-preview__ft(v-else)
           button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
           button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="showComment(item)") 评价
@@ -58,6 +58,10 @@ export default {
     showComment(item) {
       this.commentIsShow = new Boolean(true);
       this.commentOrderId = item.orderid;
+    },
+
+    pay(orderid) {
+      this.$wxp.pay(orderid)
     }
   },
   mounted() {

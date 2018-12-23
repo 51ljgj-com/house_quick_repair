@@ -26,3 +26,36 @@ a {
 h1, h2, h3 {
     font-weight: normal;
 }
+
+.weui-tabbar {
+    background-color: #ff3000;
+}
+.weui-tabbar__label {
+    color: #fff;
+}
+.weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon > i, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
+    background-color: #ce0000; 
+    color: #fff !important;
+}
+
+.weui-tabbar__item {
+    border-right: 1px solid rgba(255, 255, 255, .2);
+}
+
+.weui-btn_primary {
+    background-color: #ff3000;
+}
+
+.weui-btn_primary:not(.weui-btn_disabled):active {
+    background-color: #ce0000;
+}
+
+.weui-btn_plain-primary {
+    background-color: #ff3000;
+    color: #fff;
+    border-color: #ce0000;
+}
+
+.weui-btn_plain-primary:not(.weui-btn_plain-disabled):active {
+    color: #fff;
+}

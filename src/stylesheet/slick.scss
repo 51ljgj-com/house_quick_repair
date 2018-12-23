@@ -150,6 +150,7 @@
         cursor: pointer;
         color: transparent;
         background: transparent;
+        border: none;
     }
     .slick-dots li button:before
     {
@@ -161,11 +162,12 @@
         border: 1px solid transparent;
         border-radius: 50%;
         background-color: #d8d8d8;
+        margin-top: 8px;
         content: '';
     }
     .slick-dots li.slick-active button:before
     {
-        background-color: #6474e6;
+        background-color: #ee3923;
     }
     .slick-dots li button:focus {
         outline: none;

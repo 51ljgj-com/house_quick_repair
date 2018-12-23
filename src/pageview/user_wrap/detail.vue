@@ -9,7 +9,7 @@
       ul.contents
         li(v-for="i in  content") {{i.serviceName}}
     .actions
-      a.weui-btn.weui-btn_plain-default 电话预约
+      a.weui-btn.weui-btn_plain-default(@click="callUs()") 电话预约
       a.weui-btn.weui-btn_plain-primary(@click="goQuckOrder()") 免费预约
     article.promise
       h2 服务保障
@@ -38,6 +38,7 @@
 </template>
 <script>
 import Loading from '../../component/wrap/loading.vue';
+import {statusText, callUs} from '@/router/util.js';
 const promise = [
   {name: '免费制定方案', icon: 'icon_dingzhi.png'},
   {name: '价格透明', icon: 'icon_jiage.png'},
@@ -87,7 +88,9 @@ export default {
         body.data.forEach(i => i.caseThumbUrl = this.SERVER_HOST + i.caseThumbUrl)
         this.cases = body.data.slice(0, 3);
       })
-    }
+    },
+
+    callUs
   },
   mounted() {
     this.fetchBanners()
@@ -101,7 +104,7 @@ export default {
     banners() {
       this.$nextTick(() => {
         $('.carousel').slick({
-          dots: false,
+          dots: true,
           autoplay: true
         })
       })
@@ -169,7 +172,6 @@ export default {
       .weui-btn {
         flex: 1;
         margin: 0 20px;
-        background: #ffffff;
       }
     }
 

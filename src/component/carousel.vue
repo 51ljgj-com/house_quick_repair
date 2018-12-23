@@ -28,7 +28,7 @@ export default {
   },
   mounted() {
     $('.carousel').slick({
-      dots: false,
+      dots: true,
       autoplay: true
     })
   }

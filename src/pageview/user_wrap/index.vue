@@ -74,7 +74,7 @@ export default {
     banners() {
       this.$nextTick(() => {
         $('.carousel').slick({
-          dots: false,
+          dots: true,
           autoplay: true
         })
       })
@@ -175,8 +175,8 @@ export default {
     padding: 15px 10px;
   }
   .weui-grid__icon {
-    width: 35px;
-    height: 35px;
+    width: 80px;
+    height: 80px;
   }
   .weui-grids {
     background: #fff;

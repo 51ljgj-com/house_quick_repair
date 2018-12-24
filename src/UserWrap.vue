@@ -118,6 +118,8 @@ export default {
   width: 100%;
   height: calc(100vh - 100px);
   overflow: auto;
+  overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
   padding-bottom: 20px;
   background: #f2f2f2;
 }

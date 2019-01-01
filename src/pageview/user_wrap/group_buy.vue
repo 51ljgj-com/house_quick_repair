@@ -14,24 +14,28 @@
       .tips
         h1 参团小区
         p 没有您的小区？
-          a(href="#/add_house") 立即创建
+          a(href="#/add_house" style="color:#ee3923;") 立即创建
     .content
       loading(:show="!allList" :inline="true")
       .weui-panel.weui-panel_access(v-show="showList&&showList.length")
         .weui-panel__hd 当前共{{showList ? showList.length: 0}}条团购结果
         .weui-panel__bd(v-for="item in showList")
-          a.weui-media-box.weui-media-box_appmsg(:href="'#/group_buy_detail/' + item.groupid")
+          .weui-media-box.weui-media-box_appmsg
             .weui-media-box__hd
               img.weui-media-box__thumb(:src="item.houseThumbUrl")
+              p.join-num {{item.userJoinCount}}户
             .weui-media-box__bd
-              h4.weui-media-box__title {{item.houseName}}
-                p.join-num 已拼{{item.userJoinCount}}户
+              h4.weui-media-box__title 楼盘小区: {{item.houseName}}
               p.weui-media-box__desc 楼盘地址: {{item.houseAddress}}
-              p.weui-media-box__desc 拼团项目: {{item.groupServiceList.map(i => i.gServiceItemName).join('•')}}
+              div.weui-media-box__desc
+                div(style="white-space:nowrap") 拼团项目: 
+                span.items
+                  span.item(v-for="i in item.groupServiceList") {{i.gServiceItemName}}
+              a.weui-btn.weui-btn_primary.go-buy(:href="'#/group_buy_detail/' + item.groupid") 我要拼团
         .weui-panel__ft
-          a.weui-cell.weui-cell_access.weui-cell_link
-            .weui-cell__bd 查看更多
-            span.weui-cell__ft
+          //- a.weui-cell.weui-cell_access.weui-cell_link
+          //-   .weui-cell__bd 查看更多
+          //-   span.weui-cell__ft
       .no-data(v-show="showList&&!showList.length")
         .icon
         h3 没有找到小区,
@@ -127,6 +131,17 @@ export default {
       h1 {
         font-size: 18px;
         text-align: left;
+        &:before {
+          content: ' ';
+          width: 20px;
+          height: 20px;
+          display: inline-block;
+          vertical-align: middle;
+          background: url('/static/img/icon_house.png') no-repeat center;
+          background-size: contain;
+          margin-top: -4px;
+          margin-right: 5px;
+        }
       }
       .tips {
         display: flex;
@@ -135,6 +150,9 @@ export default {
         line-height: 36px;
         padding: 0 10px;
         background: #ffffff;
+        border-bottom: 1px solid #e5e5e5;
+        z-index: 1;
+        position: relative;
         p {
           font-size: 14px;
           color: #666;
@@ -152,8 +170,10 @@ export default {
       width: 100%;
       overflow: scroll;
       .join-num {
-        color: #ee3923;
-        float: right
+        color: #333;
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
       }
       .no-data {
         text-align: center;
@@ -183,6 +203,44 @@ export default {
     }
     .weui-media-box__thumb {
       background-color: #efeff4;
+    }
+
+    .weui-search-bar__box {
+      border: 1px solid #c3bdbd;
+      border-radius: 3px;
+    }
+
+    .weui-media-box__hd {
+      height: auto;
+      line-height: inherit;
+      margin-bottom: 5px;
+      align-self: flex-start;
+    }
+
+    .weui-media-box__title, .weui-media-box__desc {
+      font-size: 14px;
+      font-weight: normal;
+      color: #333;
+      display: flex;
+    }
+
+    .items {
+      margin-top: -2px;
+      line-height: 1;
+      .item {
+        margin-right: 5px;
+        font-size: 12px;
+        &:before {
+          content: '●';
+          color: #ee3923;
+          font-size: 16px;
+        }
+      }
+    }
+    .go-buy {
+      font-size: 14px;
+      line-height: 2.5;
+      margin-top: 5px;
     }
   }
 </style>

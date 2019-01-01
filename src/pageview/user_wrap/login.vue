@@ -58,7 +58,7 @@ export default {
       if (this.formstate.$invalid) return;
       this.$http.post('/api/auth/login', {
         phoneNo: form.tel,
-        verificationCode: Number(form.code)
+        verificationCode: form.code
       }).then(res => {
         res = res.body;
         if (res.code) return;

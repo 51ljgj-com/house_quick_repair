@@ -1,6 +1,7 @@
 <template lang="pug">
   .user-orders-wrap.bd-wrap
     h2 我的订单
+    loading(v-if="!list || !list.length" :show="true" :inline="true")
     .weui-form-preview(v-for="item in list" @click.stop="goDetail($event, item)")
       .weui-form-preview__hd
         label.weui-form-preview__label 付款金额
@@ -39,6 +40,7 @@
 <script>
 import {statusText, callUs} from '@/router/util.js';
 import Comment from '@/component/wrap/comment.vue';
+import Loading from '@/component/wrap/loading.vue';
 export default {
   data: () => ({
     list: [],
@@ -73,7 +75,8 @@ export default {
     })
   },
   components: {
-    comment: Comment
+    comment: Comment,
+    loading: Loading
   }
 }
 </script>

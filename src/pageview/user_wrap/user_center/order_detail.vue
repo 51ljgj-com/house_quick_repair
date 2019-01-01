@@ -1,5 +1,7 @@
 <template lang="pug">
-  .user-orders-detail-wrap(v-if="info")
+.user-orders-detail-wrap
+  loading(:show="Boolean(!info)" :inline="true")
+  div(v-if="info")
     .title-status(:data-status="info.orderBaseInfo.orderStatus >= 4 ? 'done': 'doing'")
       i.weui-icon_msg(:class="info.orderBaseInfo.orderStatus >= 4 ? 'weui-icon-success': 'weui-icon-waiting'")
       p.text {{statusText[info.orderBaseInfo.orderStatus]}}
@@ -75,6 +77,7 @@
 <script>
 import {statusText, callUs} from '@/router/util.js';
 import Comment from '@/component/wrap/comment.vue';
+import Loading from '@/component/wrap/loading.vue';
 export default {
   data: () => ({
     info: null,
@@ -104,7 +107,8 @@ export default {
     })
   },
   components: {
-    comment: Comment
+    comment: Comment,
+    loading: Loading
   }
 }
 </script>
@@ -153,5 +157,9 @@ export default {
         line-height: 3em;
       }
     }
+  }
+  .weui-panel__hd {
+    font-size: 18px;
+    color: #333;
   }
 </style>

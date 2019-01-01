@@ -122,6 +122,7 @@ export default {
   -webkit-overflow-scrolling: touch;
   padding-bottom: 20px;
   background: #f2f2f2;
+  position: relative;
 }
 
 .weui-tabbar__item {

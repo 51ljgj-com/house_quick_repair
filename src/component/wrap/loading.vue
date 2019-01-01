@@ -20,6 +20,9 @@ export default {
   data: () => ({
     isShow: false
   }),
+  mounted() {
+    this.isShow = this.show;
+  },
   watch: {
     show(v) {
       this.isShow = v;
@@ -33,8 +36,14 @@ export default {
   }
   .inline .weui-mask_transparent {
     position: absolute;
+    background: transparent;
   }
   .inline .weui-toast {
     position: absolute;
+  }
+
+  .weui-dialog, .weui-toast {
+    visibility: visible;
+    opacity: 1;
   }
 </style>

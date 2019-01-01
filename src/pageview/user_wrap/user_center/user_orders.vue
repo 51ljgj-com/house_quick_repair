@@ -2,38 +2,33 @@
   .user-orders-wrap.bd-wrap
     h2 我的订单
     loading(v-if="!list || !list.length" :show="true" :inline="true")
-    .weui-form-preview(v-for="item in list" @click.stop="goDetail($event, item)")
-      .weui-form-preview__hd
-        label.weui-form-preview__label 付款金额
-        em.weui-form-preview__value {{item.orderStatus > 1 ? `¥${item.orderAmount}`: '审核中...'}}
-      .weui-form-preview__bd
-        .weui-form-preview__item
-          label.weui-form-preview__label 订单编号
-          span.weui-form-preview__value {{item.orderid}}
-        .weui-form-preview__item
-          label.weui-form-preview__label 下单时间
-          span.weui-form-preview__value {{item.orderTime}}
-        .order-content
-          .order-desc
-            .weui-form-preview__item
-              label.weui-form-preview__label 项目
-              span.weui-form-preview__value {{item.orderContent}}
-            .weui-form-preview__item
-              label.weui-form-preview__label 状态
-              span.weui-form-preview__value(:style="item.orderStatus == 1 ? 'color: red': 'color: green'") {{statusText[item.orderStatus]}}
-            .weui-form-preview__item
-              label.weui-form-preview__label 对接师傅
-              span.weui-form-preview__value {{item.craftsman || ''}}
-          .order-avatar
+    .order-list-wrapper(v-for="item in list" @click.stop="goDetail($event, item)")
+      .order-item
+        .title-tip
+          h3 阳台贴砖
+          p.status 状态：{{statusText[item.orderStatus]}}>>
+        .content
+          .pic
             img(:src="item.orderThumbUrl || '/static/img/default.png'")
-      .weui-form-preview__ft(v-if="item.orderStatus == 1 || item.orderStatus == 5")
-          button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
-      .weui-form-preview__ft(v-else-if="item.orderStatus == 2 || item.orderStatus == 3")
-          button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
-          button.weui-form-preview__btn.weui-form-preview__btn_primary(type="submit" v-if="item.paymentStatus == 2 || item.paymentStatus == 5" @click.stop="pay(item.orderid)") 支付
-      .weui-form-preview__ft(v-else)
-          button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
-          button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="showComment(item)") 评价
+          .desc
+            | 订单编号: {{item.orderid}}
+            br 
+            | 对接师傅: {{item.craftsman || ''}}
+            br
+            | 下单时间: {{item.orderTime}}
+        .cost(v-if="item.orderStatus !== 1") 订单支付金额：
+          strong {{item.orderStatus > 1 ? `¥${item.orderAmount}`: '审核中...'}}
+        .actions(v-if="item.orderStatus == 1 || item.orderStatus == 5")
+          button.weui-btn.weui-btn_mini.weui-btn_default(@click.stop="callUs()") 客服
+        .actions(v-else-if="item.orderStatus == 2 || item.orderStatus == 3")
+          button.weui-btn.weui-btn_mini.weui-btn_default(@click.stop="callUs()") 客服
+          button.weui-btn.weui-btn_mini.weui-btn_default(type="submit" v-if="item.paymentStatus == 2 || item.paymentStatus == 5" @click.stop="pay(item.orderid)") 支付
+        .actions(v-else-if="item.orderStatus == 4")
+          button.weui-btn.weui-btn_mini.weui-btn_default(@click.stop="callUs()") 客服
+          button.weui-btn.weui-btn_mini.weui-btn_default(@click.stop="showComment(item)") 评价
+          button.weui-btn.weui-btn_mini.weui-btn_default 申请售后
+        .actions(v-else)
+          button.weui-btn.weui-btn_mini.weui-btn_default(@click.stop="callUs()") 客服
     comment(:show="commentIsShow" :orderid="commentOrderId")
    
 </template>
@@ -50,6 +45,9 @@ export default {
   }),
   methods: {
     goDetail(e, item) {
+      if (item.orderStatus === 1) {
+        return;
+      }
       if (!$(e.target).hasClass('weui-form-preview__btn')) {
         this.$router.push({path: `/user/order/${item.orderid}`});
       }
@@ -86,25 +84,64 @@ export default {
     font-size: 16px;
     padding: 10px 15px;
   }
-  .weui-form-preview {
-    margin-bottom: 10px;
-  }
-  .order-content {
-    display: flex;
-    .order-avatar {
-      width: 5.5em;
-      height: 5.5em;
-      margin-left: 1em;
-      background: #f2f2f2;
-      img {
-        max-width: 100%;
-        max-height: 100%;
-        display: block;
-        margin: auto;
+  .order-list-wrapper {
+    padding: 10px;
+    .title-tip {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #e2e2e2;
+      h3 {
+        color: #000;
+        font-size: 16px;
+        font-weight: normal;
+      }
+      .status {
+        color: #ee3923;
       }
     }
-    .order-desc {
-      flex-grow: 1;
+    .content {
+      display: flex;
+      flex-direction: row;
+      padding: 10px 0;
+      .pic {
+        width: 66px;
+        height: 66px;
+        margin-right: 10px;
+        img {
+          max-width: 100%;
+          max-height: 100%;
+          display: block;
+          margin: auto;
+        }
+      }
+      .desc {
+        font-size: 14px;
+        color: #444;
+      }
+    }
+    .cost {
+      width: 100%;
+      text-align: right;
+      color: #333;
+      font-size: 14px;
+      strong {
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+    .order-item {
+      background: #fff;
+      border: 1px solid #e2e2e2;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .actions {
+      text-align: right;
+      button {
+        margin-left: 10px;
+      }
     }
   }
 </style>

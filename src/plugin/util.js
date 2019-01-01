@@ -1,5 +1,5 @@
 export default {
-  ORDER_STATUS: {
+  ORDER_STATUS_TEXT: {
     1: '审核中',
     2: '准备中',
     3: '施工中',

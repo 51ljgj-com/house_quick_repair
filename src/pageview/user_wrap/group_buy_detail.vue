@@ -39,13 +39,13 @@
                 input(class="weui-input" type="tel" v-model="form.phoneNo" placeholder="请输入11位手机号" name="phone" pattern="\\d{11}" required)
               weui-cell__ft
                 i.weui-icon-warn
-            validate.weui-cell(:class="{'weui-cell_warn': !form.orderAddress1}")
-              .weui-cell__hd
-                label.weui-label 选择区县
-              .weui-cell__bd
-                input#addr(class="weui-input" @click="showAddr()" type="text" placeholder="请选择区县" name="addr")
-              weui-cell__ft
-                i.weui-icon-warn
+            //- validate.weui-cell(:class="{'weui-cell_warn': !form.orderAddress1}")
+            //-   .weui-cell__hd
+            //-     label.weui-label 选择区县
+            //-   .weui-cell__bd
+            //-     input#addr(class="weui-input" @click="showAddr()" type="text" placeholder="请选择区县" name="addr")
+            //-   weui-cell__ft
+            //-     i.weui-icon-warn
             validate.weui-cell(:class="{'weui-cell_warn': formstate.infoAddr && formstate.infoAddr.$invalid}")
               .weui-cell__hd
                 label.weui-label 详细地址
@@ -87,7 +87,7 @@ export default {
       houseName: '',
       groupContent: '',
       orderAddress2: '',
-      orderAddress1: ''
+      // orderAddress1: ''
     },
     groupInfo: {},
     groupRules: null
@@ -128,7 +128,8 @@ export default {
         return false;
       };
       if(this.formstate.$invalid) return;
-      this.form.orderAddress = this.form.orderAddress1 + this.form.orderAddress2;
+      // this.form.orderAddress = this.form.orderAddress1 + this.form.orderAddress2;
+      this.form.orderAddress = this.form.orderAddress2;
       let params = Object.assign({}, this.form, {
         token: Vue.userInfo.token, 
         orderContent: this.$route.query.orderContent,
@@ -137,16 +138,9 @@ export default {
       this.$http.post('/api/order/createOrder', params).then(res => {
         res = res.body;
         if (res.code) return;
-        this.$router.push({path: '/order_pay'})
+        // this.$router.push({path: '/order_pay'})
+        this.$showOptRet();
       })
-    },
-    showAddr() {
-      $("#addr").cityPicker({
-        title: "选择区县",
-        onChange: (picker, values, displayValues) => {
-          this.form.orderAddress1 = displayValues.join(' ')
-        }
-      });
     }
   },
   computed: {
@@ -154,12 +148,11 @@ export default {
   mounted() {
     this.fetchItems();
     this.fetchGroupRules();
-    this.showAddr();
   },
   watch: {
   },
   components: {
-    'loading': Loading
+    'loading': Loading,
   }
 }
 </script>
@@ -199,12 +192,17 @@ export default {
     }
     .group-item {
       margin-top: -10px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
       li {
         padding: 5px 10px;
         margin-top: 10px;
-        margin-right: 10px;
-        display: inline-block;
+        width: 31%;
         border: 1px solid #ccc;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
         &.active {
           border-color: #ee3923;
           position: relative;

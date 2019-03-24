@@ -228,8 +228,10 @@ export default {
       margin-top: -2px;
       line-height: 1;
       .item {
-        margin-right: 5px;
         font-size: 12px;
+        width: 50%;
+        display: inline-block;
+        padding-right: 1em;
         &:before {
           content: '●';
           color: #ee3923;

@@ -175,10 +175,14 @@ export default {
     padding: 15px 10px;
   }
   .weui-grid__icon {
-    width: 80px;
-    height: 80px;
+    width: 70%;
+    height: 70%;
   }
   .weui-grids {
     background: #fff;
+  }
+
+  .weui-grid__icon+.weui-grid__label {
+    font-size: 12px;
   }
 </style>

@@ -1,5 +1,5 @@
 <template lang="pug">
-.operator-result(:style="style")
+.operator-result(:style="style" id="optResultWrap")
   .weui-msg
     .weui-msg__icon-area
       i.weui-icon-success.weui-icon_msg
@@ -22,7 +22,10 @@ export default {
       default: false
     },
     msg: '',
-    btns: []
+    btns: {
+      type: Array,
+      default: []
+    }
   },
   data: () => ({
     style: {
@@ -33,11 +36,12 @@ export default {
     click() {}
   },
   mounted() {
-   
+    setTimeout(() => {
+      this.style.left = 0;
+    }, 0)
   },
   watch: {
     isShow(v) {
-      console.log(v);
       if (v) this.style.left = 0;
     }
   }
@@ -54,5 +58,8 @@ export default {
   z-index: 99999;
   background: #ffffff;
   transition: all .2s ease;
+  left: 0;
+  top: 0;
+  z-index: 1111;
 }
 </style>

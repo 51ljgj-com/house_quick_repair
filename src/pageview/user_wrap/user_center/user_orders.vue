@@ -8,12 +8,14 @@
           h3 阳台贴砖
           p.status 状态：{{statusText[item.orderStatus]}}>>
         .content
-          .pic
-            img(:src="item.orderThumbUrl || '/static/img/default.png'")
           .desc
             | 订单编号: {{item.orderid}}
             br 
             | 对接师傅: {{item.craftsman || ''}}
+            br
+            | 联系人: {{item.contactsUserName}}
+            br
+            | 电话: {{item.phoneNo}}
             br
             | 下单时间: {{item.orderTime}}
         .cost(v-if="item.orderStatus !== 1") 订单支付金额：

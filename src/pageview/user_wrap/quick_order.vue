@@ -40,10 +40,8 @@
           textarea.weui-textarea(row="5" v-model="form.orderDescription" placeholder="请输入简要的需求说明")
     .weui-btn-area
       a.weui-btn.weui-btn_primary(@click.stop="submit()") 确定
-    operate-ret(:is-show="operateRet.isShow" :msg="operateRet.msg" :btns="operateRet.btns")
 </template>
 <script>
-import OperateRet from '../../component/wrap/operate_result.vue';
 export default {
   data: () => ({
     form: {
@@ -57,26 +55,7 @@ export default {
       houseName: '',
       orderDescription: ''
     },
-    formstate: {},
-    
-    operateRet: {
-      isShow: {
-        type: Boolean,
-        default: false
-      },
-      msg: '恭喜您预约成功，工作人员会在24小时内联系您，请保持手机畅通~',
-      btns: [{
-        txt: '返回主页',
-        cb() {
-          location.href = '/wrap.html';
-        }
-      }, {
-        txt: '前往个人订单页',
-        cb() {
-          location.href = '#/user/orders'
-        }
-      }]
-    }
+    formstate: {}
   }),
   methods: {
     submit() {
@@ -86,7 +65,7 @@ export default {
       this.$http.post('/api/order/createOrder', params).then(res => {
         res = res.body;
         if (res.code) return;
-        this.operateRet.isShow = true;
+        this.$showOptRet();
       })
     },
 
@@ -100,7 +79,6 @@ export default {
     }
   },
   components: {
-    'operate-ret': OperateRet
   },
   mounted() {
     this.showAddr();

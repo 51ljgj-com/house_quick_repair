@@ -11,10 +11,10 @@
         .weui-cell__bd
           a 我的订单
         .weui-cell__ft
-      a.weui-cell.weui-cell_access(href="javascript:;")
-        .weui-cell__bd
-          a 代金券
-        .weui-cell__ft
+      //- a.weui-cell.weui-cell_access(href="javascript:;")
+      //-   .weui-cell__bd
+      //-     a 代金券
+      //-   .weui-cell__ft
       a.weui-cell.weui-cell_access(href="#/contact")
         .weui-cell__bd
           a 客服中心

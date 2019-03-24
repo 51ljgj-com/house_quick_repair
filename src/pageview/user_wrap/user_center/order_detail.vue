@@ -5,6 +5,7 @@
     .title-status(:data-status="info.orderBaseInfo.orderStatus >= 4 ? 'done': 'doing'")
       i.weui-icon_msg(:class="info.orderBaseInfo.orderStatus >= 4 ? 'weui-icon-success': 'weui-icon-waiting'")
       p.text {{statusText[info.orderBaseInfo.orderStatus]}}
+      .user-desc(style="align-self: flex-end;margin-right: 10px;") {{info.orderBaseInfo.contactsUserName + ': ' + info.orderBaseInfo.phoneNo}}
     .weui-panel.weui-panel_access
       .weui-panel__hd 订单基本信息
       .weui-panel__bd

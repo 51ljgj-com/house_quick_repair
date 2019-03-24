@@ -28,22 +28,22 @@ h1, h2, h3 {
 }
 
 .weui-tabbar {
-    background-color: #ff3000;
+    background-color: rgba(224,224,224, 1);
 }
 .weui-tabbar__label {
-    color: #fff;
+    color: rgba(30, 30, 30, 1);
 }
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon > i, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
-    background-color: #ce0000; 
-    color: #fff !important;
+    background-color: rgba(238, 57, 35, 1); 
+    color: rgba(240, 240, 240, 1) !important;
 }
 
 .weui-tabbar__item {
-    border-right: 1px solid rgba(255, 255, 255, .2);
+    border-right: 1px solid rgba(255, 255, 255, 1);
 }
 
 .weui-btn_primary {
-    background-color: #ff3000;
+    background-color: #ee3923;
 }
 
 .weui-btn_primary:not(.weui-btn_disabled):active {
@@ -51,11 +51,30 @@ h1, h2, h3 {
 }
 
 .weui-btn_plain-primary {
-    background-color: #ff3000;
+    background-color: #ee3923;
     color: #fff;
     border-color: #ce0000;
 }
 
 .weui-btn_plain-primary:not(.weui-btn_plain-disabled):active {
     color: #fff;
+}
+
+.weui-btn,
+.weui-btn:after {
+    border-radius: 0;
+}
+
+.weui-grid {
+    width: 25%;
+}
+
+.ft-nav {
+    z-index: 0;
+}
+.second-hd {
+    z-index: 0;
+}
+.bd-wrap {
+    z-index: 10;
 }

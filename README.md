@@ -6,6 +6,7 @@
 ```
 ./node_modules/webpack/bin/webpack.js -w --config build/webpack.dev.conf.js
 ```
+访问 localhost:12315/wrap.html
 
 ## 发布
 `sh deploy.sh`

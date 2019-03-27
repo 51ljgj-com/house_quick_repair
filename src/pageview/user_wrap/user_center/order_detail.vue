@@ -10,16 +10,16 @@
       .weui-panel__hd 订单基本信息
       .weui-panel__bd
         .weui-media-box
-          label.weui-form-preview__label 订单编号
+          label.weui-form-preview__label 订单编号:
           span.weui-form-preview__value {{info.orderid}}
         .weui-media-box
-          label.weui-form-preview__label 订单类别
+          label.weui-form-preview__label 订单类别:
           span.weui-form-preview__value {{info.orderBaseInfo.orderContent}}
         .weui-media-box
-          label.weui-form-preview__label 下单时间
+          label.weui-form-preview__label 下单时间:
           span.weui-form-preview__value {{info.orderBaseInfo.orderTime}}
         .weui-media-box
-          label.weui-form-preview__label 订单地址
+          label.weui-form-preview__label 订单地址:
           span.weui-form-preview__value {{info.orderBaseInfo.orderAddress}}
       .weui-panel__ft
 
@@ -27,23 +27,23 @@
       .weui-panel__hd 参团信息
       .weui-panel__bd
         .weui-media-box
-          label.weui-form-preview__label 参团项目
+          label.weui-form-preview__label 参团项目:
           span.weui-form-preview__value {{info.groupOrderInfo.groupService}}
         .weui-media-box
-          label.weui-form-preview__label 团购小区
+          label.weui-form-preview__label 团购小区:
           span.weui-form-preview__value {{info.groupOrderInfo.houseName}}
-        .weui-media-box(v-if="info.groupOrderInfo.preAmount")
-          label.weui-form-preview__label 预付款
-          span.weui-form-preview__value {{Math.abs(parseInt(info.groupOrderInfo.preAmount))}}（已支付）
-        .weui-media-box(v-else)
-          label.weui-form-preview__label 预付款
-          span.weui-form-preview__value(style="color: red;") 待支付
 
+    .weui-panel.weui-panel_access(v-if="info.fundItems&&info.fundItems.length")
+      .weui-panel__hd 预付款项
+      .order-prefund-wrapper(v-for="fitem in info.fundItems")
+        label.weui-form-preview__label {{fitem.fundItemTitle}}
+        span.weui-form-preview__value {{fitem.fundItemAmount}}
+    
     .weui-panel.weui-panel_access(v-if="info.orderBaseInfo.orderStatus != 1")
       .weui-panel__hd 订单金额
       .weui-panel__bd
         .weui-media-box
-          label.weui-form-preview__label 订单总额
+          label.weui-form-preview__label 订单总额:
           span.weui-form-preview__value {{info.orderAmountInfo.orderAmount}}
         .weui-media-box(v-for="coupon in info.orderAmountInfo.orderDiscountList")
           label.weui-form-preview__label {{coupon.discountTitle}}
@@ -162,5 +162,8 @@ export default {
   .weui-panel__hd {
     font-size: 18px;
     color: #333;
+    border-bottom: solid 1px #eee;
   }
+
+  
 </style>

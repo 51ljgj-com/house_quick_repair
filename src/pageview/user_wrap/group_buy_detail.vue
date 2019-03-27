@@ -133,7 +133,8 @@ export default {
       let params = Object.assign({}, this.form, {
         token: Vue.userInfo.token, 
         orderContent: this.$route.query.orderContent,
-        isGroupOrder: true
+        isGroupOrder: true,
+        groupid: this.$route.params.groupid
       })
       this.$http.post('/api/order/createOrder', params).then(res => {
         res = res.body;

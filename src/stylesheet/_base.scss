@@ -32,6 +32,8 @@ h1, h2, h3 {
 }
 .weui-tabbar__label {
     color: rgba(30, 30, 30, 1);
+    font-size: 13px;
+    font-weight:bold;
 }
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon > i, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
     background-color: rgba(238, 57, 35, 1); 

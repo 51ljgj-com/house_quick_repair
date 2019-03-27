@@ -27,7 +27,7 @@
             .weui-media-box__bd
               h4.weui-media-box__title 楼盘小区: {{item.houseName}}
               p.weui-media-box__desc 楼盘地址: {{item.houseAddress}}
-              div.weui-media-box__desc
+              div.weui-media-box__desc.weui-group-service-items
                 div(style="white-space:nowrap") 拼团项目: 
                 span.items
                   span.item(v-for="i in item.groupServiceList") {{i.gServiceItemName}}
@@ -169,6 +169,7 @@ export default {
       bottom: 0;
       width: 100%;
       overflow: scroll;
+      background-color: #efeff4;
       .join-num {
         color: #333;
         width: 100%;
@@ -216,7 +217,27 @@ export default {
       margin-bottom: 5px;
       align-self: flex-start;
     }
+.weui-group-service-items
+{
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
 
+.weui-panel__hd
+{
+  background-color:#fff;
+}
+
+.weui-panel
+{
+  background-color:#eee;
+}
+
+.weui-media-box_appmsg
+{
+    margin-top: 6px;
+     background-color:#fff;
+}
     .weui-media-box__title, .weui-media-box__desc {
       font-size: 14px;
       font-weight: normal;
@@ -226,7 +247,7 @@ export default {
 
     .items {
       margin-top: -2px;
-      line-height: 1;
+      line-height: 1.4;
       .item {
         font-size: 12px;
         width: 50%;
@@ -241,8 +262,10 @@ export default {
     }
     .go-buy {
       font-size: 14px;
-      line-height: 2.5;
+      line-height: 2;
       margin-top: 5px;
+      margin-left: 160px;
+       margin-right: 20px;
     }
   }
 </style>

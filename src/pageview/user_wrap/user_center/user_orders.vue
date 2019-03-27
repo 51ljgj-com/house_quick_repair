@@ -18,18 +18,9 @@
             | 电话: {{item.phoneNo}}
             br
             | 下单时间: {{item.orderTime}}
-        .cost(v-if="item.orderStatus !== 1") 订单支付金额：
-          strong {{item.orderStatus > 1 ? `¥${item.orderAmount}`: '审核中...'}}
-        .actions(v-if="item.orderStatus == 1 || item.orderStatus == 5")
-          button.weui-btn.weui-btn_mini.weui-btn_default(@click.stop="callUs()") 客服
-        .actions(v-else-if="item.orderStatus == 2 || item.orderStatus == 3")
-          button.weui-btn.weui-btn_mini.weui-btn_default(@click.stop="callUs()") 客服
-          button.weui-btn.weui-btn_mini.weui-btn_default(type="submit" v-if="item.paymentStatus == 2 || item.paymentStatus == 5" @click.stop="pay(item.orderid)") 支付
-        .actions(v-else-if="item.orderStatus == 4")
-          button.weui-btn.weui-btn_mini.weui-btn_default(@click.stop="callUs()") 客服
-          button.weui-btn.weui-btn_mini.weui-btn_default(@click.stop="showComment(item)") 评价
-          button.weui-btn.weui-btn_mini.weui-btn_default 申请售后
-        .actions(v-else)
+        .content-bottom
+          .cost(v-if="item.orderStatus !== 1") 订单支付金额：
+            strong {{item.orderStatus > 1 ? `¥${item.orderAmount}`: '审核中...'}}
           button.weui-btn.weui-btn_mini.weui-btn_default(@click.stop="callUs()") 客服
     comment(:show="commentIsShow" :orderid="commentOrderId")
    
@@ -61,6 +52,13 @@ export default {
       this.commentIsShow = new Boolean(true);
       this.commentOrderId = item.orderid;
     },
+
+    numFilter(value) {
+    let realVal = parseFloat(value).toFixed(2);
+
+    return parseFloat(realVal)
+
+  },
 
     pay(orderid) {
       this.$wxp.pay(orderid)
@@ -107,6 +105,7 @@ export default {
       display: flex;
       flex-direction: row;
       padding: 10px 0;
+      border-bottom: 1px solid #e2e2e2;
       .pic {
         width: 66px;
         height: 66px;
@@ -124,14 +123,17 @@ export default {
       }
     }
     .cost {
-      width: 100%;
-      text-align: right;
       color: #333;
       font-size: 14px;
       strong {
         font-weight: bold;
         font-size: 16px;
       }
+    }
+    .content-bottom
+    {
+        display:flex;
+        padding-top:10px;
     }
     .order-item {
       background: #fff;
@@ -144,6 +146,17 @@ export default {
       button {
         margin-left: 10px;
       }
+    }
+
+    .weui-btn
+    {
+        border:none;
+        margin-left:auto;
+         margin-right:1px;
+        background-color:#eee; 
+        font-color:#222;
+        radius:0.1px;
+         font-weight:bold;
     }
   }
 </style>

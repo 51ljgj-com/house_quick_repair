@@ -169,20 +169,20 @@ export default {
         }
       }
     }
-     
   }
   .weui-grid {
     padding: 15px 10px;
+    border: 1px solid #eee;
   }
   .weui-grid__icon {
-    width: 70%;
-    height: 70%;
+    width: 80%;
+    height: 80%;
   }
   .weui-grids {
     background: #fff;
   }
 
   .weui-grid__icon+.weui-grid__label {
-    font-size: 12px;
+    font-size: 11px;
   }
 </style>

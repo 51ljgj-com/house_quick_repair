@@ -1,6 +1,6 @@
 <template lang="pug">
   .user-orders-wrap.bd-wrap
-    h2 我的订单
+    .top-title 我的订单 
     loading(v-if="!list || !list.length" :show="true" :inline="true")
     .order-list-wrapper(v-for="item in list" @click.stop="goDetail($event, item)")
       .order-item
@@ -9,15 +9,15 @@
           p.status 状态：{{statusText[item.orderStatus]}}>>
         .content
           .desc
-            | 订单编号: {{item.orderid}}
+            |   订单编号: {{item.orderid}}
             br 
-            | 对接师傅: {{item.craftsman || ''}}
+            |   对接师傅: {{item.craftsman || ''}}
             br
-            | 联系人: {{item.contactsUserName}}
+            |&nbsp&nbsp&nbsp&nbsp联系人: {{item.contactsUserName}}
             br
-            | 电话: {{item.phoneNo}}
+            |&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp电话: {{item.phoneNo}}
             br
-            | 下单时间: {{item.orderTime}}
+            |   下单时间: {{item.orderTime}}
         .content-bottom
           .cost(v-if="item.orderStatus !== 1") 订单支付金额：
             strong {{item.orderStatus > 1 ? `¥${item.orderAmount}`: '审核中...'}}
@@ -84,13 +84,26 @@ export default {
     font-size: 16px;
     padding: 10px 15px;
   }
+
+  .top-title
+    {
+      background-color:#fff;
+      margin-top:10px;
+      height:40px;
+      border-bottom:solid 1px #e2e2e2;
+      border-top:solid 1px #e2e2e2;
+      padding-left:20px;
+      line-height:40px;
+      
+    }
+
   .order-list-wrapper {
     padding: 10px;
     .title-tip {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      padding: 10px 0;
+      padding: 2px 0;
       border-bottom: 1px solid #e2e2e2;
       h3 {
         color: #000;
@@ -158,5 +171,7 @@ export default {
         radius:0.1px;
          font-weight:bold;
     }
+
+    
   }
 </style>

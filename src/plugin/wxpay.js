@@ -7,6 +7,10 @@ class WXP {
       this.auth()
     }
   }
+
+  get isWxBrowser() {
+    return /MicroMessenger/i.test(navigator.userAgent.toLowerCase());
+  }
   /**
    * 页面跳转 /api/wxuser/authorize?state=${location.pathname} 获取wxid
    */
@@ -86,7 +90,7 @@ class WXP {
     let params = {
       fundItemId: this.fundItemId,
       wxOpenId: this.wxid,
-      tradeType: 'JSAPI',
+      tradeType: this.isWxBrowser ? 'JSAPI' : 'MWEB',
       token: this.Vue.userInfo.token
     }
     this.Vue.http.post('/api/payment/createUnifiedOrderByFundItemViaClient', params).then(res => {

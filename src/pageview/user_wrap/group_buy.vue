@@ -264,8 +264,6 @@ export default {
       font-size: 14px;
       line-height: 2;
       margin-top: 5px;
-      margin-left: 160px;
-       margin-right: 20px;
     }
   }
 </style>

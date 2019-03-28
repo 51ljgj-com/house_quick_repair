@@ -35,9 +35,18 @@
 
     .weui-panel.weui-panel_access(v-if="info.fundItems&&info.fundItems.length")
       .weui-panel__hd 预付款项
-      .order-prefund-wrapper(v-for="fitem in info.fundItems")
-        label.weui-form-preview__label {{fitem.fundItemTitle}}
-        span.weui-form-preview__value {{fitem.fundItemAmount}}
+      .order-prefund-wrapper
+        table.prefund-table
+          tr(v-for="fitem in info.fundItems")
+            td
+              label.weui-form-preview__label(v-if="fitem.fundItemType == 1") 预付款
+              label.weui-form-preview__label(v-if="fitem.fundItemType != 1") 其他
+              label.weui-form-preview__label.red(v-if="fitem.fundItemStatus == 2") (未支付)
+            td
+              span.weui-form-preview__value ￥{{fitem.fundItemAmount}}
+            td
+              span.check(v-if="fitem.fundItemStatus == 3")
+              button.weui-form-preview__btn.weui-form-preview__btn_primary(v-if="fitem.fundItemStatus == 2", @click.stop="prefundPay(fitem)") 支付
     
     .weui-panel.weui-panel_access(v-if="info.orderBaseInfo.orderStatus != 1")
       .weui-panel__hd 订单金额
@@ -88,6 +97,9 @@ export default {
   }),
   methods: {
     callUs,
+    prefundPay(item) {
+      this.$wxp.prepayFund(item.fundItemId);
+    },
     showComment(item) {
       this.commentIsShow = new Boolean(true);
       this.commentOrderId = this.info.orderid;
@@ -115,6 +127,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.order-prefund-wrapper {
+  padding: 5px 15px;
+  table {
+    width: 100%;
+    tr {
+      height: 40px;
+
+      td {
+        button {
+          width: 35px;
+        
+        }
+      }
+    }
+  }
+
+}
+  .red {
+    color: red;
+  }
   .user-orders-detail-wrap {
     text-align: left;
     font-size: 14px;

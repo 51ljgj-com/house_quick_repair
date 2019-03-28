@@ -80,6 +80,49 @@ class WXP {
     })
   }
 
+  async prepayFund(fundItemId) {
+    this.fundItemId = fundItemId;
+    await this.getWxConfig()
+    let params = {
+      fundItemId: this.fundItemId,
+      wxOpenId: this.wxid,
+      tradeType: 'JSAPI',
+      token: this.Vue.userInfo.token
+    }
+    this.Vue.http.post('/api/payment/createUnifiedOrderByFundItemViaClient', params).then(res => {
+      let body = res.body
+      if (body.code) {
+        alert(body.message)
+        return Promise.reject(body.message)
+      }
+      return Promise.resolve(body.data)
+    }).then(async data => {
+
+      // alert(`创建订单成功${JSON.stringify(params)}${JSON.stringify(data)}`)
+      if (WeixinJSBridge) {
+        WeixinJSBridge.invoke(
+          'getBrandWCPayRequest', data,
+          (wxRes) => {
+            if (wxRes.err_msg === 'get_brand_wcpay_request:ok') {
+              // 使用以上方式判断前端返回,微信团队郑重提示：
+              // wxRes.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+              // todo: check success
+              alert('支付成功')
+              // Now we can refresh the order status via getMyOrders/getOrderDetail api.
+              setTimeout(this.refresh, 2000)
+            }
+          })
+      } else {
+        // Step 4. Or use chooseWXPay via WeChat JS-SDK.
+        // todo: Not tested yet.
+        await this.chooseWXPay(data)
+        setTimeout(this.refresh, 2000)
+      }
+    }, (err) => {
+      // alert(`支付失败1${JSON.stringify(params)}${JSON.stringify(err)}`)
+    })
+  }
+
   async chooseWXPay(paymentParams) {
     return new Promise(async (resolve, reject) => {
       /** received paymentParams:

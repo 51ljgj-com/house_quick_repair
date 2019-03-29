@@ -43,9 +43,9 @@
               label.weui-form-preview__label(v-if="fitem.fundItemType != 1") 其他
               label.weui-form-preview__label.red(v-if="fitem.fundItemStatus == 2") (未支付)
             td
-              span.weui-form-preview__value ￥{{fitem.fundItemAmount}}
+              span.weui-form-preview__value ￥{{(+fitem.fundItemAmount / 100).toFixed(2)}}
             td
-              span.check(v-if="fitem.fundItemStatus == 3")
+              span.weui-icon-success(v-if="fitem.fundItemStatus == 3")
               button.weui-form-preview__btn.weui-form-preview__btn_primary(v-if="fitem.fundItemStatus == 2", @click.stop="prefundPay(fitem)") 支付
     
     .weui-panel.weui-panel_access(v-if="info.orderBaseInfo.orderStatus != 1")
@@ -53,15 +53,15 @@
       .weui-panel__bd
         .weui-media-box
           label.weui-form-preview__label 订单总额:
-          span.weui-form-preview__value {{info.orderAmountInfo.orderAmount}}
+          span.weui-form-preview__value {{(+info.orderAmountInfo.orderAmount / 100).toFixed(2)}}
         .weui-media-box(v-for="coupon in info.orderAmountInfo.orderDiscountList")
           label.weui-form-preview__label {{coupon.discountTitle}}
-          span.weui-form-preview__value {{coupon.discountAmount}}
+          span.weui-form-preview__value {{(+coupon.discountAmount / 100).toFixed(2)}}
       .weui-panel__ft
         .weui-cell__bd(v-if="info.orderBaseInfo.orderStatus == 2 || info.orderBaseInfo.orderStatus == 3")
-          .weui-cell(style="color: red;text-align: right") 待付款: ¥{{info.orderAmountInfo.orderAmount}}
+          .weui-cell(style="color: red;text-align: right") 待付款: ¥{{(+info.orderAmountInfo.surplusAmount / 100).toFixed(2)}}
         .weui-cell__bd(v-else)
-          .weui-cell(style="color: green;text-align: right") 实付款: ¥{{info.orderAmountInfo.orderAmount}}
+          .weui-cell(style="color: green;text-align: right") 实付款: ¥{{(+info.orderAmountInfo.paidAmount / 100).toFixed(2)}}
     
     .weui-panel.weui-panel_access(v-if="info.orderBaseInfo.orderStatus != 1")
       .weui-panel__hd 订单施工内容

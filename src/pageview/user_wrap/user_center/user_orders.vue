@@ -20,7 +20,7 @@
             |   下单时间: {{item.orderTime}}
         .content-bottom
           .cost(v-if="item.orderStatus !== 1") 订单支付金额：
-            strong {{item.orderStatus > 1 ? `¥${item.orderAmount}`: '审核中...'}}
+            strong {{item.orderStatus > 1 ? `¥${(+item.orderAmount / 100).toFixed(2)}`: '审核中...'}}
           button.weui-btn.weui-btn_mini.weui-btn_default(@click.stop="callUs()") 客服
     comment(:show="commentIsShow" :orderid="commentOrderId")
    

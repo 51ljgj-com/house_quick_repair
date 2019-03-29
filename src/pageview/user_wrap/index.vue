@@ -8,11 +8,6 @@
         .weui-grid__icon
           img(:src="i.projectThumbUrl")
         p.weui-grid__label {{i.projectName}}
-    .recommend.content
-      h2 特色推荐
-       a.feature-item-a(href="javascript:;" v-for="(i, k) in features" :key="k" :href="i.linkUrl")
-        .feature-item
-          img(:src="i.projectThumbUrl")
     .flows.content
       h2 服务流程
       ul 
@@ -67,23 +62,24 @@ export default {
         this.banners = body.data.rollItemUrls;
         console.log(this.banners)
       })
-    }
-  },
-  fetchFeatures() {
-
-    this.$http.get('/api/projects/getFeatureRecommendItems').then(res => {
-        let body = res.body
-        if (body && body.code) {
-          return
-        }
-        this.features = body.data.map(i => {
-          i.featureItemid =  i.featureItemid
-          i.thumbUrl = this.SERVER_HOST + i.featureItemThumbUrl.replace('..', '')
-          i.linkUrl = this.SERVER_HOST + i.featureItemLinkUrl.replace('..', '')
-          return i
-        })
+    },
+    fetchFeatures() {
+      this.$http.get('/api/projects/getFeatureRecommendItems').then(res => {
+          let body = res.body
+          if (body && body.code) {
+            return
+          }
+          this.features = body.data.map(i => {
+            i.thumbUrl = this.SERVER_HOST + i.featureItemThumbUrl.replace('..', '')
+            i.linkUrl = i.featureItemLinkUrl.replace('..', '')
+            return i
+          });
+          console.log(this.features);
       })
-
+    },
+    navigate(url) {
+      this.$router.replace(url);
+    }
   },
   mounted() {
     this.fetchServices()
@@ -111,6 +107,16 @@ export default {
       height: 150px;
       li {
         display: none;
+      }
+    }
+
+    .feature-item-wrapper {
+      display: flex;
+      a {
+        img {
+          width: 160px;
+          height: 120px;
+        }
       }
     }
 

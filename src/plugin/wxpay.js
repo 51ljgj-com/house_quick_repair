@@ -74,7 +74,7 @@ class WXP {
               // Now we can refresh the order status via getMyOrders/getOrderDetail api.
               setTimeout(() => { 
                 this.refresh();
-              }, 2000);
+              }, 500);
             }
           })
       } else {
@@ -83,12 +83,12 @@ class WXP {
         await this.chooseWXPay(data)
         setTimeout(() => { 
           this.refresh();
-        }, 2000);
+        }, 500);
       }
     }, (err) => {
       setTimeout(() => { 
         this.refresh();
-      }, 2000);
+      }, 500);
       // alert(`支付失败1${JSON.stringify(params)}${JSON.stringify(err)}`)
     })
   }
@@ -124,7 +124,7 @@ class WXP {
               // Now we can refresh the order status via getMyOrders/getOrderDetail api.
               setTimeout(() => { 
                 this.refresh();
-              }, 2000);
+              }, 500);
             }
           })
       } else {
@@ -133,13 +133,13 @@ class WXP {
         await this.chooseWXPay(data);
         setTimeout(() => { 
           this.refresh();
-        }, 2000);
+        }, 500);
       }
     }, (err) => {
       // alert(`支付失败1${JSON.stringify(params)}${JSON.stringify(err)}`)
       setTimeout(() => { 
         this.refresh();
-      }, 2000);
+      }, 500);
     })
   }
 
@@ -170,7 +170,8 @@ class WXP {
   }
 
   refresh() {
-    router.push({ path: '/user/orders', query: { wxOpenId: location.search.match(/wxOpenId=([^&]+)&?/) } })
+    router.go(0);
+    // router.push({ path: '/user/orders', query: { wxOpenId: location.search.match(/wxOpenId=([^&]+)&?/) } })
   }
 }
 export default {

@@ -10,6 +10,9 @@
         p.weui-grid__label {{i.projectName}}
     .recommend.content
       h2 特色推荐
+       a.feature-item-a(href="javascript:;" v-for="(i, k) in features" :key="k" :href="i.linkUrl")
+        .feature-item
+          img(:src="i.projectThumbUrl")
     .flows.content
       h2 服务流程
       ul 
@@ -66,9 +69,26 @@ export default {
       })
     }
   },
+  fetchFeatures() {
+
+    this.$http.get('/api/projects/getFeatureRecommendItems').then(res => {
+        let body = res.body
+        if (body && body.code) {
+          return
+        }
+        this.features = body.data.map(i => {
+          i.featureItemid =  i.featureItemid
+          i.thumbUrl = this.SERVER_HOST + i.featureItemThumbUrl.replace('..', '')
+          i.linkUrl = this.SERVER_HOST + i.featureItemLinkUrl.replace('..', '')
+          return i
+        })
+      })
+
+  },
   mounted() {
     this.fetchServices()
     this.fetchBanners()
+    this.fetchFeatures()
   },
   watch: {
     banners() {
@@ -184,5 +204,19 @@ export default {
 
   .weui-grid__icon+.weui-grid__label {
     font-size: 11px;
+  }
+
+  .recommend
+  {
+    height:160px;
+  }
+
+  .feature-item img
+  {
+    margin-top:8px;
+    margin-right:20px;
+    width:160px;
+    height:100px;
+    background-color:#000;
   }
 </style>

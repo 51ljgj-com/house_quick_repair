@@ -21,7 +21,8 @@ export default {
         }
         if (res.status < 200 || res.status >= 300) {
           let msg = typeof data === 'string' ? '操作失败，请稍后重试！' : Object.keys(data).map(i => data[i]).join('\n')
-          Vue.prototype.$message.error(msg)
+          // Vue.prototype.$message.error(msg)
+          console.error(msg);
         }
       })
     })

@@ -1,3 +1,5 @@
+import router from '../router';
+
 class WXP {
   constructor(wxid, Vue) {
     this.Vue = Vue
@@ -36,7 +38,7 @@ class WXP {
   configWx(data) {
     wx.config({
       ...data,
-      debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+      debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
       jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表
     })
   }
@@ -70,16 +72,23 @@ class WXP {
               // todo: check success
               alert('支付成功')
               // Now we can refresh the order status via getMyOrders/getOrderDetail api.
-              setTimeout(this.refresh, 2000)
+              setTimeout(() => { 
+                this.refresh();
+              }, 2000);
             }
           })
       } else {
         // Step 4. Or use chooseWXPay via WeChat JS-SDK.
         // todo: Not tested yet.
         await this.chooseWXPay(data)
-        setTimeout(this.refresh, 2000)
+        setTimeout(() => { 
+          this.refresh();
+        }, 2000);
       }
     }, (err) => {
+      setTimeout(() => { 
+        this.refresh();
+      }, 2000);
       // alert(`支付失败1${JSON.stringify(params)}${JSON.stringify(err)}`)
     })
   }
@@ -113,17 +122,24 @@ class WXP {
               // todo: check success
               alert('支付成功')
               // Now we can refresh the order status via getMyOrders/getOrderDetail api.
-              setTimeout(this.refresh, 2000)
+              setTimeout(() => { 
+                this.refresh();
+              }, 2000);
             }
           })
       } else {
         // Step 4. Or use chooseWXPay via WeChat JS-SDK.
         // todo: Not tested yet.
-        await this.chooseWXPay(data)
-        setTimeout(this.refresh, 2000)
+        await this.chooseWXPay(data);
+        setTimeout(() => { 
+          this.refresh();
+        }, 2000);
       }
     }, (err) => {
       // alert(`支付失败1${JSON.stringify(params)}${JSON.stringify(err)}`)
+      setTimeout(() => { 
+        this.refresh();
+      }, 2000);
     })
   }
 
@@ -154,7 +170,7 @@ class WXP {
   }
 
   refresh() {
-    this.Vue.router.push({ path: '/user/orders', query: { wxOpenId: location.search.match(/wxOpenId=([^&]+)&?/) } })
+    router.push({ path: '/user/orders', query: { wxOpenId: location.search.match(/wxOpenId=([^&]+)&?/) } })
   }
 }
 export default {

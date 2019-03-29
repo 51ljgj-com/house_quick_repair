@@ -58,7 +58,7 @@
           label.weui-form-preview__label {{coupon.discountTitle}}
           span.weui-form-preview__value {{(+coupon.discountAmount / 100).toFixed(2)}}
       .weui-panel__ft
-        .weui-cell__bd(v-if="info.orderBaseInfo.orderStatus == 2 || info.orderBaseInfo.orderStatus == 3")
+        .weui-cell__bd(v-if="info.orderAmountInfo.paymentStatus == 2")
           .weui-cell(style="color: red;text-align: right") 待付款: ¥{{(+info.orderAmountInfo.surplusAmount / 100).toFixed(2)}}
         .weui-cell__bd(v-else)
           .weui-cell(style="color: green;text-align: right") 实付款: ¥{{(+info.orderAmountInfo.paidAmount / 100).toFixed(2)}}
@@ -77,7 +77,7 @@
       .weui-panel.weui-panel_access(v-else-if="info.orderBaseInfo.orderStatus == 2 || info.orderBaseInfo.orderStatus == 3")
           button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
           a.weui-form-preview__btn.weui-form-preview__btn_default(:href="'#/contract/'+info.orderid") 合同
-          button.weui-form-preview__btn.weui-form-preview__btn_primary(type="submit") 支付
+          button.weui-form-preview__btn.weui-form-preview__btn_primary(:disabled="info.orderAmountInfo.paymentStatus != 2", type="submit", @click.stop="pay(info.orderid)") 支付
       .weui-panel.weui-panel_access(v-else)
           button.weui-form-preview__btn.weui-form-preview__btn_default(@click.stop="callUs()") 客服
           a.weui-form-preview__btn.weui-form-preview__btn_default(:href="'#/contract/'+info.orderid") 合同
@@ -97,6 +97,9 @@ export default {
   }),
   methods: {
     callUs,
+    pay(orderId) {
+      this.$wxp.pay(orderId);
+    },
     prefundPay(item) {
       this.$wxp.prepayFund(item.fundItemId);
     },

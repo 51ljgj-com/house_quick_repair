@@ -46,7 +46,7 @@ export default {
   data: () => ({
     form: {
       contactsUserName: '',
-      isGroupOrder: false,
+      isGroupOrder: '',
       phoneNo: '',
       orderContent: '',
       orderAddress: '',

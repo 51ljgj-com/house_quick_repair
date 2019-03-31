@@ -2,7 +2,9 @@ import router from '../router';
 
 class WXP {
   constructor(wxid, Vue) {
-    this.Vue = Vue
+    this.Vue = Vue;
+    this.isLoadingWxOpenId = false;
+
     if (wxid) {
       this.wxid = wxid
     } else {
@@ -44,12 +46,25 @@ class WXP {
   }
 
   async pay(id) {
-    this.orderId = id
+    let openId = this.wxid;
+    if (this.isWxBrowser) {
+      if (!openId) {
+        this.isLoadingWxOpenId = true;
+        return setTimeout(() => {
+          this.auth();
+        }, 200);
+      }
+    }
+    else {
+      openId = "";
+    }
+
+    this.orderId = id;
     await this.getWxConfig()
     let params = {
       orderId: this.orderId,
-      wxOpenId: this.wxid,
-      tradeType: 'JSAPI',
+      wxOpenId: openId,
+      tradeType: this.isWxBrowser ? 'JSAPI' : 'MWEB',
       token: this.Vue.userInfo.token
     }
     this.Vue.http.post('/api/payment/createUnifiedOrder', params).then(res => {
@@ -60,6 +75,12 @@ class WXP {
       }
       return Promise.resolve(body.data)
     }).then(async data => {
+
+      // MWEB browser pay.
+      if (data && data.mweb_url) {
+        location.href = data.mweb_url;
+        return;
+      }
 
       // alert(`创建订单成功${JSON.stringify(params)}${JSON.stringify(data)}`)
       if (WeixinJSBridge) {
@@ -72,7 +93,7 @@ class WXP {
               // todo: check success
               alert('支付成功')
               // Now we can refresh the order status via getMyOrders/getOrderDetail api.
-              setTimeout(() => { 
+              setTimeout(() => {
                 this.refresh();
               }, 500);
             }
@@ -81,12 +102,12 @@ class WXP {
         // Step 4. Or use chooseWXPay via WeChat JS-SDK.
         // todo: Not tested yet.
         await this.chooseWXPay(data)
-        setTimeout(() => { 
+        setTimeout(() => {
           this.refresh();
         }, 500);
       }
     }, (err) => {
-      setTimeout(() => { 
+      setTimeout(() => {
         this.refresh();
       }, 500);
       // alert(`支付失败1${JSON.stringify(params)}${JSON.stringify(err)}`)
@@ -94,11 +115,24 @@ class WXP {
   }
 
   async prepayFund(fundItemId) {
+    let openId = this.wxid;
+    if (this.isWxBrowser) {
+      if (!openId) {
+        this.isLoadingWxOpenId = true;
+        return setTimeout(() => {
+          this.auth();
+        }, 200);
+      }
+    }
+    else {
+      openId = "";
+    }
+
     this.fundItemId = fundItemId;
     await this.getWxConfig()
     let params = {
       fundItemId: this.fundItemId,
-      wxOpenId: this.wxid,
+      wxOpenId: openId,
       tradeType: this.isWxBrowser ? 'JSAPI' : 'MWEB',
       token: this.Vue.userInfo.token
     }
@@ -122,7 +156,7 @@ class WXP {
               // todo: check success
               alert('支付成功')
               // Now we can refresh the order status via getMyOrders/getOrderDetail api.
-              setTimeout(() => { 
+              setTimeout(() => {
                 this.refresh();
               }, 500);
             }
@@ -131,13 +165,13 @@ class WXP {
         // Step 4. Or use chooseWXPay via WeChat JS-SDK.
         // todo: Not tested yet.
         await this.chooseWXPay(data);
-        setTimeout(() => { 
+        setTimeout(() => {
           this.refresh();
         }, 500);
       }
     }, (err) => {
       // alert(`支付失败1${JSON.stringify(params)}${JSON.stringify(err)}`)
-      setTimeout(() => { 
+      setTimeout(() => {
         this.refresh();
       }, 500);
     })
@@ -175,7 +209,7 @@ class WXP {
   }
 }
 export default {
-  install (Vue, options) {
+  install(Vue, options) {
     let wxid = location.search.match(/wxOpenId=([^&]+)&?/)
     if (wxid && wxid.length) {
       wxid = wxid[1]

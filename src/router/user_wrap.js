@@ -100,7 +100,7 @@ let router = new Router({
       path: '/all_cases',
       name: 'UserCaseVue',
       component: UserCaseVue,
-      meta: {hideNav: true, 'title': '施工案例'}
+      meta: {hideNav: true, 'title': '施工案例', nologin: true }
     }, {
       path: '/contract/:id',
       name: 'ContractVue',

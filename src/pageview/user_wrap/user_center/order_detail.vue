@@ -1,6 +1,6 @@
 <template lang="pug">
 .user-orders-detail-wrap
-  loading(:show="Boolean(!info)" :inline="true")
+  loading(:show="Boolean(!info || $wxp.isLoadingWxOpenId)" :inline="true")
   div(v-if="info")
     .title-status(:data-status="info.orderBaseInfo.orderStatus >= 4 ? 'done': 'doing'")
       i.weui-icon_msg(:class="info.orderBaseInfo.orderStatus >= 4 ? 'weui-icon-success': 'weui-icon-waiting'")

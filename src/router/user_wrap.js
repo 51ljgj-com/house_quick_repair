@@ -17,6 +17,7 @@ import ContractVue from '@/pageview/user_wrap/user_center/contract.vue'
 import GroupBuyDetailVue from '@/pageview/user_wrap/group_buy_detail.vue'
 import UserOrdersVue from '@/pageview/user_wrap/user_center/user_orders'
 import UserOrderDetailVue from '@/pageview/user_wrap/user_center/order_detail'
+import PriceVue from '@/pageview/user_wrap/price.vue';
 
 Vue.use(Router)
 
@@ -106,6 +107,11 @@ let router = new Router({
       name: 'ContractVue',
       component: ContractVue,
       meta: {hideNav: true, 'title': '订单合同'}
+    }, {
+      path: '/price',
+      name: 'PriceVue',
+      component: PriceVue,
+      meta: { hideNav: true, 'title': '团购门窗价格'}
     }
   ]
 })

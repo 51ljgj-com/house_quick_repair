@@ -1,7 +1,7 @@
 <template lang="pug">
   article.weui-article(style="text-align:left")
     section
-      img(src="/static/img/price.jpg")
+      img(src="/static/img/price-2019-04-12.jpg")
     section
       a.weui-btn.weui-btn_plain-primary(href="#/group_buy/") 立即团购
       a.weui-btn.weui-btn_plain-default(@click="callUs()") 电话预约

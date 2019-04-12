@@ -111,7 +111,7 @@ let router = new Router({
       path: '/price',
       name: 'PriceVue',
       component: PriceVue,
-      meta: { hideNav: true, 'title': '团购门窗价格'}
+      meta: { hideNav: true, 'title': '团购门窗价格', nologin: true}
     }
   ]
 })

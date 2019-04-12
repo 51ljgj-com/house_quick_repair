@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+		<title>邻家工匠|官网 - 您身边房屋维修专家！</title>
+		<meta name="keywords" content="邻家工匠 门窗 封窗 封阳台 泥瓦 贴砖 石材 维修 房屋修缮 装修 装修网 建材 家具 家居">
+		<meta name="description" content="“邻家工匠” 专注门窗安装维修，泥瓦施工维修，石材设计安装，打孔安装，管道疏通，自有师傅，专业可靠，费用透明，线上下单，线下施工，订单信息永久保存！">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+    <link href="files/css/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+  
+		<script type="text/javascript">
+			var i=0;
+			var liArr;
+			var olderLiObj;
+			function toggle_banner(){
+				
+				var now_banner = liArr[i];
+				//var now_index = $(now_banner).css("z-index");
+				//var now_index = now_index - 3;
+				
+				if(olderLiObj)
+				{
+					$(olderLiObj).animate({opacity:"0"},function(){
+						$(now_banner).css("z-index",0);
+					});
+				}
+				
+				$(now_banner).animate({opacity:"1"},function(){
+						$(now_banner).css("z-index",10);
+						olderLiObj = now_banner;
+						i = (1 + i)%liArr.length;
+						
+						t = setTimeout("toggle_banner()",4000);
+					});
+					
+			}
+			
+			$(document).ready(function(){
+				liArr = $('.img').children();
+				 $(liArr).each(function(){
+					$(this).css("opacity",0);
+				  });
+				  $(liArr[0]).css("opacity",1);
+				t2 = setTimeout("toggle_banner()",4000);
+			});
+			
+		</script>
+		
+  </head>
+  <body>
+	<div id="head" class="">
+		<div id = "head_logo" >
+			<img  class = "logo" src = "images/logo.png">
+		</div>
+		
+		<div class="top_menu">
+                    <ul class="menubar">
+					<li class="menu-value" ><a href="#serviceDiv">服务项目</a></li>
+					<li class="" ><a href="#createOlder">预约下单</a></li>
+					<li class="" ><a href="#partnerTitleDiv">合作伙伴</a></li>
+					<li class="" ><a href="#QAContentDiv">常见问题</a></li>
+				</ul>
+        </div>
+	</div>
+	
+	<div id="content" class="" >
+		<div class ="banner">
+            <ul class="img">
+                <li><img src="images/banners/1.jpg" alt=""/></li>
+                <li><img src="images/banners/2.jpg" alt="" /></li>
+                <li><img src="images/banners/3.jpg" alt="" /></li>
+                <li><img src="images/banners/4.jpg" alt="" /></li>
+            </ul>
+			<div class="btn btn_l">&lt;</div>
+            <div class="btn btn_r">&gt;</div>
+		</div>
+		
+		<div id ="serviceDiv">
+			<div class="ServiceCenterDiv">
+				<div class ="serviceitem">
+				<a href="#createOlder">
+					<img src = "images/s1.png">
+			</a>
+					<div>门窗安装/维修</div>
+					
+				</div>
+				<div class ="serviceitem">
+				<a href="#createOlder">
+					<img src = "images/s2.png">
+		</a>
+					<div>泥瓦贴砖/维修</div>
+					
+				</div>
+				<div class ="serviceitem">
+				<a href="#createOlder">
+					<img src = "images/s3.png">
+		</a>
+					<div>墙面粉刷/维修</div>
+					
+				</div>
+				<div class ="serviceitem">
+				<a href="#createOlder">
+					<img src = "images/s4.png">
+			</a>
+					<div>墙纸墙布安装/维修</div>
+				
+				</div>
+				
+				<div class ="serviceitem">
+				<a href="#createOlder">
+					<img src = "images/s5.png">
+				</a>
+					<div>管道疏通/维修</div>
+				
+				</div>
+				<div class ="serviceitem">
+				<a href="#createOlder">
+					<img src = "images/s6.png">
+		</a>
+					<div>打孔安装</div>
+					
+				</div>
+				<div class ="serviceitem">
+				<a href="#createOlder">
+					<img src = "images/s7.png">
+			</a>
+					<div>厨卫安装维修</div>
+				
+				</div>
+				<div class ="serviceitem">
+				<a href="#createOlder">
+					<img src = "images/s8.png">
+		</a>
+					<div>局部改造</div>
+					
+				</div>
+				
+			</div>
+		</div>
+		
+		<div id = "stepsDiv">
+			<div class="stepsDivCenter">
+			
+				<div class ="stepItem">
+				
+					<img src = "images/st1.png">
+			
+					<div class ="sdesc">
+						<div>快速下单</div>
+						<div class = "subdecrption">手机下单，随时随地</div>
+					</div>
+				</div>
+				
+				<div class ="stepItem">
+					<img src = "images/st2.png">
+		
+					<div class ="sdesc">
+						<div>签约施工</div>
+						<div class = "subdecrption">签约施工，安全保障</div>
+					</div>
+				</div>
+				
+				<div class ="stepItem">
+					<img src = "images/st3.png">
+		
+					<div class ="sdesc">
+						<div>快速施工</div>
+						<div class = "subdecrption">最快当天施工</div>
+					</div>
+				</div>
+				
+				<div class ="stepItem">
+					<img src = "images/st4.png">
+		
+					<div class ="sdesc">
+						<div>售后保修</div>
+						<div class = "subdecrption">超长质保,质量放心</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	
+		<div id = "createOlder">
+			<div class="createOlderDivCenter">
+			
+				<div class ="orderFeatureDiv">
+				
+					<div class = "featureItemDiv">
+						<div class = "fitemDiv" >
+						<img class = "fimg" src = "images/wx.png">
+						<div>微信下单</div>
+						
+						</div>
+						<div>
+						随时下单，预约维修方便快捷！
+						</div>
+					</div>
+					
+					<div class = "featureItemDiv">
+						<div class = "fitemDiv" >
+							<img class = "fimg" src = "images/zf.png">
+							<div>在线支付</div>
+							
+							</div>
+							<div>
+							支持微信及多种线上方式支付，安全更便捷
+							</div>
+					</div>
+				</div>
+				
+				<div class ="orderFeatureDiv">
+					<img class = "phoneThumb" src = "images/u5.png">
+				</div>
+				
+				<div class ="orderFeatureDiv">
+					<div class = "featureItemDiv">
+					<div class = "fitemDiv" >
+						<img class = "fimg" src = "images/qy.png">
+						<div>订单查询</div>
+						
+						</div>
+						<div>
+						实时查询订单进度,施工进度一清二楚！
+						</div>
+					</div>
+					
+					<div class = "featureItemDiv">
+					<div class = "fitemDiv" >
+						<img class = "fimg" src = "images/u13.png">
+						<div>获取优惠</div>
+							
+						</div>
+						<div>
+						扫码关注，超值维修优惠券等着您！
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--
+			<div class="createOrder">
+				<div class ="orderBtn">立即下单</div>
+				<div class ="orderDes">预约后将会有工作人员在30分钟内跟你取得联系，请保持电话畅通.</div>
+			</div>
+			-->
+		</div>
+		
+		<div id = "serviceTitleDiv">
+			<div class="serviceTitleCenter">
+				<img class = "sTitleImg"  src = "images/yzfw.png">
+			</div>
+		</div>
+		
+		<div id ="goodServiceDiv">
+			<div class="goodServiceCenterDiv">
+			
+				<div class ="goodserviceitem">
+					<img src = "images/g1.jpg">
+					<div>免费上门</div>
+					<div class ="gsDes" >极速响应，免费上门，最块当天安排工程师上门，现场制定维修方案</div>
+				</div>
+				<div class ="goodserviceitem">
+					<img src = "images/g2.jpg">
+					<div>价格透明</div>
+					<div class ="gsDes" >价格公开透明，满意再付款，无任何隐形消费</div>
+				</div>
+				<div class ="goodserviceitem">
+					<img src = "images/g3.jpg">
+					<div>签约施工</div>
+					<div  class ="gsDes" >施工项目都需要签约，同时备份云端,随时查看订单详情，永久保存，安全有保障</div>
+				</div>
+				<div class ="goodserviceitem">
+					<img src = "images/g4.jpg">
+					<div>自有师傅团队</div>
+					<div  class ="gsDes" >平台自己工人师傅，安全放心，技术精湛，层层考核，高标准的专业施工团队</div>
+				</div>
+				<div class ="goodserviceitem">
+					<img src = "images/g5.jpg">
+					<div>先施工后付款</div>
+					<div  class ="gsDes" >施工后在线付款，便捷，安全，可靠，有据可查</div>
+				</div>
+				<div class ="goodserviceitem">
+					<img src = "images/g6.jpg">
+					<div>超长质保</div>
+					<div  class ="gsDes" >因为更专业，更细心，所以我们有信心为每一个施工项目提供更长质保期</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div id = "partnerTitleDiv">
+			<div class="partnerTitleCenter">
+				<img class = "partnerTitleImg"  src = "images/hzhb.png">
+				<img class = "partnerImg"  src = "images/irc.jpg">
+			</div>
+		</div>
+		
+		<div id = "QATitleDiv">
+			<div class="QATitleCenter">
+				<img class = "QATitleImg"  src = "images/cjwt.png">
+				
+			</div>
+		</div>
+		
+		<div id = "QAContentDiv">
+			<div class="QAContentCenter">
+				<div class ="Qdiv">预约下单之后什么时候可以施工？</div>
+				<div  class ="Adiv">在预约成功后，邻家工匠师傅将上门查看现场，并根据现场需要作出合适的施工方案，如果是简单修理，最快当天就能上门施工，特殊工程需要适当时间做施工前准备。</div>
+				
+				<div class ="Qdiv">封阳台下单后什么时候可以开工？</div>
+				<div  class ="Adiv">一般情况下，在下单后10天内会安装窗框架，安装完窗框后10天内，安装玻璃，所以总共大概为20天左右。</div>
+				
+				<div class ="Qdiv">在施工过程中，可以终止订单吗？</div>
+				<div  class ="Adiv">如果在施工过程中，您因为个人愿意需要中止订单，请及时打电话通知客服人员，我们将根据具体的项目施工情况，工程进度规范处理并中止订单。</div>
+				
+				<div class ="Qdiv">施工完成后，遇到质量问题怎么办？</div>
+				<div  class ="Adiv">施工完成后，如果遇到施工质量问题，请立即打电话通知客服人员，邻家工匠将立即安排专人查看现场，并给出合理的解决方案,直到处理完成，您满意为止。</div>
+				
+				<div class ="Qdiv">怎么付款？</div>
+				<div  class ="Adiv">如果用户只有现金，没有微信，支付宝，银行卡，请提前电话与客服人员沟通，我们将以现金方式收取。</div>
+				
+			</div>
+		</div>
+		
+	<div id = "bottom" class ="">
+		<div class="bottomCenter">
+		<img  src = "images/bottom.png">
+		<div  class ="rightsDiv">©2014-2019 邻家工匠房屋安装维修 版权所有，并保留所有权利，蜀ICP备15012071号-2</div>
+		</div>
+	</div>
+  </body>
+</html>

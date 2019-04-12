@@ -1,0 +1,483 @@
+body {
+  margin:0px;
+  background-image:none;
+  position:static;
+  left:auto;
+  width:100%;
+  height:100%;
+  margin-left:0;
+  margin-right:0;
+  text-align:left;
+  background-color:#efefef;
+  min-width: 1200px;
+}
+
+
+a {
+	color: inherit;
+}
+
+#head
+{
+	width:100%;
+	height:80px;
+	border-bottom:1px solid #d2d2d2;
+}
+
+
+
+#head_logo
+{
+  width:30%;
+  height:100%;
+  float:left;
+}
+
+.logo 
+{
+	float:right;
+	width: 180px;
+	margin-left: 40px;
+	margin-top:8px;
+}
+
+
+.top_menu
+{
+    float:left;
+	height:100%;
+
+	margin-left:320px;
+}
+
+	.menu
+	{
+		font-size: 0;
+		padding: 0;
+		height: 50px;
+		background-color: #00a2ca;
+		position: relative;
+	}
+	
+	.menubar
+	{
+		margin: 0 ;
+	}
+ 
+	.menubar li
+	{
+		padding:0px 5px;
+		display:inline-block;
+		width:100px;
+		line-height:80px;		
+		height:80px;
+		color:#555;
+	}
+	.menubar li:hover
+	{
+		background-color:#444;
+		color:#eee;
+	}
+	/*
+	.menubar li.menu-value
+	{
+		background-color: #0095bb;	
+	}*/
+ 
+	.menubar a
+	{
+		display: block;
+		height: 50px;
+		font-family: "微软雅黑","Microsoft Yahei","Hiragino Sans GB",tahoma,arial,"宋体" ;
+		font-size: 15px;
+		text-align: center;
+		text-decoration: none;
+	}
+	
+	.banner
+	{
+		float:left;
+		width:100%;
+		height:400px;
+	}
+	
+	.banner {  height:400px; overflow:hidden;}
+	.banner .img{ left:0px;right:0px; top:0px;margin:0px;padding:0px; text-align:center;}
+	.banner .img img{
+		width:1920px; 
+		height:400px;
+		max-width:2000px; 
+		text-align:center;
+		margin-left:-960px;
+		left:50%;
+		position:absolute;
+		}
+	.banner .img li{
+		float:left;
+		
+			}
+	
+	    .banner .btn_l { left:0px;}
+		.banner .btn_r { right:0px;}
+		.banner:hover .btn { display:block;}
+		
+		
+	.ServiceCenterDiv
+	{
+		width:60%;
+		background-color:red;
+		margin:0 auto;
+		min-width: 1200px;
+	}
+	
+	.serviceitem
+	{
+		float:left;
+		width:24%;
+		height:240px;
+		margin-right:10px;
+		margin-top:10px;
+		text-align:center;
+	}
+	
+	.serviceitem img{
+		width:160px;
+		text-align:center;
+		margin: 0 auto;
+	}
+	
+	.serviceitem span
+	{
+		float:left;
+		text-align:center;
+		width:160px;
+		
+	}           
+	
+	#stepsDiv
+	{
+		width:100%;
+		float:left;
+		background-color:white;
+	}
+	
+	.stepsDivCenter
+	{
+		width:60%;
+		margin:0 auto;
+		min-width: 1200px;
+		height:120px;
+		border-bottom:1px solid #ddd;
+	}
+	
+	.stepItem
+	{
+		float:left;
+		width:18%;
+		height:80px;
+		margin-right:10px;
+		margin-top:20px;
+		margin-left:70px;
+		text-align:center;
+		
+	}
+	
+	.stepItem img{
+		margin-left:20px;
+		float:left;
+		width:80px;
+		text-align:center;
+		margin: 0 auto;
+	}
+	
+	.subdecrption
+	{
+		font-size:12px;
+		margin-top:5px;
+	}
+	
+	.sdesc
+	{
+		margin-top:20px;
+		margin-right:20px;
+	}
+	
+	#createOlder
+	{
+		width:100%;
+		float:left;
+		background-color:white;
+	}
+	
+	.createOlderDivCenter
+	{
+		width:60%;
+		margin:0 auto;
+		min-width: 1200px;
+		height:500px;
+	}
+	
+	.orderFeatureDiv
+	{
+		float:left;
+		width:30%;
+		height:500px;
+		margin-top:20px;
+		margin-left:20px;
+		text-align:center;
+	}
+	
+	.featureItemDiv
+	{
+		width:100%;
+		height:40%;
+		margin-top:20px;
+		padding-top:30px
+	}
+	
+	.fimg
+	{
+		width:80px;
+		float:left;
+		margin-left:80px;
+	}
+	
+	.fitemDiv
+	{
+		text-align:center;
+		margin: 0 auto;
+		width:100%;
+		height:100px;
+	}
+	
+	.fitemDiv div
+	{
+		width:100px;
+		margin-left:160px;
+		padding-top:30px;
+		
+	}
+	
+	.phoneThumb
+	{
+		width:250px;
+	}
+	
+	.createOrder
+	{
+		margin:0 auto;
+		width:250px;
+		height:120px;
+		padding-right:30px;
+	}
+	
+	.orderBtn
+	{
+		width:100%;
+		height:50px;
+		text-align:center;
+		background-color:#B12124;
+		color:white;
+		font-size:20px;
+		font-weight:bold;
+		padding-bottom:10px;
+	}
+	
+	.orderDes
+	{
+		width:100%;
+		height:50px;
+		margin-top:10px;
+		font-size:12px;
+		color:gray;
+		text-align:center;
+	}
+	
+	
+	#serviceTitleDiv
+	{
+		width:100%;
+		height:100px;
+		background-color:#efefef;
+		float:left;
+	}
+	
+	.sTitleImg
+	{
+		width:300px;
+		margin-top:20px;
+	}
+	
+	.serviceTitleCenter
+	{
+		width:60%;
+		margin:0 auto;
+		min-width: 1200px;
+		height:50px;
+		padding-top:20px;
+		text-align:center;
+	}
+	
+	
+	.goodServiceCenterDiv
+	{
+		width:60%;
+		margin:0 auto;
+		min-width: 1200px;
+		padding-left:60px;
+	}
+	
+	.goodserviceitem
+	{
+		float:left;
+		width:330px;
+		height:300px;
+		margin-left:30px;
+		margin-right:10px;
+		margin-top:10px;
+			margin-bottom:20px;
+		text-align:center;
+		overflow:hidden;
+		
+		-moz-box-shadow: 2px 2px 10px #909090;
+		-webkit-box-shadow: 2px 2px 10px #909090;
+		box-shadow:2px 2px 10px #909090;
+	}
+	
+	.goodserviceitem img{
+		width:330px;
+		height:200px;
+		text-align:center;
+		margin: 0 auto;
+		padding-bottom:10px;
+	}
+	
+	.goodserviceitem span
+	{
+		float:left;
+		text-align:center;
+		width:160px;
+	}         
+	
+	.gsDes
+	{
+		margin-top:20px;
+		font-size:12px;
+		color:#666;
+		margin-left:10px;
+		margin-right:10px;
+	}
+	
+	#partnerTitleDiv
+	{
+		width:100%;
+		height:450px;
+		background-color:white;
+		float:left;
+	}
+	
+	.partnerTitleCenter
+	{
+		width:60%;
+		margin:0 auto;
+		min-width: 1200px;
+		text-align:center;
+		margin-top:20px;
+	}
+	
+	.partnerTitleImg
+	{
+		width:300px;
+		margin-top:20px;
+	}
+	
+	.partnerImg
+	{
+		width:1000px;
+		margin-top:20px;
+	}
+	
+	#QATitleDiv
+	{
+		width:100%;
+		height:100px;
+		background-color:#efefef;
+		float:left;
+	}
+	
+	.QATitleCenter
+	{
+		width:60%;
+		margin:0 auto;
+		min-width: 1200px;
+		text-align:center;
+		margin-top:20px;
+	}
+	
+	.QATitleImg
+	{
+		width:300px;
+		margin-top:20px;
+	}
+	
+	#QAContentDiv
+	{
+		width:100%;
+		height:400px;
+		float:left;
+	}
+	
+	.QAContentCenter
+	{
+		width:60%;
+		margin:0 auto;
+		min-width: 1200px;
+		text-align:center;
+	}
+	
+	.Qdiv
+	{
+		font-size:18px;
+		text-align:left;
+		margin-left:80px;
+		margin-bottom:10px;
+	}
+	
+	.Adiv
+	{
+		width:1000px;
+		text-align:left;
+		margin-left:140px;
+		margin-right:120px;
+		margin-bottom:15px;
+		color:#444;
+		font-size:14px;
+	}
+	
+	#bottom
+	{
+		width:100%;
+		height:250px;
+		background-color:#666;
+		float:left;
+	}
+	
+	.bottomCenter
+	{
+		width:60%;
+		margin:0 auto;
+		height:200px;
+		min-width: 1200px;
+		text-align:center;
+	}
+	
+	.bottomCenter img{
+		width:1200px;
+	}
+	
+	.rightsDiv
+	{
+		font-size:12px;
+		color:white;
+	}
+	

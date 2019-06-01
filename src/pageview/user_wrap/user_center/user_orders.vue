@@ -5,7 +5,7 @@
     .order-list-wrapper(v-for="item in list" @click.stop="goDetail($event, item)")
       .order-item
         .title-tip
-          h3 阳台贴砖
+          h3 {{item.orderContent || ""}}
           p.status 状态：{{statusText[item.orderStatus]}}>>
         .content
           .desc

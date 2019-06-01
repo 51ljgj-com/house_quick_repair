@@ -45,45 +45,50 @@
 export default {
   data: () => ({
     form: {
-      contactsUserName: '',
-      isGroupOrder: '',
-      phoneNo: '',
-      orderContent: '',
-      orderAddress: '',
-      orderAddress1: '',
-      orderAddress2: '',
-      houseName: '',
-      orderDescription: ''
+      contactsUserName: "",
+      isGroupOrder: "",
+      phoneNo: "",
+      orderContent: "",
+      orderAddress: "",
+      orderAddress1: "",
+      orderAddress2: "",
+      houseName: "",
+      orderDescription: "",
+      projectId: ""
     },
     formstate: {}
   }),
   methods: {
     submit() {
-      if(this.formstate.$invalid) return;
-      this.form.orderAddress = this.form.orderAddress1 + this.form.orderAddress2;
-      let params = Object.assign({}, this.form, {token: Vue.userInfo.token, orderContent: this.$route.query.orderContent})
-      this.$http.post('/api/order/createOrder', params).then(res => {
+      if (this.formstate.$invalid) return;
+      this.form.orderAddress =
+        this.form.orderAddress1 + this.form.orderAddress2;
+      let params = Object.assign({}, this.form, {
+        token: Vue.userInfo.token,
+        orderContent: this.$route.query.orderContent,
+        projectid: this.$route.query.projectId
+      });
+      this.$http.post("/api/order/createOrder", params).then(res => {
         res = res.body;
         if (res.code) return;
         this.$showOptRet();
-      })
+      });
     },
 
     showAddr() {
       $("#addr").cityPicker({
         title: "选择区县",
         onChange: (picker, values, displayValues) => {
-          this.form.orderAddress1 = displayValues.join(' ')
+          this.form.orderAddress1 = displayValues.join(" ");
         }
       });
     }
   },
-  components: {
-  },
+  components: {},
   mounted() {
     this.showAddr();
   }
-}
+};
 </script>
 
 <style lang="scss">

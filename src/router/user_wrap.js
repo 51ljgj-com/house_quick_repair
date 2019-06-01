@@ -41,12 +41,12 @@ let router = new Router({
       path: '/about',
       name: 'AboutVue',
       component: AboutVue,
-      meta: {hideNav: true, 'title': '关于我们'}
+      meta: {hideNav: true, 'title': '关于我们', nologin: true}
     }, {
       path: '/contact',
       name: 'ContactVue',
       component: ContactVue,
-      meta: {hideNav: true, 'title': '联系我们'}
+      meta: {hideNav: true, 'title': '联系我们', nologin: true}
     }, {
       path: '/quick_order',
       name: 'QuickOrdrVue',
@@ -66,7 +66,7 @@ let router = new Router({
       path: '/group_buy_detail/:groupid',
       name: 'GroupBuyDetailVue',
       component: GroupBuyDetailVue,
-      meta: {hideNav: true, 'title': '填写团购订单'}
+      meta: {hideNav: true, 'title': '填写团购订单', nologin: true}
     }, {
       path: '/add_house',
       name: 'AddHouseVue',

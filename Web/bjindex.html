@@ -11,8 +11,11 @@
 
     <link href="files/css/bjstyles.css" type="text/css" rel="stylesheet"/>
     <script src="resources/scripts/jquery-1.7.1.min.js"></script>
-    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
-    <script src="resources/scripts/baojia.js"></script>
+	<script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+	<script src="resources/scripts/Dictionary.js"></script>
+	<script src="resources/scripts/PaperItem.js"></script>
+	<script src="resources/scripts/baojia.js"></script>
+	
 		<script type="text/javascript">
 			var i=0;
 			var liArr;
@@ -49,14 +52,17 @@
 					addPaperItem();
 				});
 
+				$("#addcomposingItemBtn").click(function(){
+					addcomposingItem();
+				});
 			});
-			
 		</script>
   </head>
   <body>
+
 	<div id ="head" >
 			报价系统
-		</div>
+	</div>
 
 	<div id="content" >
 			<div id = 'subeLeftContent'>
@@ -109,14 +115,13 @@
 					</div>
 					<div class="dataField">
 						<div id="paperZone" class="">
-							<div class="paperItem">
+							<div class="paperItem" >
 								<div class="leftNoDiv">1</div>
 								<div class="paperCenterDiv">
 									<div class="paperTopEditDiv">
 											 <div class="paperNameDiv">	名称: <input class="length" type="text" name="lname" /> </div>
 											 <div class="paperTypeDiv">	纸张类型: 
-												 <select id="paperTypeSelect" onchange="paperTypeChange()">
-													<option value ="请选择">请选择</option>
+												 <select id="paperTypeSelect" onchange="paperTypeChange(this)">
 													<option value ="paper1">纸张1</option>
 													<option value ="paper2">纸张2</option>
 													<option value="paper3">纸张3</option>
@@ -138,10 +143,39 @@
 				</div>
 			
 				<div id = "stepsDiv3" class="stepitem">
-					<div class="leftTitle">
-							步骤三：
+					<div class="composingTitle">
+						三：排版处理
 					</div>
-					<div class="dataField">数据填写区域</div>
+					<div class="dataField">
+						<div id="composingZone" class="">
+							<div class="composingItem">
+								
+								<div class="leftNoDiv">1</div>
+								<div class="composingCenterDiv">
+									<div class="composingCheckBoxEditDiv">
+
+									</div>
+									<div class="composeEditDiv">
+										<div class='composeEditContentDiv' style="float: left; width:100%;display:none" >
+											<div class="composeEditSizeDiv" style="float: left; margin-left:10px ;width:60%;">
+												<div class="paperLengthDiv"></div>
+												<div class="paperWidthDiv"></div>
+											</div>
+											<div style="float: left; margin-left:10px; width:30%;">
+													<div>纸张长度<input class="chuxueInput" type="text" name="lname" value="0" onkeyup=""/> (mm)</div>
+													<div>纸张宽度<input class="chuxueInput" type="text" name="wname" value="0" onkeyup="" />(mm)</div>
+											</div>
+										</div>
+										<span class="tipDiv" style="color: crimson ;display: none"> 信息提示出来... </span>
+									</div>
+								</div>
+								<div class="rightDiv">
+									<button class="deletecomposingItemBtn" onclick="deletePaperItem(this)">删除</button>
+								</div>
+							</div>
+						</div>
+						<button id="addcomposingItemBtn" style=" display: none; margin-left: 20px;margin-top:20px; background-color:crimson ">添加排版</button>
+					</div>
 				</div>
 				
 				<div id = "stepsDiv4" class="stepitem">

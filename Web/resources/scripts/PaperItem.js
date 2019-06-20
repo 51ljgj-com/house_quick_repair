@@ -28,7 +28,7 @@ function PaperItem(){
     this.targetObj = targetObj;
     this.objectLength = objectLength;
     this.objectHeight = objectLength;
-    this.updateRealblood = updateRealbo;
+    this.updateRealblood = updateRealbl;
     this.updateRealjuan = updateRealju;
     this.test1 = test1s;
 };
@@ -38,7 +38,7 @@ function test1s()
     alert("enter into test 1 ");
 }
 
-function updateRealbo(b,obj)
+function updateRealbl(b,obj,sf)
 {
    obj.value =b.replace(/\D/g,'');
    var j = $(obj).parent().children('.juanbianInput').val();
@@ -60,7 +60,7 @@ function updateRealbo(b,obj)
    }
 }
 
-function updateRealju(j,obj)
+function updateRealju(j,obj,sffs)
 {
    obj.value =j.replace(/\D/g,'');
    var b = $(obj).parent().children('.chuxueInput').val();

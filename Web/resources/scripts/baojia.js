@@ -1,4 +1,5 @@
-var objectLength = 0;
+
+/*var objectLength = 0;
 var objectWidth = 0;
 var objectHeight = 0;
 var itemLength = 0;
@@ -12,15 +13,24 @@ var realWidth = 0;
 var tip_CalcYourself = "请自行计算尺寸 ！ ";
 var tip_PaperTypeError = "选择纸张类型不一致 ！ ";
 
-
 var composingItemPerfabObj;
 var composingCheckBoxPerfabObj;
-var composeArr = new Dictionary();
+var selectPaperItemArr = new Dictionary();
 
 var paperItemsArr = new Dictionary();
 
-function gradeChange(){
+var composeItemsArr = new Dictionary();
 
+var paperyItemPerfabObj;
+var paperItemId = 1;
+
+var currentSelectPaperL = 0;
+var currentSelectPaperW = 0;
+var composeItemId = 1;
+*/
+
+
+function gradeChange(){
     var options=	$("#productTypeSelect");
     var value = options.val();   //拿到选中项的值
     
@@ -87,11 +97,7 @@ function gradeChange(){
 */
  }
 
-var paperyItemPerfabObj;
-var paperItemId = 1;
 
-var currentSelectPaperL = 0;
-var currentSelectPaperW = 0;
 
 function addPaperItem()
  {
@@ -100,18 +106,20 @@ function addPaperItem()
         return;
     }
     
-     if(paperyItemPerfabObj == null)
-     {
-        paperyItemPerfabObj = $('.paperItem');
-     }
+    if(paperyItemPerfabObj == null)
+    {
+    paperyItemPerfabObj = $('.paperItem');
+    }
 
     var newObj = paperyItemPerfabObj.clone(true).appendTo('#paperZone');
+
+    paperItemId++;
 
      $(newObj).show();
      $(newObj).addClass("newPaperItem");
      $(newObj).attr("id","paperid_"+ paperItemId);
      $(newObj).children('.leftNoDiv').text(paperItemId);
-     paperItemId++;
+     
 
      var pitem = new PaperItem();
      pitem.targetObj =  newObj;
@@ -122,9 +130,7 @@ function addPaperItem()
      pitem.objectWidth = objectWidth;
      pitem.objectHeight = objectHeight;
      paperItemsArr.add($(newObj).attr("id"),pitem);
-
-     setAddcomposingItem(true);
-
+     setAddcomposingBtnActive(true);
  }
 
  function addcomposingItem()
@@ -134,124 +140,86 @@ function addPaperItem()
         composingItemPerfabObj = $('.composingItem');
     }
 
-    if(composingCheckBoxPerfabObj == null)
-    {
-        composingCheckBoxPerfabObj = $('.composeCheck');
-    }
+  
 
     var newObj = composingItemPerfabObj.clone(true).appendTo('#composingZone');
+    $(newObj).attr("id","composeid_"+ composeItemId);
+    $(newObj).addClass("newComposeItem");
     $(newObj).show();
+    $(newObj).children('.leftNoDiv').text(composeItemId);
 
-    $('.newPaperItem').each(function(){
+    var citem = new ComposeItem();
+    citem.composeId = $(newObj).attr("id");
+    citem.composeItemNo = composeItemId;
 
-        var namestr = $(this).children('.leftNoDiv').text();
-        var itemid = $(this).attr('id');
-        var htmlobj = '	<input name='+ namestr + ' paperitemid= \''+ itemid +'\' type="checkbox" class="composeCheck" onclick=\"checkboxOnclick(this)\" value="1"> <label  for=\''+ namestr +'\'>'+ namestr  +'</label>'
-     //   var newcheckObj = composingCheckBoxPerfabObj.clone(true).appendTo($(newObj).children('.composingCenterDiv').children('.composingCheckBoxEditDiv'));
-     //   $(newcheckObj).show();
-     //  $(newcheckObj).text( $(this).children('.leftNoDiv').text());
-
-     //  e += "<input name = 'enable_a' type='checkbox' checked = 'checked' value= '1' style = 'margin: 6px 0px 0px 0px;width: 18px;height: 18px;'  onclick=\"checkboxOnclick(this,"+rowdata.id+")\" >";  
-
-      $(newObj).children('.composingCenterDiv').children('.composingCheckBoxEditDiv').append(htmlobj);
-    });
+    citem.init(newObj);
+    composeItemsArr.add($(newObj).attr("id"),citem);
+    setAddPrintingBtnVisible(true);
+    composeItemId++;
  }
 
-//点击是否启用选择框
-function checkboxOnclick(obj){
-    
-    if(composeArr == null)
+
+ function addPrintingItem()
+ {
+    if(printingItemPerfabObj == null)
     {
-        composeArr = new Dictionary();
-    }
-    else
-    {
-        composeArr.clear();
+        printingItemPerfabObj = $('.printingItem');
     }
 
-    var paperitemids="";
-    var stetNo = 0;
-    $(obj).parent().children(":input").each(function(){
-        if (this.checked == true){
-            //Action for checked
-            var pid= $(this).attr("paperitemid");//获取id属性
-            composeArr.add(pid,true);
-            stetNo++;
-        }
+    
+
+    var newObj = printingItemPerfabObj.clone(true).appendTo('#printingZone');
+    $(newObj).attr("id","printingid_"+ printingItemId);
+    $(newObj).addClass("newPrintingItem");
+    $(newObj).show();
+    $(newObj).children('.leftNoDiv').text(printingItemId);
+
+    var pritem = new PrintingItem();
+    pritem.printingId = $(newObj).attr("id");
+    printingItemsArr.add($(newObj).attr("id"),pritem);
+
+    var composeArr=new Array();
+    $(".newComposeItem").each(function(){
+
+        composeArr.push($(this).attr('id'));
     });
 
-    var modeError = 0;
-    var sizeError = 0;
-    var length = 0;
-    var width = 0;
-    var paperMode = 0;
-    var index = 0;
+    printingItemId++;
 
-    for (var key in composeArr.datastore) {
-         var pitm1 = paperItemsArr.find(key);
-        
-        if(index == 0)
-        {
-            paperMode = pitm1.paperMode;
-            length = pitm1.realLength;
-            width = pitm1.realWidth;
+    pritem.initPrinting();
+    pritem.setComposeDropBox(composeArr, pritem.printingId );
 
-            currentSelectPaperL = length;
-            currentSelectPaperW = width;
-        }else
-        {
-            if(paperMode != pitm1.paperMode)
-            {
-                modeError = -1;
-            }
+    setAddCraftBtnVisible(true);
 
-            if(length != pitm1.realLength || width != pitm1.realWidth) {
-                sizeError = -1;
-            }
-        }
-        index++;
-    }
-
-    var tipObj= $(obj).parent().parent().children('.composeEditDiv').children('.tipDiv');
-    var editDivObj= $(obj).parent().parent().children('.composeEditDiv').children('.composeEditContentDiv');
-    //配件纸张实际宽(读取数据并显示)×竖排格(默认1)=排版理论宽(显示数据)
-    if(modeError == -1)
+ }
+ 
+ function addCraftItem()
+ {
+    if(craftItemPerfabObj == null)
     {
-        $(tipObj).text(tip_PaperTypeError);
-        $(tipObj).show();
-        $(editDivObj).hide();
-        currentSelectPaperL = 0;
-        currentSelectPaperW = 0;
+        craftItemPerfabObj = $('.craftItem');
     }
-    else if(sizeError == -1)
-    {
-        $(tipObj).text(tip_CalcYourself);
-        $(tipObj).show();
-        $(editDivObj).hide();
-        currentSelectPaperL = 0;
-        currentSelectPaperW = 0;
-    }
-    else
-    {
-        if(index ==0)
-        {
-            $(tipObj).hide();
-            $(editDivObj).hide();
-            
-        }
-        else
-        {
-            var el = "配件纸张实际长 :"+ length+ "* <input class='chuxueInput' type='text' name='lname' value='1' onkeyup='updateLNo(this.value,this)'/>(横排/个)= <span> "+ length + "（理论长） </span>";  
-            var ew = "配件纸张实际宽 :"+ width+ "* <input class='chuxueInput' type='text' name='lname' value='1' onkeyup='updateWNo(this.value,this)'/>(横排/个)= <span> "+ width + "（理论宽） </span>";  
 
-            $(editDivObj).children('.composeEditSizeDiv').children('.paperLengthDiv').html(el);
-            $(editDivObj).children('.composeEditSizeDiv').children('.paperWidthDiv').html(ew);
-    
-            $(editDivObj).show();
-            $(tipObj).hide();
-        }
-    }
-}
+    var newObj = craftItemPerfabObj.clone(true).appendTo('#craftZone');
+    $(newObj).attr("id","craftid_"+ gcraftItemId);
+    $(newObj).addClass("newCraftItem");
+    $(newObj).show();
+    $(newObj).children('.leftNoDiv').text(gcraftItemId);
+
+    var pcritem = new CraftItem();
+    pcritem.craftId = $(newObj).attr("id");
+    gcraftItemsArr.add($(newObj).attr("id"),pcritem);
+
+    var composeArr=new Array();
+    $(".newComposeItem").each(function(){
+        composeArr.push($(this).attr('id'));
+    });
+
+    pcritem.setCraftComposeDropBox(composeArr, pcritem.craftId );
+
+    gcraftItemId++;
+ }
+
 
 ///纸张类型选择
 function paperTypeChange(obj){
@@ -270,8 +238,7 @@ function paperTypeChange(obj){
 
     var pitm = paperItemsArr.find(paperid);
     
-    pitm.updateRealblood(b,obj);
-
+    pitm.updateRealblood(b,obj,12);
  }
 
 //更新卷边
@@ -281,37 +248,22 @@ function paperTypeChange(obj){
 
     var pitm = paperItemsArr.find(paperid);
     
-    pitm.updateRealjuan(j,obj);
+    pitm.updateRealjuan(j,obj,12);
  }
-
 
  function deletePaperItem(obj)
  {
     $(obj).parent().parent().remove();
     if($(".paperItem").length <2 )
     {
-        setAddcomposingItem(false);
+        setAddcomposingBtnActive(false);
         deleteAllComposeItems();
     }
 
     paperItemsArr.remove($(obj).parent().parent().attr("id"));
  }
 
- function updateLNo(v,obj)
- {   
-    var el = "配件纸张实际长 :"+ currentSelectPaperL+ "* <input class='chuxueInput' type='text' name='lname' value='"+ v+ "' onkeyup='updateLNo(this.value,this)'/>(横排/个)= <span> "+ currentSelectPaperL*v + "（理论长）mm </span>";  
-
-    $(obj).parent().html(el);
- }
-
- function updateWNo(v,obj)
- {
-    var ew = "配件纸张实际宽 :"+ currentSelectPaperW+ "* <input class='chuxueInput' type='text' name='lname' value='"+ v+ "' onkeyup='updateWNo(this.value,this)'/>(横排/个)= <span> "+ currentSelectPaperW*v  + "（理论宽）mm </span>";  
-
-    $(obj).parent().html(ew);
- }
-
- function setAddcomposingItem(v)
+ function setAddcomposingBtnActive(v)
  {
     if(v)
     {
@@ -328,7 +280,23 @@ function paperTypeChange(obj){
     $('.composingItem').each(function(){
         $(this).remove();
     });
-    
+    setAddcomposingBtnActive(false);
+    deleteAllPrintItems();
+
+ }
+
+ function deleteComposeItem(obj)
+ {
+     var cid  =$(obj).parent().parent().attr("id");
+    $(obj).parent().parent().remove();
+    composeItemsArr.remove(cid);
+
+    if( $(".composingItem").length <2)
+    {
+       setAddPrintingBtnVisible(false);
+       deleteAllPrintItems();
+       
+    }
  }
 
  function showComposeTip(obj,str)
@@ -337,3 +305,110 @@ function paperTypeChange(obj){
  }
 
 
+ function updateStaticColorV(obj,j)
+ {
+    obj.value =j.replace(/\D/g,'');
+    var idb = $(obj).parent().parent().parent().parent().parent().parent().attr("id");
+
+     var printim = printingItemsArr.find(idb);
+     printim.colorStaticValue = obj.value;
+ }
+
+ function updateDynamicColorV(obj,j)
+ {
+    obj.value =j.replace(/\D/g,'');
+    var idb = $(obj).parent().parent().parent().parent().parent().parent().attr("id");
+
+     var printim = printingItemsArr.find(idb);
+     printim.colorDynamicValue = obj.value;
+ }
+
+function setAddPrintingBtnVisible(v)
+{
+    if(v == true)
+    {
+        $("#addPrintingItemBtn").show();
+    }
+    else
+    {
+        $("#addPrintingItemBtn").hide();
+    }
+}
+
+function deleteAllPrintItems()
+{
+   $('.printingItem').each(function(){
+       $(this).remove();
+   });
+   setAddPrintingBtnVisible(false);
+   deleteAllCraftItems();
+}
+
+function deletePrintingItem(obj)
+{
+    var cid  =$(obj).parent().parent().attr("id");
+    $(obj).parent().parent().remove();
+    printingItemsArr.remove(cid);
+
+    if( $(".newPrintingItem").length <1)
+    {
+        setAddCraftBtnVisible(false);
+        deleteAllCraftItems();
+    }
+}
+
+function setAddCraftBtnVisible(v)
+{
+    if(v == true)
+    {
+        $("#addCraftItemBtn").show();
+    }
+    else
+    {
+        $("#addCraftItemBtn").hide();
+    }
+}
+
+function deleteAllCraftItems()
+{
+   $('.newCraftItem').each(function(){
+       $(this).remove();
+   });
+   setAddCraftBtnVisible(false);
+   gcraftItemsArr.clear();
+}
+
+function deleteCraftItem(obj)
+{
+    var cid  =$(obj).parent().parent().attr("id");
+    $(obj).parent().parent().remove();
+    gcraftItemsArr.remove(cid);
+}
+
+///纸张类型选择
+function craftTypeChange(obj){
+
+    var value = $(obj).val();   //拿到选中项的值
+    var composeSelectObj =  $(obj).parent().parent().children('.craftSelectComposeDropbox');
+    var mainobj =  $(obj).parent().parent().parent().parent();
+    var cfrtim = gcraftItemsArr.find($(mainobj).attr("id"));
+    cfrtim.craftMode = $(obj).val();
+    
+    if(value == 2)
+    {
+        $(composeSelectObj).show();
+    }
+    else
+    {
+        $(composeSelectObj).hide();
+    }
+}
+
+function craftComposeSelect(obj)
+{
+    var mainobj =  $(obj).parent().parent().parent().parent();
+
+    var cfrtim = gcraftItemsArr.find($(mainobj).attr("id"));
+
+    cfrtim.composeNo = $(obj).val();
+}

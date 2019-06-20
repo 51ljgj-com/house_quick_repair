@@ -122,7 +122,6 @@ body {
 	{
 		width:100%;
 		float:left;
-		height: 200px;
 		background-color:#efefef;
 	}
 	
@@ -130,7 +129,6 @@ body {
 	{
 		width:100%;
 		float:left;
-		height: 200px;
 		background-color:#efefef;
 	}
 	
@@ -242,7 +240,7 @@ body {
 	float: left;
 	
 	margin-right: 10px;
-	margin-top: 40px;
+	margin-top: 20px;
 	font-weight: bold;
 	text-align: center;
 }
@@ -294,7 +292,7 @@ body {
 	float: left;
 	width: 10%;
 	height: 100%;
-	margin-top: 40px;
+	margin-top: 20px;
 }
 
 .pagerSizeEditDiv
@@ -342,9 +340,7 @@ body {
 	width: 94%;
 	height: 120px;
 	float: left;
-
 	border: dashed 1px gray;
-
 	margin-left: 20px;
 	margin-right: 20px;
 	margin-top: 10px;
@@ -374,4 +370,107 @@ body {
 	height: 30px;
 	border-bottom: dashed 1px;
 	margin-top: 10px;
+}
+
+
+
+.printingItem
+{
+	width: 94%;
+	height: 120px;
+	float: left;
+	border: dashed 1px gray;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+	background-color:rosybrown;
+}
+
+.printingCenterDiv {
+	width: 70%;
+	height: 100%;
+	float: left;
+	border-right: dashed 1px gray;
+	margin-right: 10px;
+	text-align: center;
+	border-left: dashed 1px gray;
+}
+
+
+.printingCheckBoxEditDiv
+{
+	height: 40px;
+	border: dashed 1px gray;
+	padding-top: 10px;
+	float: left;
+	width: 100%;
+}
+
+
+.ComposeSelect
+{
+	width:120px;
+	height: 30px;
+}
+
+#ColorSelect
+{
+	width:120px;
+	height: 30px;
+}
+
+.stepitem .printingTitle {
+	width: 15%;
+	height: 100%;
+	margin-right: 5px;
+	float: left;
+	text-align: center;
+	line-height: 100%;
+	font-weight: bold;
+	margin-right: 5px;
+}
+
+.craftTitle {
+	width: 15%;
+	height: 100%;
+	margin-right: 5px;
+	float: left;
+	text-align: center;
+	line-height: 100%;
+	font-weight: bold;
+	margin-right: 5px;
+}
+
+.craftItem
+{
+	width: 94%;
+	height: 50px;
+	float: left;
+
+	border: dashed 1px gray;
+
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+	background-color: antiquewhite;
+}
+
+
+.craftEditDiv
+{
+	width: 70%;
+	height: 100%;
+	float: left;
+	border-right: dashed 1px gray;
+	margin-right: 10px;
+	text-align: center;
+	border-left: dashed 1px gray;
+}
+
+
+
+#CraftSelect
+{
+	width:120px;
+	height: 30px;
 }

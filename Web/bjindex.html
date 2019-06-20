@@ -13,7 +13,11 @@
     <script src="resources/scripts/jquery-1.7.1.min.js"></script>
 	<script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
 	<script src="resources/scripts/Dictionary.js"></script>
+	<script src="resources/scripts/global.js"></script>
 	<script src="resources/scripts/PaperItem.js"></script>
+	<script src="resources/scripts/ComposeItem.js"></script>
+	<script src="resources/scripts/PrintingItem.js"></script>
+	<script src="resources/scripts/craftItem.js"></script>
 	<script src="resources/scripts/baojia.js"></script>
 	
 		<script type="text/javascript">
@@ -43,7 +47,6 @@
 			}
 
 			$(document).ready(function(){
-
 				$("#baseDataBtn").click(function(){
 					setDatabase	();
 				});
@@ -55,6 +58,27 @@
 				$("#addcomposingItemBtn").click(function(){
 					addcomposingItem();
 				});
+
+				$("#addPrintingItemBtn").click(function(){
+					addPrintingItem();
+				});
+
+				$("#addCraftItemBtn").click(function(){
+					addCraftItem();
+				});
+				
+/*
+
+
+				$("#checkboxDiv").find(":checkbox").each(function(){
+					$(this).click(function(){
+					if($(this).is(':checked')){ 
+					$(this).attr('checked',true).siblings().attr('checked',false);
+					}else{
+					$(this).attr('checked',false).siblings().attr('checked',false);
+					}
+				});
+*/
 			});
 		</script>
   </head>
@@ -68,7 +92,6 @@
 			<div id = 'subeLeftContent'>
 				<div id ="stepsDiv1" class="stepitem">
 					<div class="leftTitle"> 
-							一：产品类别及基础数据：
 					</div>
 					<div class="dataField">
 						<div id="productType">
@@ -108,7 +131,6 @@
 						
 					</div>
 				</div>
-				
 				<div id = "stepsDiv2" class="stepitem">
 					<div class="paperLeftTitle">
 							二：配件纸张选择
@@ -141,7 +163,7 @@
 						<button id="addPaperItemBtn" style="margin-left: 20px;margin-top:20px; background-color: chocolate ">添加纸张</button>
 					</div>
 				</div>
-			
+				
 				<div id = "stepsDiv3" class="stepitem">
 					<div class="composingTitle">
 						三：排版处理
@@ -156,10 +178,10 @@
 
 									</div>
 									<div class="composeEditDiv">
-										<div class='composeEditContentDiv' style="float: left; width:100%;display:none" >
-											<div class="composeEditSizeDiv" style="float: left; margin-left:10px ;width:60%;">
-												<div class="paperLengthDiv"></div>
-												<div class="paperWidthDiv"></div>
+										<div class='composeEditContentDiv' style="float: left; width:100%;" >
+											<div class="composeEditSizeDiv" style="float: left; margin-left:10px ;width:60%;display:none">
+												<div class="paperLengthDiv">&nbsp</div>
+												<div class="paperWidthDiv">&nbsp</div>
 											</div>
 											<div style="float: left; margin-left:10px; width:30%;">
 													<div>纸张长度<input class="chuxueInput" type="text" name="lname" value="0" onkeyup=""/> (mm)</div>
@@ -170,7 +192,7 @@
 									</div>
 								</div>
 								<div class="rightDiv">
-									<button class="deletecomposingItemBtn" onclick="deletePaperItem(this)">删除</button>
+									<button class="deletecomposingItemBtn" onclick="deleteComposeItem(this)">删除</button>
 								</div>
 							</div>
 						</div>
@@ -179,17 +201,104 @@
 				</div>
 				
 				<div id = "stepsDiv4" class="stepitem">
-					<div class="leftTitle">
-							步骤四：
+					<div class="printingTitle">
+							四：印刷
 					</div>
-					<div class="dataField">数据填写区域</div>
+					<div class="dataField">
+						<div id="printingZone" class="">
+							<div class="printingItem" style="display: none">
+								
+								<div class="leftNoDiv">1</div>
+								<div class="printingCenterDiv">
+									<div class="printingCheckBoxEditDiv">
+										<div style="float: left;width: 40%;text-align: center" >排版选择:
+											<select class = "ComposeSelect" onchange="">
+												<option value ="请选择">请选择</option>
+												<option value ="boxBaseDiv">盒子</option>
+												<option value ="CardDiv">卡牌</option>
+												<option value="DescriDiv">说明书</option>
+												<option value="CoinDiv">代币</option>
+											</select>
+										</div>
+										
+										<div style="float: left;width: 40%;text-align: center" >色令类别:
+											<select id="ColorSelect" onchange="">
+												<option value ="请选择">请选择</option>
+												<option value ="1">1</option>
+												<option value ="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value ="5">5</option>
+												<option value ="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+										</select>
+										</div>
+										
+									</div>
+									<div class="printingEditDiv">
+										<div class='printingEditContentDiv' style="float: left; width:100%; margin-top: 10px;" >
+											<div class="printingEditSizeDiv" style="float: left; margin-left:10px ;width:60%;">
+
+												<div class="paperLengthDiv">色令固定价：<input  type="text" name="lname" onkeyup="updateStaticColorV(this,this.value)" /> 元 </div>
+												<div class="paperWidthDiv">色令变动价：<input type="text" name="lname" onkeyup="updateDynamicColorV(this,this.value)" /> 元 </div>
+
+											</div>
+
+											<div class="slideCheckBoxDiv" style="float: left; margin-left:10px; width:30%;">
+													
+											</div>
+
+										</div>
+										<span class="tipDiv" style="color: crimson ;display: none"> 信息提示出来... </span>
+									</div>
+								</div>
+								<div class="rightDiv">
+									<button class="deletePrintingItemBtn" onclick="deletePrintingItem(this)">删除</button>
+								</div>
+							</div>
+						</div>
+						<button id="addPrintingItemBtn" style="display: none; margin-left: 20px;margin-top:20px; background-color:crimson ">添加印刷</button>
+
+					</div>
 				</div>
 				
 				<div id ="stepsDiv5" class="stepitem">
-					<div class="leftTitle">
-							步骤五：
+					<div class="craftTitle">
+						五：工艺
 					</div>
-					<div class="dataField">数据填写区域</div>
+					<div class="dataField">
+
+						<div id="craftZone" class="">
+							<div class="craftItem" style="display: none">
+
+								<div class="leftNoDiv">1
+
+								</div>
+
+								<div class="craftEditDiv">
+									<div class='craftEditContentDiv' style="float: left; width:100%; margin-top: 10px;" >
+
+										<div style="float: left; width: 40%; text-align: center" >工艺选择:
+											<select id="CraftSelect" onchange="craftTypeChange(this)">
+												<option value ="1">工艺1</option>
+												<option value ="2">工艺2</option>
+											</select>
+										</div>
+
+										<div class="craftSelectComposeDropbox" style="float: left;width: 40%;text-align: center ;display:none" >排版选择:
+											<select class="ComposeSelect" onchange="craftComposeSelect(this)">
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="rightDiv">
+										<button class="deleteCraftItemBtn" onclick="deleteCraftItem(this)">删除</button>
+								</div>
+							</div>
+						</div>
+						<button id="addCraftItemBtn" style="display: none; margin-left: 20px;margin-top:20px; background-color:crimson ">添加工艺</button>
+					</div>
 				</div>
 				
 				<div id = "stepsDiv6" class="stepitem">

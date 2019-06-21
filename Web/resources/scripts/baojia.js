@@ -48,7 +48,6 @@ function gradeChange(){
     });
 }
 
-
  function setDatabase(){
 
         if(currentObjectObj == null)
@@ -95,9 +94,8 @@ function gradeChange(){
         var divB = $("#realWidth");
         divB.innerHTML = "长度（实际）1： 120mm = 100mm（理论）";
 */
+
  }
-
-
 
 function addPaperItem()
  {
@@ -120,7 +118,6 @@ function addPaperItem()
      $(newObj).attr("id","paperid_"+ paperItemId);
      $(newObj).children('.leftNoDiv').text(paperItemId);
      
-
      var pitem = new PaperItem();
      pitem.targetObj =  newObj;
      pitem.paperItemId =  $(newObj).attr("id");
@@ -140,8 +137,6 @@ function addPaperItem()
         composingItemPerfabObj = $('.composingItem');
     }
 
-  
-
     var newObj = composingItemPerfabObj.clone(true).appendTo('#composingZone');
     $(newObj).attr("id","composeid_"+ composeItemId);
     $(newObj).addClass("newComposeItem");
@@ -158,15 +153,12 @@ function addPaperItem()
     composeItemId++;
  }
 
-
  function addPrintingItem()
  {
     if(printingItemPerfabObj == null)
     {
         printingItemPerfabObj = $('.printingItem');
     }
-
-    
 
     var newObj = printingItemPerfabObj.clone(true).appendTo('#printingZone');
     $(newObj).attr("id","printingid_"+ printingItemId);
@@ -180,7 +172,6 @@ function addPaperItem()
 
     var composeArr=new Array();
     $(".newComposeItem").each(function(){
-
         composeArr.push($(this).attr('id'));
     });
 
@@ -190,7 +181,6 @@ function addPaperItem()
     pritem.setComposeDropBox(composeArr, pritem.printingId );
 
     setAddCraftBtnVisible(true);
-
  }
  
  function addCraftItem()

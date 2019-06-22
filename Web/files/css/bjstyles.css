@@ -1,0 +1,476 @@
+body {
+  margin:0px;
+  background-image:none;
+  position:static;
+  left:auto;
+  width:100%;
+  height:100%;
+  text-align:left;
+  background-color:white;
+  min-width: 1200px;
+}
+	
+#head
+{
+	width:100%;
+	float: left;
+	height: 100px;
+	background-color: bisque;
+	text-align: center;
+	font-size: 40px;
+	line-height: 100px;
+}
+
+#content
+{
+	min-width: 1300px;
+}
+
+#subeLeftContent
+{
+		width: 80%;
+		float: left;
+		min-width: 1000px;
+}
+
+#subeRightContent
+{
+	width: 19%;
+	float: left;
+	height: 1000px;
+	background-color: rgb(0, 174, 180);
+}
+
+.stepitem
+{
+	width:100%;
+	float:left;
+	margin-bottom: 10px;
+	background-color:#efefef;
+}
+
+
+.stepitem .leftTitle
+{
+		width: 15%;
+		height: 100%;
+		background-color: aquamarine;
+		margin-right: 5px;
+		float:left;
+		text-align: center;
+		line-height: 200px;
+		font-weight: bold;
+}
+
+.stepitem .paperLeftTitle
+{
+		width: 15%;
+		height: 100%;
+		margin-right: 5px;
+		float:left;
+		text-align: center;
+		line-height:100%;
+		font-weight: bold;
+		margin-right:5px;
+}
+
+
+.stepitem .composingTitle
+{
+		width: 15%;
+		height: 100%;
+		margin-right: 5px;
+		float:left;
+		text-align: center;
+		line-height:100%;
+		font-weight: bold;
+		margin-right:5px;
+}
+
+.stepitem .dataField
+{
+		width: 80%;
+		height: 100%;
+		float:left;
+		border-left: solid 1px ;
+}
+
+
+	#stepsDiv1
+	{
+		width:100%;
+		float:left;
+		height: 200px;
+		background-color:#efefef;
+	}
+
+	#stepsDiv2
+	{
+		width:100%;
+		float:left;
+		background-color:#efefef;
+	}
+	
+	#stepsDiv3
+	{
+		width:100%;
+		float:left;
+		background-color:#efefef;
+	}
+	
+	#stepsDiv4
+	{
+		width:100%;
+		float:left;
+		background-color:#efefef;
+	}
+	
+	#stepsDiv5
+	{
+		width:100%;
+		float:left;
+		background-color:#efefef;
+	}
+	
+	#stepsDiv6
+	{
+		width:100%;
+		float:left;
+		height: 200px;
+		background-color:#efefef;
+	}
+
+	.stepsDivCenter
+	{
+		width:60%;
+		margin:0 auto;
+		min-width: 1200px;
+		height:120px;
+		border-bottom:1px solid #ddd;
+	}
+	
+	#bottom
+	{
+		width:100%;
+		height:100px;
+		background-color:#666;
+		float:left;
+	}
+	
+	.bottomCenter
+	{
+		width:60%;
+		margin:0 auto;
+		height:200px;
+		min-width: 1200px;
+		text-align:center;
+	}
+	
+	.bottomCenter img{
+		width:1200px;
+	}
+	
+	.rightsDiv
+	{
+		font-size:12px;
+		color:white;
+	}
+	
+
+	#productType {
+			float: left;
+			width: 200px;
+			/* background-color: gray; */
+			height: 100%;
+			text-align: center;
+			margin-right: 20px;
+			border-right: dashed 1px gray;
+	}
+
+	.itemTitle
+	{
+		width: 100%;
+		height: 30px;
+		text-align: center;
+		font-weight: bold;	
+		margin-top: 10px;
+	}
+
+	#productBaseDiv
+	{
+		text-align: center;
+		width:300px;
+		height: 200px;
+		border-right: dashed 1px gray;
+		float: left;
+	}
+
+	.baseDiv
+	{
+		display: none;
+		margin-top:10px;
+	}
+
+	#productTypeSelect
+	{
+		width:120px;
+		height: 30px;
+		margin-top:10px;
+	}
+
+
+.paperItem
+{
+	width: 94%;
+	height: 120px;
+	float: left;
+
+	border: dashed 1px gray;
+
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+	background-color: antiquewhite;
+	display: none;
+}
+
+.leftNoDiv {
+	width: 15%;
+	height: 100%;
+	float: left;
+	
+	margin-right: 10px;
+	margin-top: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.paperCenterDiv {
+	width: 70%;
+	height: 100%;
+	float: left;
+	border-right: dashed 1px gray;
+	margin-right: 10px;
+	text-align: center;
+	border-left: dashed 1px gray;
+}
+
+
+.paperTopEditDiv {
+	width: 100%;
+	height: 30px;
+	border-bottom: dashed 1px;
+	margin-top: 10px;
+}
+
+
+
+.paperNameDiv {
+	width: 40%;
+	float: left;
+
+}
+
+.paperTypeDiv {
+	width: 50%;
+	float: left;
+}
+
+.paperTypeDiv select
+{
+	width: 120px;
+	height: 25px;
+}
+
+.deletePaperItemBtn
+{
+	width:60px;
+	height: 30px;
+}
+
+.rightDiv {
+	float: left;
+	width: 10%;
+	height: 100%;
+	margin-top: 20px;
+}
+
+.pagerSizeEditDiv
+{
+	margin-top: 10px;
+	font-size: 12px;
+}
+
+.pagerSizeEditDiv div
+{
+	margin-top: 3px;
+}
+
+.pagerSizeEditDiv input
+{
+	width: 30px;
+}
+
+.composeEditDiv
+{
+	margin-top: 10px;
+	font-size: 12px;
+}
+
+
+.composeEditDiv input
+{
+	width: 30px;
+}
+
+#realLength
+{
+	float: left;
+	width:95%;
+}
+
+#realWidth
+{
+	float: left;
+	width:95%;
+}
+
+.composingItem
+{
+	width: 94%;
+	height: 120px;
+	float: left;
+	border: dashed 1px gray;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+	background-color: rebeccapurple;
+	display: none;
+}
+
+#addcomposingItemBtn
+{
+	display: none;
+}
+
+
+.composingCenterDiv {
+	width: 70%;
+	height: 100%;
+	float: left;
+	border-right: dashed 1px gray;
+	margin-right: 10px;
+	text-align: center;
+	border-left: dashed 1px gray;
+}
+
+
+.composingCheckBoxEditDiv {
+	width: 100%;
+	height: 30px;
+	border-bottom: dashed 1px;
+	margin-top: 10px;
+}
+
+
+
+.printingItem
+{
+	width: 94%;
+	height: 120px;
+	float: left;
+	border: dashed 1px gray;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+	background-color:rosybrown;
+}
+
+.printingCenterDiv {
+	width: 70%;
+	height: 100%;
+	float: left;
+	border-right: dashed 1px gray;
+	margin-right: 10px;
+	text-align: center;
+	border-left: dashed 1px gray;
+}
+
+
+.printingCheckBoxEditDiv
+{
+	height: 40px;
+	border: dashed 1px gray;
+	padding-top: 10px;
+	float: left;
+	width: 100%;
+}
+
+
+.ComposeSelect
+{
+	width:120px;
+	height: 30px;
+}
+
+#ColorSelect
+{
+	width:120px;
+	height: 30px;
+}
+
+.stepitem .printingTitle {
+	width: 15%;
+	height: 100%;
+	margin-right: 5px;
+	float: left;
+	text-align: center;
+	line-height: 100%;
+	font-weight: bold;
+	margin-right: 5px;
+}
+
+.craftTitle {
+	width: 15%;
+	height: 100%;
+	margin-right: 5px;
+	float: left;
+	text-align: center;
+	line-height: 100%;
+	font-weight: bold;
+	margin-right: 5px;
+}
+
+.craftItem
+{
+	width: 94%;
+	height: 50px;
+	float: left;
+
+	border: dashed 1px gray;
+
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+	background-color: antiquewhite;
+}
+
+
+.craftEditDiv
+{
+	width: 70%;
+	height: 100%;
+	float: left;
+	border-right: dashed 1px gray;
+	margin-right: 10px;
+	text-align: center;
+	border-left: dashed 1px gray;
+}
+
+
+
+#CraftSelect
+{
+	width:120px;
+	height: 30px;
+}

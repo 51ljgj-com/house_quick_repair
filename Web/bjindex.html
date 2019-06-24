@@ -66,19 +66,7 @@
 				$("#addCraftItemBtn").click(function(){
 					addCraftItem();
 				});
-				
-/*
 
-
-				$("#checkboxDiv").find(":checkbox").each(function(){
-					$(this).click(function(){
-					if($(this).is(':checked')){ 
-					$(this).attr('checked',true).siblings().attr('checked',false);
-					}else{
-					$(this).attr('checked',false).siblings().attr('checked',false);
-					}
-				});
-*/
 			});
 		</script>
   </head>
@@ -174,18 +162,21 @@
 								
 								<div class="leftNoDiv">1</div>
 								<div class="composingCenterDiv">
+									
+									<div class="composingTopEditDiv">
+										
+									</div>
 									<div class="composingCheckBoxEditDiv">
-
+											
 									</div>
 									<div class="composeEditDiv">
 										<div class='composeEditContentDiv' style="float: left; width:100%;" >
-											<div class="composeEditSizeDiv" style="float: left; margin-left:10px ;width:60%;display:none">
+											<div class="composeEditSizeDiv" style="float: left; margin-left:10px ;width:66%;display:none">
 												<div class="paperLengthDiv">&nbsp</div>
 												<div class="paperWidthDiv">&nbsp</div>
 											</div>
-											<div style="float: left; margin-left:10px; width:30%;">
-													<div>纸张长度<input class="chuxueInput" type="text" name="lname" value="0" onkeyup=""/> (mm)</div>
-													<div>纸张宽度<input class="chuxueInput" type="text" name="wname" value="0" onkeyup="" />(mm)</div>
+											<div class="composeEditRealSize" style="float: left; margin-left:10px; width:26%;">
+												
 											</div>
 										</div>
 										<span class="tipDiv" style="color: crimson ;display: none"> 信息提示出来... </span>

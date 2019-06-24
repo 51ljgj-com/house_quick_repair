@@ -338,7 +338,7 @@ body {
 .composingItem
 {
 	width: 94%;
-	height: 120px;
+	height: 140px;
 	float: left;
 	border: dashed 1px gray;
 	margin-left: 20px;
@@ -364,14 +364,38 @@ body {
 	border-left: dashed 1px gray;
 }
 
+.composingTopEditDiv {
+	width: 100%;
+	height: 24px;
+	border-bottom: dashed 1px;
+	margin-top: 10px;
+	float: left;
+}
+
 
 .composingCheckBoxEditDiv {
 	width: 100%;
-	height: 30px;
-	border-bottom: dashed 1px;
+	height: 24px;
 	margin-top: 10px;
+	float:  left;
+	border-bottom: dashed 1px;
 }
 
+.composingNameEditDiv {
+	width: 50%;
+	height: 30px;
+	margin-top: 10px;
+	border-right: dashed 1px;
+	float: left;
+}
+
+.composingPlusEditDiv {
+	width: 50%;
+	height: 30px;
+	margin-top: 10px;
+	border-left: dashed 1px;
+	float: left;
+}
 
 
 .printingItem

@@ -37,3 +37,5 @@ var currentSelectPaperW = 0;
 var composeItemId = 1;
 var printingItemId = 1;
 var gcraftItemId = 1;
+
+var gCreateProduceNum = 0;

@@ -1,3 +1,4 @@
+
 var tip_CalcYourself = "请自行计算尺寸 ！ ";
 var tip_PaperTypeError = "选择纸张类型不一致 ！ ";
 
@@ -8,6 +9,13 @@ var composeItemColNo = 1;
 var composeWidth = 0;
 var composeLength = 0;
 var composetargetObj = null ;
+var composeItemPrice = 0 ;
+var composeItemName = '' ;
+var composeItemPlusValue = '' ;
+var perItemValue = '' ;
+var realComposeLength = 0 ;
+var realComposeWidth = 0 ;
+
 var selectPaperItemArr = new Dictionary();
 
 function ComposeItem(){
@@ -18,8 +26,15 @@ function ComposeItem(){
     this.composeWidth = composeWidth;
     this.composeLength = composeLength;
     this.composetargetObj = composetargetObj;
-    this.init = init;
+    this.realComposeLength = realComposeLength;
+    this.realComposeWidth = realComposeWidth;
+    this.perItemValue = perItemValue;
+    this.composeItemPlusValue = composeItemPlusValue;
+    this.composeItemName = composeItemName;
+    this.composeItemPrice = composeItemPrice;
     this.checkboxOnclick = checkboxOnclick;
+    this.updateComposeRealL = updateComposeRealL;
+    this.updateComposeRealW = updateComposeRealW;
 };
 
 function AddSelectPaper(pid)
@@ -32,31 +47,64 @@ function removeSelectPaper(pid)
     composeArr.remove(pid,true);
 }
 
-function init(obj)
+ComposeItem.prototype.init =  function init(obj)
 {
+    var tophtml = '名称: <input class="componseNameInput"  onkeyup="updateComposeItemName(this.value,this)" type="text" name="lname" /> &nbsp;&nbsp;&nbsp;加放量: <input class="componsePlusLength" onkeyup="updateComposeItemPlusValue(this.value,this)" type="text" name="lname" />(%) ';
+    $(obj).children('.composingCenterDiv').children('.composingTopEditDiv').append(tophtml);
+    
     $('.newPaperItem').each(function(){
-
         var namestr = $(this).children('.leftNoDiv').text();
         var itemid = $(this).attr('id');
         var htmlobj = '	<input name='+ namestr + ' paperitemid= \''+ itemid +'\' type="checkbox" class="composeCheck" onclick=\"checkboxOnclick(this)\" value="1"> <label  for=\''+ namestr +'\'>'+ namestr  +'</label>'
-        
+
         $(obj).children('.composingCenterDiv').children('.composingCheckBoxEditDiv').append(htmlobj);
         this.composetargetObj = obj;
     });
+
+    var srt = '<div>纸张长度<input class="chuxueInput" type="text" name="lname" value="0" onkeyup="updateComposeRealL(this.value,this)"/> (mm)</div><div>纸张宽度<input class="chuxueInput" type="text" name="wname" value="0" onkeyup="updateComposeRealW(this.value,this)" />(mm)</div>'
+    var editRealDivObj= $(obj).children('.composingCenterDiv').children('.composeEditDiv').children('.composeEditContentDiv').children('.composeEditRealSize');
+
+    $(editRealDivObj).append(srt);
+}
+
+function updateComposeItemName(v,obj)
+{
+    this.composeItemName = v;
+}
+
+function updateComposeItemPlusValue(v,obj)
+{
+    obj.value =v.replace(/\D/g,'');
+    this.composeItemPlusValue = v;
 }
 
 function updateLNo(v,obj)
 {   
-   var el = "配件纸张实际长 :"+ currentSelectPaperL+ "* <input class='chuxueInput' type='text' name='lname' value='"+ v+ "' onkeyup='updateLNo(this.value,this)'/>(横排/个)= <span> "+ currentSelectPaperL*v + "（理论长）mm </span>";  
+    obj.value =v.replace(/\D/g,'');
+    var el = "配件纸张实际长 :"+ currentSelectPaperL+ "* <input class='chuxueInput' type='text' name='lname' value='"+ v+ "' onkeyup='updateLNo(this.value,this)'/>(横排/个)= <span> "+ currentSelectPaperL*v + "（理论长）mm </span>";  
+    $(obj).parent().html(el);
 
-   $(obj).parent().html(el);
 }
 
 function updateWNo(v,obj)
 {
+    obj.value =v.replace(/\D/g,'');
    var ew = "配件纸张实际宽 :"+ currentSelectPaperW+ "* <input class='chuxueInput' type='text' name='lname' value='"+ v+ "' onkeyup='updateWNo(this.value,this)'/>(横排/个)= <span> "+ currentSelectPaperW*v  + "（理论宽）mm </span>";  
 
    $(obj).parent().html(ew);
+}
+
+function updateComposeRealL(v,obj)
+{
+    obj.value =v.replace(/\D/g,'');
+    this.realComposeLength = v;
+}
+
+function updateComposeRealW(v,obj)
+{
+    obj.value =v.replace(/\D/g,'');
+    this.realComposeWidth = v;
+    alert(this.realComposeWidth);
 }
 
 //点击是否启用选择框
@@ -150,6 +198,10 @@ function checkboxOnclick(obj){
     }
 }
 
+function calc()
+{
+    var n = gCreateProduceNum;
+}
 
 
 

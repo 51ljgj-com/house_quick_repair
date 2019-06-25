@@ -38,4 +38,6 @@ var composeItemId = 1;
 var printingItemId = 1;
 var gcraftItemId = 1;
 
-var gCreateProduceNum = 0;
+var gCreateProduceNum = 50;
+
+var gPaperPersquare = 5.0;

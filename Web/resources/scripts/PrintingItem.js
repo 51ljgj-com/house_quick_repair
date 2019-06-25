@@ -1,31 +1,43 @@
+
+/*
 var printingId = "";
 var colorMode = 1;
 var colorStaticValue = 0.0;
 var colorDynamicValue = 0.0;
 var printSlideNo = 1;
+*/
 
 function PrintingItem()
 {
-    this.printingId = printingId;
-    this.colorMode = colorMode;
-    this.colorStaticValue = colorStaticValue;
-    this.colorDynamicValue = colorDynamicValue;
-    this.printSlideNo = printSlideNo;
-    this.setComposeDropBox = setComposeDropBox;
-    this.initPrinting = initPrinting;
+    this.printingId = '';
+    this.colorMode = 1;
+    this.colorStaticValue = 0.0;
+    this.colorDynamicValue = 0.0;
+    this.printSlideNo = 1;
+ //   this.setComposeDropBox = setComposeDropBox;
+  //  this.initPrinting = initPrinting;
 }
 
-function initPrinting()
+PrintingItem.prototype.initPrinting = function initPrinting()
 {
     var st = $("#"+this.printingId).children('.printingCenterDiv').children('.printingEditDiv').children('.printingEditContentDiv').children('.slideCheckBoxDiv');
     
-    var htmlObj = "<input type='checkbox' value='single' checked='checked' onclick='checkslideBoxclick(this)' />单面 <input type='checkbox' value='double' onclick='checkslideBoxclick(this)'  />双面";
+    var htmlObj = "<input class ='singleCheckBox' type='checkbox' value='single' checked='checked' />单面 <input  class ='doubleCheckBox' type='checkbox' value='double'  />双面";
 
     $(st).append(htmlObj);
-    
+    var that = this;
+    $(st).children('.singleCheckBox').click(function(ev)
+    {
+        that.checkslideBoxclick(this);
+    });
+
+    $(st).children('.doubleCheckBox').click(function(ev)
+    {
+        that.checkslideBoxclick(this);
+    });
 }
 
-function checkslideBoxclick(obj)
+PrintingItem.prototype.checkslideBoxclick = function checkslideBoxclick(obj)
 {
     $(obj).parent().children('input[type="checkbox"]').each(function(){
 
@@ -51,7 +63,7 @@ function checkslideBoxclick(obj)
 
 }
 
-function setComposeDropBox(arrobj,id)
+PrintingItem.prototype.setComposeDropBox = function setComposeDropBox(arrobj,id)
 {
     var downdropArr = new Array();
 

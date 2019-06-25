@@ -87,13 +87,7 @@ function gradeChange(){
         $(".realLength").children('span').text('长度（实际）：'+realLength+'mm = '+itemLength+'(理论)+');
 
         $(".realWidth").children('span').text('宽度（实际）：'+realWidth+'mm = '+itemWidth+'(理论)+');
-        
-/*
-        divA.innerHTML = "长度（实际）1： 120mm = 100mm（理论）";
 
-        var divB = $("#realWidth");
-        divB.innerHTML = "长度（实际）1： 120mm = 100mm（理论）";
-*/
 
  }
 
@@ -285,7 +279,14 @@ function paperTypeChange(obj){
     {
        setAddPrintingBtnVisible(false);
        deleteAllPrintItems();
-       
+    }
+ }
+
+ function calcCompose()
+ {
+    for (var key in composeItemsArr.datastore) {
+        var pitm1 = composeItemsArr.find(key);
+        pitm1.calc();
     }
  }
 

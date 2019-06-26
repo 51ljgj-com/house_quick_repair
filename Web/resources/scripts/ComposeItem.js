@@ -17,6 +17,9 @@ function ComposeItem(){
     this.composeItemName = '';
     this.composeItemPrice = 0;
     this.selectMode = 0;
+    this.theoryPaperNo = 0;
+    this.realPaperNo=0;
+    this.composeArea = 0;
     this.selectPaperItemArr = new Dictionary();
 };
 
@@ -115,7 +118,7 @@ ComposeItem.prototype.checkboxOnclick = function checkboxOnclick(obj){
            else
            {
                var el = "配件纸张实际长 :"+ length+ "* <input class='chuxueInput' type='text' name='lname' value='1' />(横排/个)= <label> "+ length + "（理论长）mm </label>";  
-               var ew = "配件纸张实际宽 :"+ width+ "* <input class='chuxueInput' type='text' name='lname' value='1' />(横排/个)= <label> "+ width + "（理论宽）mm </label>";  
+               var ew = "配件纸张实际宽 :"+ width+ "* <input class='chuxueInput' type='text' name='lname' value='1' />(竖排/个)= <label> "+ width + "（理论宽）mm </label>";  
    
                $(editDivObj).children('.paperLengthDiv').html(el);
                $(editDivObj).children('.paperWidthDiv').html(ew);
@@ -226,14 +229,34 @@ ComposeItem.prototype.calc = function calc()
 {
     var n = gCreateProduceNum;
     var area = this.realComposeLength*this.realComposeWidth*1.0/1000000;
-    var theoryPaperNo =gCreateProduceNum * 1.0 /Math.ceil((this.composeItemRowNo * this.composeItemColNo *1.0/this.selectMode ));
-    var realPaperNo = theoryPaperNo + theoryPaperNo*this.composeItemPlusValue*1.0/100;
+    this.composeArea = area;
 
-    var SumPrice = area * gPaperPersquare * realPaperNo;
+    this.theoryPaperNo = Math.ceil(gCreateProduceNum * 1.0 /Math.ceil((this.composeItemRowNo * this.composeItemColNo *1.0/this.selectMode )));
+  
+    this.realPaperNo =  Math.ceil( this.theoryPaperNo +    this.theoryPaperNo*this.composeItemPlusValue*1.0/100);
+
+    var SumPrice = area * gPaperPersquare * this.realPaperNo;
     var prePrice = SumPrice*1.0/gCreateProduceNum;
 
-    alert(SumPrice + "_" + prePrice);
+   var types = '<div class="tableCeilClass composePriceItem"> 排版： '+ this.composeItemNo +'</div>';
+   var names = '<div class="tableCeilClass composePriceItem"> '+ this.composeItemName +'</div>';
+   var sumP = '<div class="tableCeilClass composePriceItem"> '+ SumPrice.toFixed(2); +'</div>';
+   var perp = '<div class="tableCeilClass composePriceItem"> '+ prePrice.toFixed(2); +'</div>';
+   
+   if(gPriceItemPerfabObj == null)
+    {
+        gPriceItemPerfabObj = $('.priceItem');
+    }
 
+    var newObj = gPriceItemPerfabObj.clone(true).appendTo($('#priceContainer'));
+    $(newObj).addClass("newPriceItem");
+
+    $(newObj).append(types);
+    $(newObj).append(names);
+    $(newObj).append(sumP);
+    $(newObj).append(perp);
+
+    $(newObj).show();
 }
 
 

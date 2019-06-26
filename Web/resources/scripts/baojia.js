@@ -88,7 +88,7 @@ function gradeChange(){
 
         $(".realWidth").children('span').text('宽度（实际）：'+realWidth+'mm = '+itemWidth+'(理论)+');
 
-
+        $("#addPaperItemBtn").show();
  }
 
 function addPaperItem()
@@ -162,6 +162,7 @@ function addPaperItem()
 
     var pritem = new PrintingItem();
     pritem.printingId = $(newObj).attr("id");
+    pritem.printNo = printingItemId;
     printingItemsArr.add($(newObj).attr("id"),pritem);
 
     var composeArr=new Array();
@@ -284,10 +285,25 @@ function paperTypeChange(obj){
 
  function calcCompose()
  {
+    $('.newPriceItem').each(function(){
+        $(this).remove();
+    });
+    
     for (var key in composeItemsArr.datastore) {
         var pitm1 = composeItemsArr.find(key);
         pitm1.calc();
     }
+
+    for (var key in printingItemsArr.datastore) {
+        var pitm12 = printingItemsArr.find(key);
+        pitm12.calc();
+    }
+
+    for (var key in gcraftItemsArr.datastore) {
+        var pitm13 = gcraftItemsArr.find(key);
+        pitm13.calc();
+    }
+
  }
 
  function showComposeTip(obj,str)

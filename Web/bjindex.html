@@ -151,7 +151,7 @@
 								</div>
 							</div>
 						</div>
-						<button id="addPaperItemBtn" style="margin-left: 20px;margin-top:20px; background-color: chocolate ">添加纸张</button>
+						<button id="addPaperItemBtn" style="display: none; margin-left: 20px;margin-top:20px; background-color: chocolate ">添加纸张</button>
 					</div>
 				</div>
 				
@@ -205,7 +205,7 @@
 								<div class="leftNoDiv">1</div>
 								<div class="printingCenterDiv">
 									<div class="printingCheckBoxEditDiv">
-										<div style="float: left;width: 40%;text-align: center" >排版选择:
+										<div class = 'firstdiv' style="float: left;width: 40%;text-align: center" >排版选择:
 											<select class = "ComposeSelect" onchange="">
 												<option value ="请选择">请选择</option>
 												<option value ="boxBaseDiv">盒子</option>
@@ -215,8 +215,8 @@
 											</select>
 										</div>
 										
-										<div style="float: left;width: 40%;text-align: center" >色令类别:
-											<select id="ColorSelect" onchange="">
+										<div  class = 'seconddiv' style="float: left;width: 40%;text-align: center" >色令类别:
+											<select class="ColorSelect" onchange="">
 												<option value ="请选择">请选择</option>
 												<option value ="1">1</option>
 												<option value ="2">2</option>
@@ -296,15 +296,25 @@
 				</div>
 				
 				<div id = "stepsDiv6" class="stepitem">
-					<div class="leftTitle">
+					<div class="priceLeftTitle">
 							步骤六：
 					</div>
-					<div class="dataField">
-
+					<div id='priceContainer' class="dataField">
 						<button id="StartCalcBtn" style=" margin-left: 20px;margin-top:20px; background-color:crimson ">计算</button>
 
-					</div>
+						<div style="width:100%;height:30px;">
+							<div class="tableTitleClass">类别</div>
+							<div class="tableTitleClass">名称</div>
+							<div class="tableTitleClass">总价</div>
+							<div class="tableTitleClass">单价</div>
+						</div>
+
+						<div class ='priceItem' style="width:100%;height:30px;display:none">
+							
+						</div>
 						
+
+					</div>
 				</div>
 				
 			</div>

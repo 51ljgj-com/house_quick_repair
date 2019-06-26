@@ -16,8 +16,6 @@ var composingItemPerfabObj;
 var composingCheckBoxPerfabObj;
 var printingItemPerfabObj;
 
-//var selectPaperItemArr = new Dictionary();
-
 var paperItemsArr = new Dictionary();
 
 var composeItemsArr = new Dictionary();
@@ -38,6 +36,14 @@ var composeItemId = 1;
 var printingItemId = 1;
 var gcraftItemId = 1;
 
-var gCreateProduceNum = 50;
+var gCreateProduceNum = 5000;
 
 var gPaperPersquare = 5.0;
+
+var gCraftPrice1 = 300;
+var gCraftPrice2 = 30;
+
+var gPrintStaticColorPrice = 5.0;
+var gPrintDynamicColorPrice = 4.0;
+
+var gPriceItemPerfabObj = null;

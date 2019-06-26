@@ -55,7 +55,7 @@ function updateRealbl(b,obj,sf)
    {
        var theoreticalValue  = parseInt(objectWidth)+objectHeight*2;
        var real = itemWidth+2*b+2*j;
-       this.itemWidth = real;
+       this.realWidth = real;
        $(parentObjl).children('span').text('宽度（实际）：'+real+'mm = '+theoreticalValue+'(理论)+');
    }
 }
@@ -77,7 +77,7 @@ function updateRealju(j,obj,sffs)
    {
        var theoreticalValue  = parseInt(objectWidth)+objectHeight*2;
        var real = itemWidth+2*b+2*j;
-       this.itemWidth = real;
+       this.realWidth = real;
        $(parentObjl).children('span').text('宽度（实际）：'+real+'mm = '+theoreticalValue+'(理论)+');
    }
 }

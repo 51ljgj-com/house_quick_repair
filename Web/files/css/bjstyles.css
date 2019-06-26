@@ -87,6 +87,7 @@ body {
 		margin-right:5px;
 }
 
+
 .stepitem .dataField
 {
 		width: 80%;
@@ -136,7 +137,7 @@ body {
 	{
 		width:100%;
 		float:left;
-		height: 200px;
+	
 		background-color:#efefef;
 	}
 
@@ -465,6 +466,18 @@ body {
 	margin-right: 5px;
 }
 
+
+.priceLeftTitle {
+	width: 15%;
+	height: 100%;
+	margin-right: 5px;
+	float: left;
+	text-align: center;
+	line-height: 100%;
+	font-weight: bold;
+	margin-right: 5px;
+}
+
 .craftItem
 {
 	width: 94%;
@@ -498,3 +511,46 @@ body {
 	width:120px;
 	height: 30px;
 }
+
+
+.tableTitleClass
+{
+	width:24%;
+	height: 25px;
+	border: #666 dashed 1px;
+	background-color: coral;
+	float: left;
+	text-align: center;
+}
+
+.tableCeilClass
+{
+	width:24%;
+	height: 25px;
+	border-right: #666 dashed 1px;
+	border-top: #666 dashed 1px;
+	float: left;
+	text-align: center;
+
+}
+
+
+
+.craftPriceItem
+{
+	background-color: aquamarine;
+}
+
+
+.composePriceItem
+{
+	background-color:cadetblue;
+}
+
+
+.printPriceItem
+{
+	background-color:skyblue;
+}
+
+

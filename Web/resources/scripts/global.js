@@ -41,15 +41,9 @@ var gPaperItemPrice1 = 0.0;
 var gPaperItemPrice2 = 0.0;
 var gPaperItemPrice3 = 0.0;
 
-var gCraftItemPrice1 = 0.0
-var gCraftItemPrice2 = 0.0
+var gPaperPriceArr = null;
 
-var gPaperPersquare = 5.0;
-
-var gCraftPrice1 = 300;
-var gCraftPrice2 = 30;
-
-var gPrintStaticColorPrice = 5.0;
-var gPrintDynamicColorPrice = 4.0;
+var gCraftItemPrice1 = 30
+var gCraftItemPrice2 = 30
 
 var gPriceItemPerfabObj = null;

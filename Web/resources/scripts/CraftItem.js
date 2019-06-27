@@ -46,11 +46,11 @@ CraftItem.prototype.calc= function calc()
     var prices = 0;
     if(this.craftMode == '1')
     {
-         prices = gCreateProduceNum * gCraftPrice2;
+         prices = gCreateProduceNum * gCraftItemPrice2;
     }
     else
     {
-         prices = cpit.realPaperNo * cpit.composeArea * gCraftPrice1;
+         prices = cpit.realPaperNo * cpit.composeArea * gCraftItemPrice1;
     }
     
     var prePrice = prices/gCreateProduceNum;

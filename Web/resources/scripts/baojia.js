@@ -89,6 +89,7 @@ function gradeChange(){
         $(".realWidth").children('span').text('宽度（实际）：'+realWidth+'mm = '+itemWidth+'(理论)+');
 
         $("#addPaperItemBtn").show();
+
  }
 
 function addPaperItem()
@@ -420,25 +421,22 @@ function craftComposeSelect(obj)
     cfrtim.composeNo = $(obj).val();
 }
 
-
 function updateTBZPrice(obj,j)
 {
     obj.value =j.replace(/\D/g,'');
-    gPaperItemPrice1 = j;
+    gPaperPriceArr[0] = j;
 }
-
 
 function updateBKZPrice(obj,j)
 {
     obj.value =j.replace(/\D/g,'');
-    gPaperItemPrice2 = j;
+    gPaperPriceArr[1] = j;
 }
-
 
 function updateHBZPrice(obj,j)
 {
     obj.value =j.replace(/\D/g,'');
-    gPaperItemPrice3 = j;
+    gPaperPriceArr[2] = j;
 }
 
 function updateYWPrice(obj,j)
@@ -447,9 +445,16 @@ function updateYWPrice(obj,j)
     gCraftItemPrice1 = j;
 }
 
-
 function updateHHPrice(obj,j)
 {
     obj.value =j.replace(/\D/g,'');
     gCraftItemPrice2 = j;
 }
+
+function updateCreateNo(obj,j)
+{
+    obj.value =j.replace(/\D/g,'');
+    gCreateProduceNum = j;
+}
+
+

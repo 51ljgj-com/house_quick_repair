@@ -1,6 +1,6 @@
 var paperItemId = '';
 var paperName = '纸张';
-var paperMode =  'paper1';
+var paperMode =  1;
 var lBoold = 3;
 var ljuanbian = 3;
 var wBoold = 3;

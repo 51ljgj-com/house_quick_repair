@@ -20,6 +20,7 @@ function ComposeItem(){
     this.theoryPaperNo = 0;
     this.realPaperNo=0;
     this.composeArea = 0;
+    this.paperType = 1;
     this.selectPaperItemArr = new Dictionary();
 };
 
@@ -71,9 +72,11 @@ ComposeItem.prototype.checkboxOnclick = function checkboxOnclick(obj){
                paperMode = pitm1.paperMode;
                length = pitm1.realLength;
                width = pitm1.realWidth;
-   
+                
                currentSelectPaperL = length;
                currentSelectPaperW = width;
+
+               this.paperType = paperMode;
            }else
            {
                if(paperMode != pitm1.paperMode)
@@ -233,7 +236,7 @@ ComposeItem.prototype.calc = function calc()
   
     this.realPaperNo =  Math.ceil( this.theoryPaperNo +    this.theoryPaperNo*this.composeItemPlusValue*1.0/100);
 
-    var SumPrice = area * gPaperPersquare * this.realPaperNo;
+    var SumPrice = area * gPaperPriceArr[this.paperType-1] * this.realPaperNo;
     var prePrice = SumPrice*1.0/gCreateProduceNum;
 
    var types = '<div class="tableCeilClass composePriceItem"> 排版： '+ this.composeItemNo +'</div>';

@@ -47,6 +47,8 @@
 			}
 
 			$(document).ready(function(){
+
+				gPaperPriceArr = new Array(3).fill(0);
 				$("#baseDataBtn").click(function(){
 					setDatabase	();
 				});
@@ -135,9 +137,9 @@
 											 <div class="paperNameDiv">	名称: <input class="length" type="text" name="lname" /> </div>
 											 <div class="paperTypeDiv">	纸张类型: 
 												 <select id="paperTypeSelect" onchange="paperTypeChange(this)">
-													<option value ="paper1">157g铜版纸</option>
-													<option value ="paper2">300g白卡纸</option>
-													<option value="paper3">1mm灰板纸</option>
+													<option value =1>157g铜版纸</option>
+													<option value =2>300g白卡纸</option>
+													<option value=3>1mm灰板纸</option>
 												</select>
 											</div>
 									</div>
@@ -302,7 +304,7 @@
 					<div id='priceContainer' class="dataField">
 					
 						<button id="StartCalcBtn" style=" margin-left: 20px;margin-top:20px; background-color:crimson ">计算</button>
-						<div> 制作数量：<input class="length" type="text" name="lname" /> 个 </div>
+						<div> 制作数量：<input class="length" type="text" name="lname" onkeyup="updateCreateNo(this,this.value)" /> 个 </div>
 						
 						<div style="width:100%;height:30px;">
 							<div class="tableTitleClass">类别</div>
@@ -318,14 +320,12 @@
 				</div>
 			</div>
 			<div id = 'subeRightContent'>
-				<div> 纸张单价：<input class="length" type="text" name="lname" onkeyup="updatePaperPrice(this.value,this)" /> 元/平方 </div>
+				<div> 157g铜版纸：<input class="length" type="text" name="lname" onkeyup="updateTBZPrice(this,this.value)" /> 元 </div>
+				<div> 300g白卡纸：<input class="length" type="text" name="lname" onkeyup="updateBKZPrice(this,this.value)" /> 元 </div>
+				<div> 1mm灰板纸：<input class="length" type="text" name="lname" onkeyup="updateHBZPrice(this,this.value)"/> 元 </div>
 <p></p>
-				<div> 157g铜版纸：<input class="length" type="text" name="lname" onkeyup="updateTBZPrice(this.value,this)" /> 元 </div>
-				<div> 300g白卡纸：<input class="length" type="text" name="lname" onkeyup="updateBKZPrice(this.value,this)" /> 元 </div>
-				<div> 1mm灰板纸：<input class="length" type="text" name="lname" onkeyup="updateHBZPrice(this.value,this)"/> 元 </div>
-<p></p>
-				<div> 压纹(按面积)：<input class="length" type="text" name="lname" onkeyup="updateYWPrice(this.value,this)" /> 元 </div>
-				<div> 糊盒(按件数)：<input class="length" type="text" name="lname" onkeyup="updateHHPrice(this.value,this)" /> 元 </div>
+				<div> 压纹(按面积)：<input class="length" type="text" name="lname" onkeyup="updateYWPrice(this,this.value)" /> 元 </div>
+				<div> 糊盒(按件数)：<input class="length" type="text" name="lname" onkeyup="updateHHPrice(this,this.value)" /> 元 </div>
 <p></p>				
 			</div>
 	</div>

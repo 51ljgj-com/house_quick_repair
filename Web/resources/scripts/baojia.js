@@ -419,3 +419,37 @@ function craftComposeSelect(obj)
 
     cfrtim.composeNo = $(obj).val();
 }
+
+
+function updateTBZPrice(obj,j)
+{
+    obj.value =j.replace(/\D/g,'');
+    gPaperItemPrice1 = j;
+}
+
+
+function updateBKZPrice(obj,j)
+{
+    obj.value =j.replace(/\D/g,'');
+    gPaperItemPrice2 = j;
+}
+
+
+function updateHBZPrice(obj,j)
+{
+    obj.value =j.replace(/\D/g,'');
+    gPaperItemPrice3 = j;
+}
+
+function updateYWPrice(obj,j)
+{
+    obj.value =j.replace(/\D/g,'');
+    gCraftItemPrice1 = j;
+}
+
+
+function updateHHPrice(obj,j)
+{
+    obj.value =j.replace(/\D/g,'');
+    gCraftItemPrice2 = j;
+}

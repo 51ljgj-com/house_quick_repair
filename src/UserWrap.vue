@@ -114,6 +114,7 @@ export default {
     background-image: none;
   }
 }
+
 #bd {
   width: 100%;
   height: calc(100vh - 100px);

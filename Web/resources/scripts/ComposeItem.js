@@ -13,7 +13,7 @@ function ComposeItem(){
     this.realComposeLength = 0;
     this.realComposeWidth = 0;
     this.perItemValue = '';
-    this.composeItemPlusValue = '';
+    this.composeItemPlusValue = 10;
     this.composeItemName = '';
     this.composeItemPrice = 0;
     this.selectMode = 0;
@@ -141,7 +141,7 @@ ComposeItem.prototype.checkboxOnclick = function checkboxOnclick(obj){
 
 ComposeItem.prototype.init =  function init(obj)
 {
-    var tophtml = '名称: <input class="componseNameInput"  type="text" name="lname" /> &nbsp;&nbsp;&nbsp;加放量: <input class="componsePlusLengthInput" type="text" name="lname" />(%) ';
+    var tophtml = '名称: <input class="componseNameInput"  type="text" name="lname" /> &nbsp;&nbsp;&nbsp;加放量: <input class="componsePlusLengthInput" type="text" name="lname" value="10" />(%) ';
     $(obj).children('.composingCenterDiv').children('.composingTopEditDiv').append(tophtml);
 
     var that = this;
@@ -150,11 +150,9 @@ ComposeItem.prototype.init =  function init(obj)
         that.updateComposeItemName(this.value,this);
     });
 
-    
     $(obj).children('.composingCenterDiv').children('.composingTopEditDiv').children('.componsePlusLengthInput').keyup(function(ev){
         that.updateComposeItemPlusValue(this.value,this);
     });
-
 
     $('.newPaperItem').each(function(){
         var namestr = $(this).children('.leftNoDiv').text();

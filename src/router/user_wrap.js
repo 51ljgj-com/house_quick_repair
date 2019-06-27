@@ -18,6 +18,7 @@ import GroupBuyDetailVue from '@/pageview/user_wrap/group_buy_detail.vue'
 import UserOrdersVue from '@/pageview/user_wrap/user_center/user_orders'
 import UserOrderDetailVue from '@/pageview/user_wrap/user_center/order_detail'
 import PriceVue from '@/pageview/user_wrap/price.vue';
+import jionniwaVue from '@/pageview/user_wrap/joinniwa.vue';
 
 Vue.use(Router)
 
@@ -112,6 +113,12 @@ let router = new Router({
       name: 'PriceVue',
       component: PriceVue,
       meta: { hideNav: true, 'title': '团购门窗价格', nologin: true}
+    }
+    , {
+      path: '/join',
+      name: 'jionniwaVue',
+      component: jionniwaVue,
+      meta: { hideNav: true, 'title': '房屋贴砖报名', nologin: true}
     }
   ]
 })

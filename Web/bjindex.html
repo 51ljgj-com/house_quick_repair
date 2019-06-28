@@ -72,6 +72,15 @@
 				$("#StartCalcBtn").click(function(){
 					calcCompose();
 				});
+
+				gPaperPriceArr[0] = $('#TBZPaper').val();
+				gPaperPriceArr[1] = $('#BKZPaper').val();
+				gPaperPriceArr[2] = $('#HBZPaper').val();
+
+				gCraftItemPrice1 = $('#YWCraft').val();
+				gCraftItemPrice2 = $('#HHCraft').val();
+
+				gCreateProduceNum = $('#createProduceno').val();
 			});
 		</script>
   </head>
@@ -304,7 +313,7 @@
 					<div id='priceContainer' class="dataField">
 					
 						<button id="StartCalcBtn" style=" margin-left: 20px;margin-top:20px; background-color:crimson ">计算</button>
-						<div> 制作数量：<input class="length" type="text" name="lname" onkeyup="updateCreateNo(this,this.value)" /> 个 </div>
+						<div> 制作数量：<input id="createProduceno" class="length" type="text" name="lname" onkeyup="updateCreateNo(this,this.value)" /> 个 </div>
 						
 						<div style="width:100%;height:30px;">
 							<div class="tableTitleClass">类别</div>
@@ -320,12 +329,12 @@
 				</div>
 			</div>
 			<div id = 'subeRightContent'>
-				<div> 157g铜版纸：<input class="length" type="text" name="lname" onkeyup="updateTBZPrice(this,this.value)" /> 元 </div>
-				<div> 300g白卡纸：<input class="length" type="text" name="lname" onkeyup="updateBKZPrice(this,this.value)" /> 元 </div>
-				<div> 1mm灰板纸：<input class="length" type="text" name="lname" onkeyup="updateHBZPrice(this,this.value)"/> 元 </div>
+				<div> 157g铜版纸：<input id='TBZPaper' class="length" type="text" name="lname" onkeyup="updateTBZPrice(this,this.value)" /> 元 </div>
+				<div> 300g白卡纸：<input id='BKZPaper' class="length" type="text" name="lname" onkeyup="updateBKZPrice(this,this.value)" /> 元 </div>
+				<div> 1mm灰板纸：<input id='HBZPaper' class="length" type="text" name="lname" onkeyup="updateHBZPrice(this,this.value)"/> 元 </div>
 <p></p>
-				<div> 压纹(按面积)：<input class="length" type="text" name="lname" onkeyup="updateYWPrice(this,this.value)" /> 元 </div>
-				<div> 糊盒(按件数)：<input class="length" type="text" name="lname" onkeyup="updateHHPrice(this,this.value)" /> 元 </div>
+				<div> 压纹(按面积)：<input id='YWCraft' class="length" type="text" name="lname" onkeyup="updateYWPrice(this,this.value)" /> 元 </div>
+				<div> 糊盒(按件数)：<input id='HHCraft' class="length" type="text" name="lname" onkeyup="updateHHPrice(this,this.value)" /> 元 </div>
 <p></p>				
 			</div>
 	</div>

@@ -37,10 +37,6 @@ var printingItemId = 1;
 var gcraftItemId = 1;
 
 var gCreateProduceNum = 5000;
-var gPaperItemPrice1 = 0.0;
-var gPaperItemPrice2 = 0.0;
-var gPaperItemPrice3 = 0.0;
-
 var gPaperPriceArr = null;
 
 var gCraftItemPrice1 = 30

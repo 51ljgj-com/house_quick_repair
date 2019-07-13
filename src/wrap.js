@@ -8,7 +8,7 @@ import VueForm from 'vue-form'
 import WXPay from './plugin/wxpay'
 import OptRet from './component/wrap/operate_result.js'
 
-Vue.prototype.SERVER_HOST = 'localhost'//localhost https://api.51ljgj.com
+Vue.prototype.SERVER_HOST = "https://api.51ljgj.com";
 Vue.prototype.$BUS = new Vue()
 Vue.prototype.$showOptRet = OptRet.showResult
 Vue.showOptRet = OptRet.showResult

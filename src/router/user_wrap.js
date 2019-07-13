@@ -57,7 +57,7 @@ let router = new Router({
       path: '/group_buy',
       name: 'GroupBuyVue',
       component: GroupBuyVue,
-      meta: {hideNav: true, 'title': '我要团购', nologin: true}
+      meta: {hideNav: true, 'title': '我要团购'}
     }, {
       path: '/order_pay',
       name: 'OrderPayVue',

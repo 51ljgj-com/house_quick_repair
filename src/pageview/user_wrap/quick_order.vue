@@ -66,7 +66,7 @@ export default {
       let params = Object.assign({}, this.form, {
         token: Vue.userInfo.token,
         orderContent: this.$route.query.orderContent,
-        projectid: this.$route.query.projectId
+        projectid: this.$route.query.projectId || ''
       });
       this.$http.post("/api/order/createOrder", params).then(res => {
         res = res.body;
